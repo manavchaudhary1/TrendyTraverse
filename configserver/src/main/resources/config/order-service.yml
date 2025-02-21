@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: order-service
+  # Hibernate and JPA settings
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database: POSTGRESQL
+    properties:
+      transaction:
+        jta:
+          platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
+      hibernate:
+        format_sql: true
+    show-sql: true
+  # Data source configuration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      connection-test-query: SELECT 1
+  sql:
+    init:
+      platform: postgres
+
+server:
+  port: 8093
