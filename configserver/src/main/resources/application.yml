@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: ${CONFIG_PROFILE:native}
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config
+        git:
+          uri: https://github.com/demo/demo.git
+          username: demo
+          password: ${GIT_TOKEN}
+  config:
+    import: optional:configserver:classpath:/config/
+
+server:
+  port: 8085
