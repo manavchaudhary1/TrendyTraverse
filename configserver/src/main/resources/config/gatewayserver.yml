@@ -1,0 +1,71 @@
+spring:
+  application:
+    name: gatewayserver
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: false
+      routes:
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product-service/**
+          filters:
+            - RewritePath=/product-service/(?<path>.*), /$\{path}
+            - RemoveRequestHeader=Cookie,SetCookie
+            - PreserveHostHeader=true
+        - id: review-service
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/review-service/**
+          filters:
+            - RewritePath=/review-service/(?<path>.*), /$\{path}
+            - RemoveRequestHeader=Cookie,SetCookie
+            - PreserveHostHeader=true
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+          filters:
+            - RewritePath=/order-service/(?<path>.*), /$\{path}
+            - RemoveRequestHeader=Cookie,SetCookie
+            - PreserveHostHeader=true
+        - id: cart-service
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/cart-service/**
+          filters:
+            - RewritePath=/cart-service/(?<path>.*), /$\{path}
+            - RemoveRequestHeader=Cookie,SetCookie
+            - PreserveHostHeader=true
+
+#Eureka Configuration
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone:
+        - http://eureka-server:8761/eureka/
+        - http://localhost:8761/eureka/
+    registryFetchIntervalSeconds: 10
+    waitTimeInMsWhenSyncEmpty: 5000  # Helps avoid the "cache refresh failed" warning
+  instance:
+    prefer-ip-address: true
+    hostname: ${HOSTNAME:gatewayserver}  # Uses hostname, which works in both local & Docker
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
+
+server:
+  port: 8072
