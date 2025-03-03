@@ -1,0 +1,88 @@
+services:
+  postgres_keycloak:
+    image: postgres:latest
+    container_name: keycloak_db
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: ${POSTGRES_KEYCLOAK_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_KEYCLOAK_PASSWORD}
+    volumes:
+      - keycloak_data:/var/lib/postgresql/data
+      - ./files/keycloak_backup.dump:/sql/keycloak_backup.dump
+      - ./scripts/import_keycloak_data.sh:/docker-entrypoint-initdb.d/import_keycloak_data.sh
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - docker-backend
+
+  postgres_ecommerce:
+    image: postgres:latest
+    container_name: ecommerce_db
+    environment:
+      POSTGRES_USER: ${PSQL_USERNAME}
+      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+      POSTGRES_DB: e_commerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/init.sql:/sql/init.sql
+      - ./sql/users.sql:/sql/users.sql
+      - ./sql/products.sql:/sql/products.sql
+      - ./sql/product_images.sql:/sql/product_images.sql
+      - ./sql/feature_bullets.sql:/sql/feature_bullets.sql
+      - ./sql/reviews.sql:/sql/reviews.sql
+      - ./sql/carts.sql:/sql/carts.sql
+      - ./sql/cart_items.sql:/sql/cart_items.sql
+      - ./sql/orders.sql:/sql/orders.sql
+      - ./sql/order_lines.sql:/sql/order_lines.sql
+      - ./sql/final_setup.sql:/sql/final_setup.sql
+      - ./scripts/import_sql.sh:/docker-entrypoint-initdb.d/import_sql.sh
+      - e_commerce_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - docker-backend
+
+  keycloak:
+    image: keycloak/keycloak:26.0.4
+    container_name: keycloak
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres_keycloak:5432/keycloak
+      KC_DB_USERNAME: ${POSTGRES_KEYCLOAK_USER}
+      KC_DB_PASSWORD: ${POSTGRES_KEYCLOAK_PASSWORD}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USERNAME}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: false
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY: edge
+    ports:
+      - "8080:8080"
+    command:
+      - start-dev
+      - --features=scripts,docker
+      #      - --import-realm
+    #    volumes:
+    #      - ./keycloak-data:/tmp/imports/
+    #      - ./scripts/import_keycloak_data.sh:/tmp/script/import_keycloak_data.sh
+    depends_on:
+      postgres_keycloak:
+        condition: service_healthy
+    networks:
+      - docker-backend
+
+volumes:
+  keycloak_data: {}
+  e_commerce_data: {}
+
+networks:
+  docker-backend:
+    driver: bridge
