@@ -3,8 +3,12 @@ package com.manav.productservice.service.client;
 import com.manav.productservice.model.Review;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,10 +37,13 @@ public class ReviewRestTemplateClient {
     }
 
     public void deleteAllReviews(Long productId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(getAccessToken());
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
         ResponseEntity<Void> responseEntity = restTemplate.exchange(
                 "http://localhost:8091/products/{productId}/reviews",
                 HttpMethod.DELETE,
-                null,
+                entity,
                 Void.class,
                 productId
         );
@@ -53,5 +60,12 @@ public class ReviewRestTemplateClient {
                 productId
         );
         return responseEntity.getBody();
+    }
+    private String getAccessToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getCredentials() instanceof String token) {
+            return token;
+        }
+        throw new RuntimeException("No valid token found");
     }
 }
