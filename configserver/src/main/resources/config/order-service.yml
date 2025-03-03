@@ -26,6 +26,27 @@ spring:
   sql:
     init:
       platform: postgres
+#  OAuth2 settings
+  security:
+    oauth2:
+      client:
+      authorization-grant-type: authorization_code
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.server-url}realms/user-realm
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri:http://localhost:8080/realms/user-realm}/protocol/openid-connect/certs
+
+#JWT Configuration
+jwt:
+  auth:
+    converter:
+      resource-id: ${KEYCLOAK_CLIENT_ID}
+      principle-attribute: preferred_username
+
+#Keycloak Configuration
+keycloak:
+  server-url: ${KEYCLOAK_URL}
+  client-id: ${KEYCLOAK_CLIENT_ID}
 
 #Eureka Configuration
 eureka:
