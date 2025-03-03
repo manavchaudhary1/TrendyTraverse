@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: ${PSQL_URL}
+    username: ${PSQL_USERNAME}
+    password: ${PSQL_PASSWORD}

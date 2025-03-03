@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: user-service
+  # Hibernate and JPA settings
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      transaction:
+        jta:
+          platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
+  # Data source configuration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      connection-test-query: SELECT 1
+  sql:
+    init:
+      platform: postgres
+#  OAuth2 settings
+  security:
+    oauth2:
+      client:
+      authorization-grant-type: authorization_code
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.server-url}realms/user-realm
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri:http://localhost:8080/realms/user-realm}/protocol/openid-connect/certs
+
+#JWT Configuration
+jwt:
+  auth:
+    converter:
+      resource-id: ${KEYCLOAK_CLIENT_ID}
+      principle-attribute: preferred_username
+
+#Keycloak Configuration
+keycloak:
+  server-url: ${KEYCLOAK_URL}
+  realm: ${KEYCLOAK_REALM}
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  group-id: ${KEYCLOAK_GROUP_ID}
+  admin-group-id: ${KEYCLOAK_ADMIN_GROUP_ID}
+
+#Eureka Configuration
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone:
+        - http://eureka-server:8761/eureka/
+        - http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: 8094
