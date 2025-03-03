@@ -2,7 +2,7 @@
 CREATE TABLE "users" (
     "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     "username" TEXT NOT NULL UNIQUE,
-    "role" VARCHAR(255) CHECK ("role" IN ('admin', 'customer')) NOT NULL,
+    "email" TEXT UNIQUE ,
     "created_at" TIMESTAMP(0) WITHOUT TIME ZONE,
     "last_login" TIMESTAMP(0) WITHOUT TIME ZONE
 );
