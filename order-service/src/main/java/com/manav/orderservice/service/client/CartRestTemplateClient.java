@@ -2,8 +2,12 @@ package com.manav.orderservice.service.client;
 
 import com.manav.orderservice.dto.CartResponseDto;
 import com.manav.orderservice.model.CartItem;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,8 +25,14 @@ public class CartRestTemplateClient {
     }
 
     public List<CartItem> getCartItems(UUID userId) {
-        ResponseEntity<CartResponseDto> responseEntity = restTemplate.getForEntity(
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(getAccessToken());
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<CartResponseDto> responseEntity = restTemplate.exchange(
                 "http://localhost:8092/cart/{userId}",
+                HttpMethod.GET,
+                entity,
                 CartResponseDto.class,
                 userId
         );
@@ -35,11 +45,24 @@ public class CartRestTemplateClient {
     }
 
     public void archiveCart(UUID userId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(getAccessToken());
+
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
         restTemplate.exchange(
                 "http://localhost:8092/cart/{userId}/checkout",
                 HttpMethod.POST,
-                null,
+                entity,
                 Void.class,
-                userId);
+                userId
+        );
+    }
+
+    private String getAccessToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getCredentials() instanceof String token) {
+            return token;
+        }
+        throw new RuntimeException("No valid token found");
     }
 }
