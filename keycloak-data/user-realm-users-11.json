@@ -1,0 +1,1104 @@
+{
+  "realm" : "user-realm",
+  "users" : [ {
+    "id" : "97f24514-3a26-4873-9304-13faf235e173",
+    "username" : "amanda_spersrud",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770600258,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "79975c0c-8797-49ce-b820-0abd855f0265",
+      "type" : "password",
+      "createdDate" : 1740770600275,
+      "secretData" : "{\"value\":\"I3jK83qsrEPQM0ih9M1+1aJrxDkNYjCaWzPAEgLf6Hc=\",\"salt\":\"TclhP5UVCNyRbug8NPKaKQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "252ce846-7cfd-4d36-aa6a-50466e6becf3",
+    "username" : "amanda_standish_great_peppermint_taste.",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770711634,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "9f680f97-968c-4d0e-b772-114f158ae20d",
+      "type" : "password",
+      "createdDate" : 1740770711650,
+      "secretData" : "{\"value\":\"lWfQ19sJLfUk4J4mdwcY/5+GBQTaWgoo4Fl49OsyBP0=\",\"salt\":\"2qz2xBU6pW5eaYsZVVM36A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "b5229457-ef6b-4cd1-9eef-99896c27249e",
+    "username" : "amanda_watterson",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767412814,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "ffc9bce7-18b0-47c1-8678-175a13d2c011",
+      "type" : "password",
+      "createdDate" : 1740767412829,
+      "secretData" : "{\"value\":\"FwDsUIP1xbxGfd9inq2qeRxM6ewM9FJBo/fnxfKDwvs=\",\"salt\":\"L3Qfz7UW/uVYkqLKVUls/w==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "8cdeecbd-fb40-4057-9e5d-d32b2e50fc21",
+    "username" : "amanda_welch",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772697832,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "37c2e741-6445-43d8-b135-050c48314dc1",
+      "type" : "password",
+      "createdDate" : 1740772697851,
+      "secretData" : "{\"value\":\"8U23mp//O+fo1mR8PxmrgNPEc6SGn0hOJUsVUUQ6bKQ=\",\"salt\":\"5S/uaiZfwVpQN7hz/1VYYQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "87b46832-fbe1-4e8e-865d-cf19a06a65a2",
+    "username" : "aman_gupta",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772646843,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5f5e28f3-b6c0-4001-b820-37255451f765",
+      "type" : "password",
+      "createdDate" : 1740772646860,
+      "secretData" : "{\"value\":\"ZmarA86qkQVXSIf/4usyaXL3iNSsmScreRNQ99mfr+g=\",\"salt\":\"JB6c5IlLQ0Y4oQz1f+CIEA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "585f3390-99e9-4b1f-9cb3-425632ad67d5",
+    "username" : "a_marie_mack",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771480001,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "b18756d9-52e1-45d4-8369-74372c29ed1d",
+      "type" : "password",
+      "createdDate" : 1740771480017,
+      "secretData" : "{\"value\":\"MVN1TYGDAL5CLn63ppveDgZCowPaBQDcg5X7QxqYMys=\",\"salt\":\"i6bne2P3tM7zgUnR/U1XKw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "3a38447a-6657-46e6-830e-748c4b5bbac2",
+    "username" : "amazing",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770064355,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "282344dd-2446-418f-a458-a958a1cc3ee7",
+      "type" : "password",
+      "createdDate" : 1740770064370,
+      "secretData" : "{\"value\":\"NwNIng0sCd/abmtzkox3hSzCSoKNIsk4G7p1SdRtTB8=\",\"salt\":\"sFuUSJg2dMYYWskr8Vdxtg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "ed2d94b4-c948-42b6-a110-ea086d2b2ac5",
+    "username" : "amazing_\uD83E\uDD29amazing_\uD83E\uDD29",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770090438,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "b185ef2f-b9e4-461f-ab1b-03caa5c938a4",
+      "type" : "password",
+      "createdDate" : 1740770090453,
+      "secretData" : "{\"value\":\"ppbTdbB6UsNENMY+X2BbunP6JBjziq/mYkKz/w7Bfoo=\",\"salt\":\"SFiLwrnvB1IAAjxA76vClA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "73dae5bd-a873-4407-9217-336472d22918",
+    "username" : "amazing_designs_with_miyuki_delica",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769072139,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5e5b44b0-e47e-42c9-a54a-8a387122f596",
+      "type" : "password",
+      "createdDate" : 1740769072153,
+      "secretData" : "{\"value\":\"tzKOyzxDM3a89v+HanMlvZB3SQlI4WHi3PL/M1N48Yo=\",\"salt\":\"R/1JvtQvaHg7pEOO5z4NxA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "f6737339-aa32-4484-8c3e-5f07f58ab040",
+    "username" : "amazing_game_and_my_friends_daughter_was_happy",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768623509,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "0e170fad-fc4b-4dbd-afb4-10250f4cd6cc",
+      "type" : "password",
+      "createdDate" : 1740768623523,
+      "secretData" : "{\"value\":\"p/4CIIQngcwRaA4F9YfJm9MedbFg3eycyU1Ius0Fewo=\",\"salt\":\"ZiRO9HH8H9HjLQ35D0dbWA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "bf9b6c49-1e5c-4866-862e-b556bb0394d4",
+    "username" : "amazing_grace",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771837587,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "562e1ee4-1ba3-4e25-9c79-afc7e5a4122a",
+      "type" : "password",
+      "createdDate" : 1740771837606,
+      "secretData" : "{\"value\":\"z0sxDdRRBbSpSN/JlwLGc8vzx2XtZ9v0svcac04467A=\",\"salt\":\"Ro7Q61ek514vppHCO9jpAg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "0effb896-22de-4bbc-90c0-f751b4aa9d7d",
+    "username" : "amazing_mommy_2",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769917723,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "44966c5f-8b6a-40d9-961b-e37b95c050c8",
+      "type" : "password",
+      "createdDate" : 1740769917738,
+      "secretData" : "{\"value\":\"vrmtlRkXLzCAfQGvFSUzJVVD1mZY/mKUwg4lKDbuQnI=\",\"salt\":\"xIzHlgQKQJQovnoqOtop3A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "d0bcb6f7-02cd-4c94-a696-010db0af84ec",
+    "username" : "amazon4life",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771953832,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "d51748ae-af31-4114-8e15-a9b38ca9f7bc",
+      "type" : "password",
+      "createdDate" : 1740771953853,
+      "secretData" : "{\"value\":\"BzflNxsZKGP7gqwSSCqOx+ikWro70sGxTPziXJZJRho=\",\"salt\":\"W3s94K7bWQ3fvPOnXZdtTQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "bca4e6ba-7b9d-4c6f-bf93-434483f8dccb",
+    "username" : "amazonaddict",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770693822,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "95c9970d-6e70-4c42-b160-6afb83928044",
+      "type" : "password",
+      "createdDate" : 1740770693839,
+      "secretData" : "{\"value\":\"j3DPee4Nv6paXqC9CQ+tKVfniJ/eYQ/BCHX8Mo7wyPw=\",\"salt\":\"i05tkVvcQp3A++MjniPapg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a2826f3b-a0df-425d-b47e-2aef47e4d52c",
+    "username" : "amazonaddict_\uD83D\uDE09",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772335577,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "a7ec05ef-a310-4532-bf8d-21f4cf4b4c1b",
+      "type" : "password",
+      "createdDate" : 1740772335593,
+      "secretData" : "{\"value\":\"9Vx2qtMaOeo4G7mM6ftX9Kc8y4bYQRX3jDkzTEtd6So=\",\"salt\":\"yWbV6SV7zigsCJgz+eQz5A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "3c881860-c4b4-4541-9fe3-10b7e9575195",
+    "username" : "amazonaddictedamazonaddicted",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768065053,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "803f6704-ca13-4562-b7fc-256431b57b00",
+      "type" : "password",
+      "createdDate" : 1740768065070,
+      "secretData" : "{\"value\":\"l0zE8D4SB+8TNXkSbEFc9F3uyBdbg1rC3DI1zQiUdx8=\",\"salt\":\"FlRAIydGU3UYX05WBfCQ8g==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9108dbde-b5df-4943-b8a4-359f3887e6ef",
+    "username" : "amazonamazon",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767981618,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "7f71f825-0558-4694-9b08-c1757ae1d8be",
+      "type" : "password",
+      "createdDate" : 1740767981632,
+      "secretData" : "{\"value\":\"TFOlYMqY/gbNUpOvhw8I8NL7oBGrUtDuS34sPVKMmns=\",\"salt\":\"f0EbStNcHsDziaHFgVdBaw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "70408e36-f648-46c8-af5c-c448097f5e05",
+    "username" : "amazon_ambiance",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767520476,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "68871b25-5fdc-431c-9801-324e5b54cb15",
+      "type" : "password",
+      "createdDate" : 1740767520492,
+      "secretData" : "{\"value\":\"CNTxtTIac4hR5PuyxsbKM8uWA3YFauxWwzmup1Ua3Ug=\",\"salt\":\"emCFW7huBweSwFwrKRysAQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "dbcb69a1-8b7e-42bf-b995-30cf229ad40a",
+    "username" : "amazon_bob",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768249315,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "0483a629-0a1e-4a0c-bed4-ded412c91d19",
+      "type" : "password",
+      "createdDate" : 1740768249331,
+      "secretData" : "{\"value\":\"0OI8L/QnnlFQ54jzibtXROmoTjBPYNCWGY2ODkY3NMo=\",\"salt\":\"Eng3mZnWmLGHmmd/Z8e07A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "ab6c5cb4-aa08-4682-acb5-7bf44bfb9bc4",
+    "username" : "amazonbuyer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767128560,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "75225825-09fc-426c-8b5f-6b5fbc99b4fc",
+      "type" : "password",
+      "createdDate" : 1740767128579,
+      "secretData" : "{\"value\":\"XSi1J+xHZMDFPEG5/LOhJQ77MM8eKhKzYWSO10pryxs=\",\"salt\":\"UdAGpRP/NoLWv9MIyIJ9sQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "42741242-6712-4c28-8ad8-1ee1dbfc1b37",
+    "username" : "amazon_can_user",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767297163,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "0fe01f64-cd71-4f44-9384-92747f110538",
+      "type" : "password",
+      "createdDate" : 1740767297178,
+      "secretData" : "{\"value\":\"d2WdZV8r9oyo6v6tB3B/u42Ao8SaNy/crMY7ievUapk=\",\"salt\":\"c9P9yE13WI0LgBul2auw7A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a8bacdcb-af3a-40e4-afa6-0aeb87a893ac",
+    "username" : "amazon_customer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767041723,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "c92688ec-9ce6-4a1a-93df-80f8d9fb04cb",
+      "type" : "password",
+      "createdDate" : 1740767041740,
+      "secretData" : "{\"value\":\"az8cxxoR9IkGlluGwN1xFSRaKv6N7IuDVzbLLamdiIE=\",\"salt\":\"YGE4Ocp6rQcykLXtHbbzaA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "47243847-22c4-4b6a-9cba-4a160fbb4db1",
+    "username" : "amazoncustomer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767822970,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5ff5c2b9-c391-4338-bdc6-4daf7522dd9a",
+      "type" : "password",
+      "createdDate" : 1740767822986,
+      "secretData" : "{\"value\":\"Mpd1FoDi5d0DMzB/VIQh2h55SP5Lj/hsTslfixIZvjI=\",\"salt\":\"rZhNpOoxeWU3Mt21n7iJsw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "8e06c463-633e-4b70-be35-5c2e887ff7c7",
+    "username" : "amazoncustomer12",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771459348,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "128d080a-5b63-47fd-aa05-15bbde8471b4",
+      "type" : "password",
+      "createdDate" : 1740771459364,
+      "secretData" : "{\"value\":\"VYKCbhCN44NP7TtBCufcrTwXuNC+sQZ/PU/rNE37eiA=\",\"salt\":\"rGNXaTNowlZ1smkmCNe1Uw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "aedcc561-85aa-40ed-bca7-222399daf075",
+    "username" : "amazon_customeramazon_customer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767135544,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "9424272b-f965-4ddc-95d0-7a6bdf3e1ad8",
+      "type" : "password",
+      "createdDate" : 1740767135560,
+      "secretData" : "{\"value\":\"fzfIV8gsYzmc0rF+w9abfMGjsgbdIZhGUwgwuGKPvd8=\",\"salt\":\"a1okVjae02PdbehcXRBfGg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "6b02d4ab-86a0-46d0-b3c2-c36699c06483",
+    "username" : "amazon_customer_frani",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771504079,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "69c6b518-3e85-4d32-9875-ff02e1a74312",
+      "type" : "password",
+      "createdDate" : 1740771504098,
+      "secretData" : "{\"value\":\"ska4KSpyXDewTM8aINuP2c4hGeTlhPoXeUjE+qG7lJw=\",\"salt\":\"e8tkf3QGxXaMH7pyZsWyAw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "b4591e29-e549-4372-b3de-5ec1d8ab666e",
+    "username" : "amazon_customeri",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771309561,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "a7feec3d-0eb5-4a3b-a751-f1633379908d",
+      "type" : "password",
+      "createdDate" : 1740771309577,
+      "secretData" : "{\"value\":\"0LKwUz1hjeqVScemwIns3+kJ0tmopJujxIFrYayYpfQ=\",\"salt\":\"1aSa0XxSpCPZJEyELoG59Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "e6ecfecb-feb3-4b34-9b55-a7008b249112",
+    "username" : "amazon_customer_jr",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769174377,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "9860ef70-4334-4dff-b19f-fc814f4f073f",
+      "type" : "password",
+      "createdDate" : 1740769174393,
+      "secretData" : "{\"value\":\"RP5WuddqCC823G9mawM+ZfIF1uY4qX/FTxZsB1mVZzY=\",\"salt\":\"U0EiUzftPYMH9nSoD1y7JA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9b044d21-0598-4fa3-a64a-d592e84e85d1",
+    "username" : "amazon_customerkat",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771534422,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "8080088d-1b76-4928-b34b-e77a17bb9b27",
+      "type" : "password",
+      "createdDate" : 1740771534439,
+      "secretData" : "{\"value\":\"G4+ULt9CudA1X4DoGiCFWbiWSlutgZ8BOO/UpEZcoDY=\",\"salt\":\"rHKElfzr4odvXRsGdt5tYA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "952bd1c9-2e6a-499d-8649-7f79debb9e31",
+    "username" : "amazonian_916",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770925886,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "e3a5aa89-7913-4617-92ee-2a32421f4530",
+      "type" : "password",
+      "createdDate" : 1740770925903,
+      "secretData" : "{\"value\":\"bYm5i8iX0iY6GhzWEm0RJ00ecHnXZFz0IJMZzJFoNJ4=\",\"salt\":\"IYoyH8o0/heOr65z7mO4/A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "307b87b6-8e29-4e21-aa39-aafe80b619b2",
+    "username" : "amazonianpvd",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771826311,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "1c1ed0f8-0e09-4aa0-b376-73b71f1d7e19",
+      "type" : "password",
+      "createdDate" : 1740771826328,
+      "secretData" : "{\"value\":\"v6kxl2+tMwKI7ozaZMxEqdQIwtk8vC+Ct9c6KOj1u7A=\",\"salt\":\"wH5VfVvXrQRCnYz27yrACw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "f0dc3f23-86b9-42a8-83de-8142a5176be8",
+    "username" : "amazon_junkie246",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769290594,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5d5f4567-4208-4d7c-87f1-ff8d9ea3ffec",
+      "type" : "password",
+      "createdDate" : 1740769290609,
+      "secretData" : "{\"value\":\"aT2tmIhSMK8t9E+qjnk3HN3B1ZNQ+x80R7PDDXu0D/A=\",\"salt\":\"KwBWnR3/JQWvVxeI8AwepA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "97aaaef7-9e2b-4c3d-a702-a67b34888858",
+    "username" : "amazon-klant",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771164303,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "f9d9fdf2-4725-40ee-8a13-822d7912fd31",
+      "type" : "password",
+      "createdDate" : 1740771164322,
+      "secretData" : "{\"value\":\"KY98whJ7WRe7rn6+MtCfu21Z3XcxmfK6B5ycYzjDrlY=\",\"salt\":\"Ow6BjetIKql5nmoVKSFTpw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "879e0098-82d7-4f2c-a8e2-e00b4718b0f0",
+    "username" : "amazon-kunde",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771931467,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "c88768d9-2c74-4737-b16e-5c2c3130bd8f",
+      "type" : "password",
+      "createdDate" : 1740771931482,
+      "secretData" : "{\"value\":\"r5MbskhiN8x9RuSWfV9CNVHgshtS5zofss1GF2ijSSk=\",\"salt\":\"DzIqMrClZFJVqWVJ6aFThA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "b7b50c0b-1628-482d-8cbe-415fc742eda5",
+    "username" : "amazon_kunde",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767072227,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "da8c84d6-a2c4-4203-bb60-9a007b5a8633",
+      "type" : "password",
+      "createdDate" : 1740767072243,
+      "secretData" : "{\"value\":\"k7kc5D3gFDrOApW6c1u84sKyb/YXGjD/Ho7h5nbC4Z8=\",\"salt\":\"ezZ3vdl1XYeKKtO2LsqPhQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "f43381d8-395d-4a83-83e7-619827ae14e3",
+    "username" : "amazonlover",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771990173,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "727693f1-ceea-4719-9b0e-4a5c5220dfb3",
+      "type" : "password",
+      "createdDate" : 1740771990189,
+      "secretData" : "{\"value\":\"IHMpZBgvbPBtqeDoamggff2pbQu+JFV7pP1kZSrTHjk=\",\"salt\":\"0oDx0E8S123AGI3soff//w==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "b57b99b5-f372-453e-aebb-2a2d0415b75b",
+    "username" : "amazon_man",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767201237,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "7fe27412-449e-40ca-822a-af5f3173aa10",
+      "type" : "password",
+      "createdDate" : 1740767201253,
+      "secretData" : "{\"value\":\"GdVeHCP699A+yNdMjAVKq2MB36xLRaA/HGgtipEySJ8=\",\"salt\":\"z6x2P83KCeO1k36tp0RH4w==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "4aaf25bb-88cd-4b75-8575-30469347c3ee",
+    "username" : "amazon_reader",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772624147,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "f2fe31ca-7040-4b2d-9ae4-e4c846d88b2b",
+      "type" : "password",
+      "createdDate" : 1740772624165,
+      "secretData" : "{\"value\":\"5Kwwo3aIXrhqwx+MVvbf3weWIDidVfH3sBQKOBcvSAs=\",\"salt\":\"V43xDXsnuEw93sEJ2o4Fbg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "51b4705e-d705-4353-ba7c-3c35902a9d84",
+    "username" : "amazon_reviewer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767771029,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "183be391-daf7-46d9-ac0e-a39a9a7204c0",
+      "type" : "password",
+      "createdDate" : 1740767771045,
+      "secretData" : "{\"value\":\"M9EC+AXmWlkSAlOpBFbOq0P3Co0mWAODh2TluSYFZ/8=\",\"salt\":\"+9jCXl+y2tc4qzJll9711Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "b53c71be-4ebc-4042-ae4d-d9f011eda862",
+    "username" : "amazonrevieweramazonreviewer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771858861,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "a0b4d649-3dc7-43c1-80bc-323c2daea053",
+      "type" : "password",
+      "createdDate" : 1740771858881,
+      "secretData" : "{\"value\":\"PZLwprNDQmkjzKhsl6IkQsazA6HaZlXj5ZmOQBxMSM0=\",\"salt\":\"Fm2wNrHv8JDV4t8ztfkPlg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "e4f18b66-df16-48fa-9b96-df1440a63e95",
+    "username" : "amazon_shopper",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768248971,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "baa06c24-380b-4faf-8246-59c2a54325ed",
+      "type" : "password",
+      "createdDate" : 1740768248989,
+      "secretData" : "{\"value\":\"LPWTe9Bsy9nCbTPSkicfu4VE8sJ8aXS0hCqwLTL+T0M=\",\"salt\":\"0eHn4c3+LQ4hXQJsnh8BYg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9f7b3551-6a68-4293-a40b-7e550afa6032",
+    "username" : "amazonshopper",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771258363,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5a01057e-7bc6-4e8f-a2cf-30c3377310c0",
+      "type" : "password",
+      "createdDate" : 1740771258377,
+      "secretData" : "{\"value\":\"FsRRFwUsO/+aMTlWFXsip3v7pwVfRVARMH/f61DI95w=\",\"salt\":\"AEc60e1+jwsg/oURv4vm2A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "0a15fde6-f05f-47c2-b724-aca0612abccf",
+    "username" : "amazonsmamazon",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768198596,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "6dbb9036-ab66-4c77-b359-f884167677dc",
+      "type" : "password",
+      "createdDate" : 1740768198612,
+      "secretData" : "{\"value\":\"RgQf3smz5h5W4QlhTF1nYDza9gxVi9/05YB0k6WMa+8=\",\"salt\":\"um3q+ERV8p6JTruvQLk0/g==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "463fc3cd-827e-4686-8a80-bda6243331e4",
+    "username" : "amazon_tech_reviews",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769261607,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "3792062b-16ea-413a-af40-2365a0b2abc1",
+      "type" : "password",
+      "createdDate" : 1740769261623,
+      "secretData" : "{\"value\":\"7p3dU5l7vqEfFnvkT4gFih7pxs5G77Xm+2s7ML7YYBE=\",\"salt\":\"ntSH/ZORcGc8J6WOrNZ8bA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "c16b1637-eebe-4cb0-94a1-bb182719fc68",
+    "username" : "amazon_user",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770414284,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "6d170e37-bcde-4e03-b99f-bdef562200ac",
+      "type" : "password",
+      "createdDate" : 1740770414299,
+      "secretData" : "{\"value\":\"EmHWBKFRkVhT1Wg+Tn/Bl7fIemFZaUvlxofMMNvsFck=\",\"salt\":\"enfyNR0zAKsZHeDyRczULQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "430e8046-56e6-46fc-ac72-d547c183e1cb",
+    "username" : "amazonuser",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769206426,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "4d11dd07-306c-41fe-a8d8-1a6057533600",
+      "type" : "password",
+      "createdDate" : 1740769206442,
+      "secretData" : "{\"value\":\"rY7gQC+M3VtEa/Zlysk54OLDQ7030F1a3r4sZpLeHas=\",\"salt\":\"W8JWlKhEebGBjm8LCUYdPQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "55a9133b-9906-4940-bd9f-73c7bc2a4530",
+    "username" : "ambar_m.",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772782931,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "00f79bad-ec76-4fd2-a4f7-f0fed7f8c91f",
+      "type" : "password",
+      "createdDate" : 1740772782947,
+      "secretData" : "{\"value\":\"5U97MDl365uMhb+bsRrB+7LF+xZi02j6aiYkN4pU+FA=\",\"salt\":\"ANI6gYkdMLsn6Ty92BLUdg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "35f45bc2-09ee-4459-bdf4-2340104ab60f",
+    "username" : "amber",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767864492,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "911f2256-fd8c-4e75-8915-89880860dad4",
+      "type" : "password",
+      "createdDate" : 1740767864508,
+      "secretData" : "{\"value\":\"oyIOuB63vPLsTwFrnV2EymmG+hQ0t55Hj18/zav+7xI=\",\"salt\":\"HCLTHmRkEtWNBN7aVCxwZQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "02fe96d9-8f36-4707-866c-c83d81626b10",
+    "username" : "amber_a",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768786006,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "3aeb3efd-b15d-4d58-baa8-b9ca883c0c1b",
+      "type" : "password",
+      "createdDate" : 1740768786021,
+      "secretData" : "{\"value\":\"gVyYNhVWE1P9gE/QkAfpMcnk16QmZQZjyrdVUm8FChY=\",\"salt\":\"gghSy1qevgNlUP9fq31CLA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "91dd2e9c-ac30-4e2a-bd22-6a63e611a1e5",
+    "username" : "amberamber",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770372230,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "43e9f90f-7ea6-4e5d-be4f-00f37a5698cb",
+      "type" : "password",
+      "createdDate" : 1740770372244,
+      "secretData" : "{\"value\":\"x8lIyIRBbfFdcQ7kel/zOPYxN2YuLOW/xWM+oDJKj0I=\",\"salt\":\"yEP3qxHJOTNiBRtIWKEslg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  } ]
+}
