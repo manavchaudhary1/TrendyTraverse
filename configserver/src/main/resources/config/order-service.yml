@@ -11,9 +11,6 @@ spring:
       transaction:
         jta:
           platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
-      hibernate:
-        format_sql: true
-    show-sql: true
   # Data source configuration
   datasource:
     driver-class-name: org.postgresql.Driver
