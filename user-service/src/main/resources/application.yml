@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  config:
+    import:
+      - optional:configserver:http://localhost:8085
+      - optional:configserver:http://configserver:8085
+      - optional:file:${user.dir}/../.env[.properties]
+      - optional:file:${user.dir}/.env[.properties]

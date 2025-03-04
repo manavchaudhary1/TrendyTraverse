@@ -1,0 +1,1104 @@
+{
+  "realm" : "user-realm",
+  "users" : [ {
+    "id" : "ec903007-861e-4aa9-9996-476cb035945e",
+    "username" : "king",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769065464,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "e5b040dd-796a-48a6-a1f1-01b4366d3628",
+      "type" : "password",
+      "createdDate" : 1740769065479,
+      "secretData" : "{\"value\":\"3dmtx2/aaBCJf1I/7tElj2Sd3cdl0vmff2uK4Jj2tkk=\",\"salt\":\"FWlRWRhkAbcK76AtnABLcA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9c98bc21-ad15-4dc5-92d7-86797b26b205",
+    "username" : "king_ama-zon",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772086548,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "76264d95-2df2-4218-b8c6-59aead7a747d",
+      "type" : "password",
+      "createdDate" : 1740772086563,
+      "secretData" : "{\"value\":\"rwxT/Qpci3AcFEJs6tFKceLH4T54mT7/ndxZNyr34rE=\",\"salt\":\"NcTcIXYXymyhFzpY7BZ90g==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "0a245e01-2fb1-4aef-a813-af3b375a0097",
+    "username" : "kinga_spies",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768405418,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "6d4a63d7-19e1-4a82-84df-a8cd9ac9f28a",
+      "type" : "password",
+      "createdDate" : 1740768405433,
+      "secretData" : "{\"value\":\"+7kd9BBbiU78nC+VCA7g8OAg2err8vWUP+IOsdYCqEU=\",\"salt\":\"W++MYmNabyJEz7e7Z2+FSw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "b326d257-734a-4ce4-b6bc-c0c9ad0f5b6a",
+    "username" : "kinginthenorth",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771104961,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "105dbae4-bc93-4e15-86f2-b92c7196ec39",
+      "type" : "password",
+      "createdDate" : 1740771104981,
+      "secretData" : "{\"value\":\"OGDXsT3I5186ykvh49Gs3A2jBQDIWC369aRn0yI9cSU=\",\"salt\":\"DMUO+13Qou7eIx1HBUAC9Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "e9fe6833-61b3-4d4a-8a0d-c98228e54e66",
+    "username" : "kingkongsfc",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772331154,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "748a7af5-1958-4036-8f7b-94888792bd09",
+      "type" : "password",
+      "createdDate" : 1740772331170,
+      "secretData" : "{\"value\":\"dPqBZOyy7IUsrLlM5HpumOCT7kPsFz7J5hj48CTS6CY=\",\"salt\":\"3Lnl1HcxS8njapxc8/XMLg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "83582618-8b5f-4842-a230-f25093f20bb9",
+    "username" : "kingnet25",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772345869,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "45667770-a36e-4036-8449-c7aa246b826e",
+      "type" : "password",
+      "createdDate" : 1740772345887,
+      "secretData" : "{\"value\":\"tk+Qt4TquLKvAEzTHcomWALwrudYnWM76wB0PpOXKKA=\",\"salt\":\"8+b1Zcn1d7J1DPNUbtgpvg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "ac23795a-bd1c-43be-9991-06c7e017eb84",
+    "username" : "king_reviewer",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771017264,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "779f03cb-8687-4520-a943-6dc7c5ccf7e6",
+      "type" : "password",
+      "createdDate" : 1740771017282,
+      "secretData" : "{\"value\":\"oC7scl6ykr7dmo39NBsJedDiI/GvZ2zwcDot2Tw2+wM=\",\"salt\":\"QJcB0gX0qU+rAhvYB1FbJQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "f0db459f-2d36-4b8a-bdc6-91b24a08572c",
+    "username" : "king_yoki",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772378804,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5268a756-4964-4679-9030-4d6797faccce",
+      "type" : "password",
+      "createdDate" : 1740772378819,
+      "secretData" : "{\"value\":\"0vrWXnShdelMroiTJe3p9oGd722diYgW7eAkeji3ZF8=\",\"salt\":\"BcB+xCdYEDtbWMc7Begstg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "d31692e8-fe80-4a1e-89b1-0f9c6fad06d2",
+    "username" : "kinsey",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767555327,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "73b8811c-a9bd-4545-b780-b48968fca95c",
+      "type" : "password",
+      "createdDate" : 1740767555342,
+      "secretData" : "{\"value\":\"7xHFGbHPOL9h28qef2t/auLA8ZW9gDNo7HRXtokjkmM=\",\"salt\":\"qwop/mEnVWgJj+p3uXFf9A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "19563c29-ac79-420d-b7c9-65a278c084fe",
+    "username" : "kinsy",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770589211,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "8f93377a-49f8-4b6f-9d82-2fb1d0db7afb",
+      "type" : "password",
+      "createdDate" : 1740770589225,
+      "secretData" : "{\"value\":\"hRscp91+hwo/rtnYhph6hhY5kJuMWPLAwhixKDxj3t0=\",\"salt\":\"sbBDk0V6Y2VBpgl43mHqpg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "285b7afd-eab9-4339-b62c-f6be73b561a1",
+    "username" : "kinte",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770812139,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "11f098aa-68a4-47f4-a047-fe1d072edb6e",
+      "type" : "password",
+      "createdDate" : 1740770812156,
+      "secretData" : "{\"value\":\"Macn6XbkTw9FivJNAMDk7QDGsO8p1eryiSWK3c6f4fA=\",\"salt\":\"kA8miJMiSwdQBL2r6s+n7Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "5904c2af-7a3b-4a66-a522-7515815797de",
+    "username" : "kiona_\uD83D\uDC95kiona_\uD83D\uDC95",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767343207,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "75b58f87-7f24-4dd5-a461-1b4af7fbd575",
+      "type" : "password",
+      "createdDate" : 1740767343222,
+      "secretData" : "{\"value\":\"mil2iRHesOh8b7XHi4iC2BEXsLukyUCJH/S0jfmLDx8=\",\"salt\":\"x4w2353QY34hxQ1c8r0tnw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "6094c8d2-ede2-4c46-bbf7-25b8e295f010",
+    "username" : "kira",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767914728,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "69a5a730-d2dd-43a5-8679-0c2882019ecb",
+      "type" : "password",
+      "createdDate" : 1740767914747,
+      "secretData" : "{\"value\":\"YIQgdmMGQhPOEP85bcInNMrMLpjE5w7SuVsHu6PLNkM=\",\"salt\":\"DOGRQbDt6nOJ6bLFpAzUcg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "0e5d710a-4fc3-4a5c-a772-bf4c9f9e69e0",
+    "username" : "kira_ferrokira_ferro",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772199348,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "d110e446-41e6-42db-854e-553a5b84ddd5",
+      "type" : "password",
+      "createdDate" : 1740772199363,
+      "secretData" : "{\"value\":\"xMjm/ocSBolovx5irC6ORvORhBK3MTJ2Oedz5C7RE4k=\",\"salt\":\"ulCttXDh9D/2Kj+LwD99tQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a565491c-d585-4d4a-984e-761c150e0012",
+    "username" : "kiran_j",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770866344,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "c0bc3224-f1bc-48ef-a4e1-fa306481f6cb",
+      "type" : "password",
+      "createdDate" : 1740770866359,
+      "secretData" : "{\"value\":\"QFnLTOB7fPFyptPAWfeGcvckxRmSxn4ltOgcFjCRlY4=\",\"salt\":\"TcaPTLtywmAXl2GAFUpAqg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a2fd4d19-a309-4d24-8483-2113072b8e71",
+    "username" : "kirishiro_yamazaki-triendl",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770919498,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5c894a4e-f1ec-4590-a8c6-713a03ef9f41",
+      "type" : "password",
+      "createdDate" : 1740770919520,
+      "secretData" : "{\"value\":\"8Bx8fQrPYrvfTdmScLxQyvAe5/sglizQW2tvy80c9os=\",\"salt\":\"y8xoiOkXIFRCJrGxavAEMA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "bcd3373b-d8dc-41be-81c4-cd498ee698f5",
+    "username" : "kirker",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771343160,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "02ea4552-1c34-46dd-b043-e544a40c59ba",
+      "type" : "password",
+      "createdDate" : 1740771343179,
+      "secretData" : "{\"value\":\"cbonRPBHjYu6bJAOqB2VAf5u+H97zrRDeKDK4wbQu0c=\",\"salt\":\"8pDhpGqJM6i6J+hX1XagNw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "d84f8597-c008-4421-84ef-d9393b622404",
+    "username" : "kirk_groeneveld",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771005894,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5755c549-43c8-495c-b757-9b23a36f2cdc",
+      "type" : "password",
+      "createdDate" : 1740771005913,
+      "secretData" : "{\"value\":\"STt3DD/jEkRYtcLWKb2FPMmgoGKDMvRLL98DBXVBhsQ=\",\"salt\":\"jl83fHGk5nXZuaCuM1unaA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "ca5a6b76-10d6-4b04-ac0e-cdfe079733b7",
+    "username" : "kirk_michie",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771014616,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "b4ee947b-d7bf-4799-a28a-4c258719007e",
+      "type" : "password",
+      "createdDate" : 1740771014633,
+      "secretData" : "{\"value\":\"bboYz3eru1vgCs5JIKREUhdBusXGY7AbLoHMWKOZeY0=\",\"salt\":\"kYEKFHMEKcoO2B3pawMIgw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "db885730-bda0-420c-898b-cc4c5f444193",
+    "username" : "kirsten",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770647590,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "52633802-1485-4eed-a83d-1d8aa8570cdf",
+      "type" : "password",
+      "createdDate" : 1740770647607,
+      "secretData" : "{\"value\":\"ihOn4NM3eSGhhxa5pZceD2Pee8U8/QVBLU4WtwNP4/4=\",\"salt\":\"Ds8MK8OLjELmR1JNO0m1wQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "f38d41fa-babd-40b7-b60e-03ff0409c7d4",
+    "username" : "kirstenkirsten",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772666264,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "ab881fd5-ab7c-40bf-8ffa-f5d19f354995",
+      "type" : "password",
+      "createdDate" : 1740772666279,
+      "secretData" : "{\"value\":\"JqboMmsZcvAKdOZApXMbpGCy1S2czwxadHlfHHVdSIg=\",\"salt\":\"5lWU44lvPdETUoviaTBwqQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9ec00105-66dc-4273-b2f2-4553548e7266",
+    "username" : "kirsten_rempinski",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769289370,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "51365d68-8d7b-4bc9-82ad-43407df6bd6c",
+      "type" : "password",
+      "createdDate" : 1740769289385,
+      "secretData" : "{\"value\":\"RNqLe2FmdHrfi/M3ASqDhCWxuvjST512T47MsNeOsYk=\",\"salt\":\"I61Gep4U1ohKJVTfC2nQlQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9420ff52-d39f-4e87-b998-51cefe823d9b",
+    "username" : "kirstie",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767463465,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "fc7ccc80-dd1d-44b6-85ea-b9da75918c04",
+      "type" : "password",
+      "createdDate" : 1740767463482,
+      "secretData" : "{\"value\":\"x83i1R9F/AHFT6uOWv2xCJEopsBP3/vXIhIRjqXmAy0=\",\"salt\":\"Q6i/75lyh7ox4yKoB/NfUw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "f11673b7-2926-4d90-9e31-d8ec0210f16f",
+    "username" : "kirsty_sweeney",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769453547,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "c5647c82-2c46-422c-a6ac-b16e5b57d4f1",
+      "type" : "password",
+      "createdDate" : 1740769453562,
+      "secretData" : "{\"value\":\"rl5YsbGz4+6WMVeQcRkF7J/iqKsDHzoV4zOQGsrorZY=\",\"salt\":\"zgSKTJ935iRbQdWRnoiMAA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "72dd22c3-ed05-4b0f-b750-9875aed896f3",
+    "username" : "kirsty_w",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770758865,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "6f396001-054d-48e2-999f-3226fd3ac06d",
+      "type" : "password",
+      "createdDate" : 1740770758888,
+      "secretData" : "{\"value\":\"WvATAlyWBO5DzehyGN9SZZQkrv+rwwn6qd1BjJNZWIY=\",\"salt\":\"7T2CLR2wdiYZj9BvBz9MoQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "e5c9f9ed-0e34-4edf-b133-9c0c10140599",
+    "username" : "kirti_k.",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768537920,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "4604735c-ab47-491c-893b-126840068ef1",
+      "type" : "password",
+      "createdDate" : 1740768537934,
+      "secretData" : "{\"value\":\"ZoAVJ8gca69y/l/fNjKkK7h6C9Exdr4LDBIM2N3U7WM=\",\"salt\":\"m7lL9dI/1W21dFe4/MecIQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "d46235d9-fc38-4696-8e49-8f67a5b46b2b",
+    "username" : "kisel",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772707859,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "ca1fed2a-3fe1-46bd-9a75-a3c45c628b17",
+      "type" : "password",
+      "createdDate" : 1740772707876,
+      "secretData" : "{\"value\":\"EeC9y3oPSq3UDfzC0tzOJknAwCNbvcp54DOQ6yAG5Ds=\",\"salt\":\"ojZG0pvyPbuI7TsALfj7pg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "c3c75749-1dd4-4c4c-a518-d1f943060d9f",
+    "username" : "kitkatkitkat",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768678300,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "4442df61-586a-471a-8195-d160fdfdfa8d",
+      "type" : "password",
+      "createdDate" : 1740768678315,
+      "secretData" : "{\"value\":\"4pKtuqdH/cNM5S0u17ErAMsvzorV8xXO/UCuGGsDyK0=\",\"salt\":\"24jRrQYq3M/CH+r9j98bKQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "3fbec839-f51c-4dad-97f4-5d88f6aaaf9e",
+    "username" : "kitteneze",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767179575,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "cc0ed61a-32d6-40ba-9133-1b09864f2faa",
+      "type" : "password",
+      "createdDate" : 1740767179590,
+      "secretData" : "{\"value\":\"pzBJajKX3NO0Qx5EtnL0BYUxP3m9Gsq8hVFOCm3t3tw=\",\"salt\":\"JdGxUTZRWsAd5xfF1OkDnA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "c8882772-2d46-4e70-a600-36cd0837f73c",
+    "username" : "kitti_bhattacharya",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771635476,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "d34f2ee2-ef0a-4fd9-bfbc-4dd7c4f8a41b",
+      "type" : "password",
+      "createdDate" : 1740771635494,
+      "secretData" : "{\"value\":\"ul8RBNoorB+MZFhzo9fGOe8mFmdL5bUDOL0TsKNKxSY=\",\"salt\":\"dvs8dsOskpjasZnPBgldrw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "9790a6ed-0cd1-4463-b554-cef2b6e5d252",
+    "username" : "kittkitt",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767329890,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "8b6c98b0-79aa-4abb-8c9d-4d55a737d7c9",
+      "type" : "password",
+      "createdDate" : 1740767329906,
+      "secretData" : "{\"value\":\"Ke6Z/MciAQEjQm/XMqM3z6mD+y7Ai6bB71yrXPqDrY4=\",\"salt\":\"uCV5LKjChVnXgppB+APimw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "3758a355-66e0-4c0a-b130-f8f8d5ba19f7",
+    "username" : "kitty",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767468303,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "3aa69899-e727-45e2-a325-068bb0bfa8b1",
+      "type" : "password",
+      "createdDate" : 1740767468324,
+      "secretData" : "{\"value\":\"uBG+bwVGBL8KiBD1DfRywAl5UJdUiKwcPJm0rO4Zomo=\",\"salt\":\"C97GpBE1XZp/Au1BvkImAA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "2bfff8c2-3d51-44af-b298-a8e80c495b03",
+    "username" : "kittyfartz",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767413901,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "534f35ab-ff15-4680-bf1e-5ce94c54a341",
+      "type" : "password",
+      "createdDate" : 1740767413916,
+      "secretData" : "{\"value\":\"gGjil9KlYQFjFHBtpotSSVIun7ItuSwlyDyOJx6U7DE=\",\"salt\":\"K1AeDY5do7quUSA4xVo01Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "d1550a2d-700c-45f8-83e8-f44a7c238308",
+    "username" : "kittykittygrrl",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770694084,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "501e8029-dd83-478f-9fee-e07cab4e0fe2",
+      "type" : "password",
+      "createdDate" : 1740770694100,
+      "secretData" : "{\"value\":\"RWT7eqkjD1QRQl4FLMcUrQtsa2oo3flJFGjQBNMwyio=\",\"salt\":\"0IsJgNeE6mzXMkC7au0MtA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a8872077-5ac1-4c6d-bbf2-bd1be026c327",
+    "username" : "kittymom",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767258744,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "66ea87c6-a10d-4a14-ab60-4773b0b0e2b7",
+      "type" : "password",
+      "createdDate" : 1740767258759,
+      "secretData" : "{\"value\":\"0BDV+MAKcT2aABGYO+JvxYZv2b3gyKiXSpM8dTSt2FU=\",\"salt\":\"F+e1j7rvh/NhSmneTmsTpA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "52491390-62db-4051-92c9-f603ff39415e",
+    "username" : "kiusper",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771586111,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "c3778d4e-f977-4b84-bc7f-ffdaa5254e54",
+      "type" : "password",
+      "createdDate" : 1740771586128,
+      "secretData" : "{\"value\":\"jgJUgRWv+vsJssFVoh1FuA6OLq/+UTUr9wVbBYtdpUU=\",\"salt\":\"oGWsSL4aL/uL8BBCnPFRcw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "1abfcc5b-b163-4e3d-bfe6-8cfebdfcd457",
+    "username" : "kiwi_26",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771040190,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "857c5487-c207-4460-baf3-2c0555a355b3",
+      "type" : "password",
+      "createdDate" : 1740771040212,
+      "secretData" : "{\"value\":\"HT6TuarHLjHh72zPMKPIQMjazXA6wH4pOGujGRdUfX4=\",\"salt\":\"P8J5Z8k5zaNN1Ucxldp04w==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a82049d2-7521-4b60-b2bf-8bc2bb1f825d",
+    "username" : "kj_campo",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771864364,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "c23886fe-f662-4755-8e48-c462deeb5e21",
+      "type" : "password",
+      "createdDate" : 1740771864379,
+      "secretData" : "{\"value\":\"WGK03MpHmlG1RrmTSXmYopbP6vvw+TP3KTOs+K5+fDU=\",\"salt\":\"SSeqf/JVIKgwNuhdCNxSrA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "8a11d729-98fc-4665-8cb5-1001e2b5e199",
+    "username" : "kjf",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768133142,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "db116df2-3d0d-46fd-bc39-76e2f9072450",
+      "type" : "password",
+      "createdDate" : 1740768133157,
+      "secretData" : "{\"value\":\"oWRIHdEa1gaY3xAm3r3Ju7LiKPKOr+zs2q3O1SIIMEI=\",\"salt\":\"MAbg4FqighMHp9Xh/zz8Hw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "63e90401-d39f-4e6e-bca9-27cb6f17ed6e",
+    "username" : "kjl2004kjl2004",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740772769985,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "14695205-7575-4c25-b185-27d4b9e54473",
+      "type" : "password",
+      "createdDate" : 1740772770002,
+      "secretData" : "{\"value\":\"iOUMu1cLF0KN3XeWfv3CKkxXaCiWiVvqSHG23WYI6RI=\",\"salt\":\"sL3byRWk2kuTYq3zAMfYtw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "37de85a3-76b9-44d7-9f43-6913a5dafefd",
+    "username" : "kjo",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771296412,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "a68a2b30-daa4-4cfd-82ea-84a0a3544827",
+      "type" : "password",
+      "createdDate" : 1740771296432,
+      "secretData" : "{\"value\":\"JXS4e/GokMrNRwdRdrjHFd3uOhYlgw75L12jphb53lU=\",\"salt\":\"RuCS+ee88FyXWYoGt59SvA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "40702044-5b60-4a4a-93d9-72914bc9350f",
+    "username" : "k_keppler",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770840189,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "a8b221e7-c6a1-4f23-83ec-a6f80404e400",
+      "type" : "password",
+      "createdDate" : 1740770840204,
+      "secretData" : "{\"value\":\"i5L19r3mO/1q7GEFWmTnhW9yNV4hlEbwqWVVohY14+s=\",\"salt\":\"nDIFxdT8Y7VtyMwlNIf2Dg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "be599baf-c293-4900-8e69-32036abad858",
+    "username" : "kkg.",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740770281760,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "d90bb17f-a49a-4272-967b-f89b0177d23d",
+      "type" : "password",
+      "createdDate" : 1740770281774,
+      "secretData" : "{\"value\":\"aUfAgL9/vI0MRzaSj7U76n4iTBXtrf4OOEI59bwj01A=\",\"salt\":\"1V1pYE16d+D49+t4x4dTdQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "0e45e9af-7d1d-4686-a19c-1f560fe4d4a9",
+    "username" : "kkkk",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740767926011,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "a247b807-5646-4d71-ac5e-e89eae6abcd2",
+      "type" : "password",
+      "createdDate" : 1740767926029,
+      "secretData" : "{\"value\":\"Pcvu/43odC7HZGZPw7CtvhdhInW2Lvw26hVaNrb0B4Y=\",\"salt\":\"HOVoMQ7gMeW30d5TqIdKGw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "09d80d7b-eea1-4ca5-b7e1-5c1b841b9915",
+    "username" : "klara",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740768602719,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "2ff4ca57-4fad-496f-9859-f12912c7ac1e",
+      "type" : "password",
+      "createdDate" : 1740768602734,
+      "secretData" : "{\"value\":\"F5+qJ2Bw9MP4mqHlIYQSrayPOD150I8FKpyVEQ/opy4=\",\"salt\":\"PH0h8cwX3uD2g0PzuyGzeA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "e8a41f32-4c3d-4d26-8016-55cf1fc00969",
+    "username" : "k_larson",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771695146,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "033d1b28-3988-41ac-a592-bbc570776350",
+      "type" : "password",
+      "createdDate" : 1740771695165,
+      "secretData" : "{\"value\":\"JCr5cv+7RyKuM8coylydFI0sQ6sbMjhhMMhrYbHbSxM=\",\"salt\":\"qbSuyOEicHT56Ua+PyEsCg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "7eee80e1-020a-4f21-a374-45fe85b8c4eb",
+    "username" : "klboehm",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771445364,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "4b6c3622-616a-412f-9517-0f9e65f6e31a",
+      "type" : "password",
+      "createdDate" : 1740771445381,
+      "secretData" : "{\"value\":\"gnXlr7BQKs0NOLZTR/IbT9wMqTW8iI+52fl7L58I8AI=\",\"salt\":\"6QdlrtRl+29C06dLHW4lNA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "7671b80f-c2bb-4c73-a10b-8f896df08b34",
+    "username" : "klderosier",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740771108039,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5fd88b3d-270f-4776-a8cc-828aaa32b3e9",
+      "type" : "password",
+      "createdDate" : 1740771108056,
+      "secretData" : "{\"value\":\"Rwa7TkV86zzWU2Twc0TBEYCnthjfQuTH4fhO8Z8AxIA=\",\"salt\":\"TEkm2eMmku1ZIUqxUS5k/Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "6cf12cf4-dc9c-4dab-9728-da46020a376e",
+    "username" : "kleene_puppe",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769272888,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "b402cc08-f86f-43db-90d3-49da365c7f28",
+      "type" : "password",
+      "createdDate" : 1740769272904,
+      "secretData" : "{\"value\":\"m6Xuua8nS+YkBRF11F8Ja5bP3Vw4icIMTlQrznGOHIY=\",\"salt\":\"+UQ5H3dh9LUkR0qbCdVjgA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  }, {
+    "id" : "a529a8ba-beee-4bd1-afdc-d68e0333acf2",
+    "username" : "kleo",
+    "emailVerified" : true,
+    "createdTimestamp" : 1740769095831,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "7a015420-06b1-4f6c-be1e-b7bf65c501e9",
+      "type" : "password",
+      "createdDate" : 1740769095846,
+      "secretData" : "{\"value\":\"EtSqxddWuFhtpJmzDNIcX00IXPikOxOZfO37D/NqEXI=\",\"salt\":\"mL+9ZrD5itCQUuXxS8aUaQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-user-realm" ],
+    "clientRoles" : {
+      "manav" : [ "customer" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ "/Dummy-Users" ]
+  } ]
+}

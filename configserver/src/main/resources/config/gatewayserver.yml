@@ -42,6 +42,14 @@ spring:
             - RewritePath=/cart-service/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie,SetCookie
             - PreserveHostHeader=true
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - RewritePath=/user-service/(?<path>.*), /$\{path}
+            - RemoveRequestHeader=Cookie,SetCookie
+            - PreserveHostHeader=true
 
 #Eureka Configuration
 eureka:
