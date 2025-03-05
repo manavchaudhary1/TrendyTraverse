@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -64,5 +65,10 @@ public class UserController {
         }else {
             return ("User "+ userName +" not promoted to admin");
         }
+    }
+
+    @GetMapping("/validate")
+    public boolean validateUsername(@RequestParam String userName, @RequestParam String uuid) {
+        return userService.validateUsername(userName, UUID.fromString(uuid));
     }
 }
