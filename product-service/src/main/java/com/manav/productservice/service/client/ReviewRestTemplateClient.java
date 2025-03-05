@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -61,10 +62,18 @@ public class ReviewRestTemplateClient {
         );
         return responseEntity.getBody();
     }
+
     private String getAccessToken() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getCredentials() instanceof String token) {
-            return token;
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof Jwt jwt) {
+                return jwt.getTokenValue();
+            } else {
+                log.error("Expected Jwt object but found: {}", principal);
+            }
+        } else {
+            log.error("Authentication object is null");
         }
         throw new RuntimeException("No valid token found");
     }
