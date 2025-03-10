@@ -26,8 +26,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/products").hasAnyAuthority("new-user", "customer")
-                        .requestMatchers(HttpMethod.PUT, "/products/**").hasAnyAuthority("new-user", "customer")
-                        .requestMatchers(HttpMethod.DELETE, "/products/**").hasAnyAuthority("new-user", "customer")
+                        .requestMatchers(HttpMethod.PUT, "/products/**").hasAuthority("admin")
+                        .requestMatchers(HttpMethod.DELETE, "/products/**").hasAuthority("admin")
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter)))

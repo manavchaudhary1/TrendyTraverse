@@ -1,9 +1,6 @@
 package com.manav.userservice.config;
 
-import jakarta.servlet.Filter;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -26,7 +23,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/create", "/users/token", "users/refresh-token").permitAll()
+                        .requestMatchers("/users/create", "/users/token", "users/refresh-token","users/validate").permitAll()
                         .requestMatchers("/users/promote").hasAnyAuthority("admin")
                         .anyRequest().authenticated()
                 )

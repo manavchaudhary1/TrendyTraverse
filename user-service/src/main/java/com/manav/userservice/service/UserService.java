@@ -209,7 +209,7 @@ public class UserService {
 
     public Map<String, Object> getToken(String username, String password) {
         try {
-            return WebClient.create().post()
+            Map<String, Object> tokens = WebClient.create().post()
                     .uri(serverUrl + "/realms/{realm}/protocol/openid-connect/token", realm)
                     .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                     .body(BodyInserters.fromFormData("grant_type", "password")
@@ -221,6 +221,14 @@ public class UserService {
                     .bodyToMono(String.class)
                     .mapNotNull(this::extractAccessToken)
                     .block();
+
+            // Update last_login
+            userRepository.findByUsername(username).ifPresent(user -> {
+                user.setLastLogin(LocalDateTime.now());
+                userRepository.save(user);
+            });
+
+            return tokens;
         } catch (WebClientResponseException.Unauthorized e) {
             throw new InvalidCredentialsException("Invalid username or password.");
         } catch (WebClientResponseException e) {
@@ -267,5 +275,12 @@ public class UserService {
             log.error("Error extracting tokens");
             return Collections.emptyMap();
         }
+    }
+
+    public boolean validateUsername(String username, UUID uuid) {
+        return userRepository.findByUsername(username)
+                .map(User::getId)
+                .map(uuid::equals)  // Compare directly with UUID
+                .orElse(false);      // Return false if the user is not found
     }
 }

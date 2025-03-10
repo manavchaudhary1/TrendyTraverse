@@ -2,6 +2,8 @@ package com.manav.orderservice.service;
 
 import com.manav.orderservice.dto.OrderDto;
 import com.manav.orderservice.dto.OrderLineDto;
+import com.manav.orderservice.exception.CustomException;
+import com.manav.orderservice.exception.UnauthorizedAccessException;
 import com.manav.orderservice.model.CartItem;
 import com.manav.orderservice.model.Order;
 import com.manav.orderservice.model.OrderLines;
@@ -9,7 +11,12 @@ import com.manav.orderservice.repository.OrderLineRepository;
 import com.manav.orderservice.repository.OrderRepository;
 import com.manav.orderservice.service.client.CartRestTemplateClient;
 import com.manav.orderservice.service.client.ProductRestTemplateClient;
+import com.manav.orderservice.service.client.UserRestTemplateClient;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,27 +35,40 @@ public class OrderService {
     private final OrderLineRepository orderLineRepository;
     private final CartRestTemplateClient cartRestTemplateClient;
     private final ProductRestTemplateClient productRestTemplateClient;
+    private final UserRestTemplateClient userRestTemplateClient;
 
     public OrderService(OrderRepository orderRepository,
                         OrderLineRepository orderLineRepository,
                         CartRestTemplateClient cartRestTemplateClient,
-                        ProductRestTemplateClient productRestTemplateClient) {
+                        ProductRestTemplateClient productRestTemplateClient, UserRestTemplateClient userRestTemplateClient) {
         this.orderRepository = orderRepository;
         this.orderLineRepository = orderLineRepository;
         this.cartRestTemplateClient = cartRestTemplateClient;
         this.productRestTemplateClient = productRestTemplateClient;
+        this.userRestTemplateClient = userRestTemplateClient;
     }
 
     public List<OrderDto> getAllOrders(UUID userId) {
-        List<Order> orders = orderRepository.findByUserId(userId);
-        if (orders.isEmpty()) return Collections.emptyList();
+        try {
+            boolean isApproved = userRestTemplateClient.approveUser(getUsernameFromJwt(), userId.toString());
+            if (!isApproved) {
+                throw new UnauthorizedAccessException("Not authorized to access orders");
+            }
+            List<Order> orders = orderRepository.findByUserId(userId);
+            if (orders.isEmpty()) return Collections.emptyList();
 
-        return orders.stream()
-                .map(order -> {
-                    List<OrderLines> orderLines = getOrderLines(order.getId());
-                    return convertToOrderDto(order, orderLines);
-                })
-                .toList();
+            return orders.stream()
+                    .map(order -> {
+                        List<OrderLines> orderLines = getOrderLines(order.getId());
+                        return convertToOrderDto(order, orderLines);
+                    })
+                    .toList();
+        } catch (UnauthorizedAccessException e) {
+            log.error("Unauthorized access: {}", e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            throw new CustomException("Orders not found");
+        }
     }
 
     public List<OrderLines> getOrderLines(UUID orderId) {
@@ -58,49 +78,64 @@ public class OrderService {
 
     @Transactional
     public OrderDto placeOrderFromCart(UUID userId) {
+        try {
+            boolean isApproved = userRestTemplateClient.approveUser(getUsernameFromJwt(), userId.toString());
+            if (!isApproved) {
+                throw new UnauthorizedAccessException("Not authorized to place order");
+            }
+            // Get cart items from cart service
+            List<CartItem> cartItems = cartRestTemplateClient.getCartItems(userId);
+            if (cartItems.isEmpty()) {
+                throw new CustomException("Cart is empty");
+            }
 
-        // Get cart items from cart service
-        List<CartItem> cartItems = cartRestTemplateClient.getCartItems(userId);
-        if (cartItems.isEmpty()) {
-            throw new IllegalStateException("Cart is empty");
+            // Create new order
+            Order order = new Order();
+            order.setUserId(userId);
+            order.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
+            orderRepository.save(order);
+
+            // Create order lines from cart items
+            List<OrderLines> orderLinesList = cartItems.stream()
+                    .map(cartItem -> {
+                        OrderLines orderLine = new OrderLines();
+                        orderLine.setOrder(order);
+                        orderLine.setProductId(cartItem.getProductId());
+                        orderLine.setQuantity(cartItem.getQuantity());
+                        orderLine.setPrice(cartItem.getPrice());
+                        return orderLine;
+                    })
+                    .toList();
+
+
+            orderLineRepository.saveAll(orderLinesList);
+
+            // Archive the cart
+            cartRestTemplateClient.archiveCart(userId);
+
+            return convertToOrderDto(order, orderLinesList);
+        } catch (UnauthorizedAccessException e) {
+            log.error("Unauthorized access: {}", e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            throw new CustomException("Error placing order from cart");
         }
-
-        // Create new order
-        Order order = new Order();
-        order.setUserId(userId);
-        order.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
-        orderRepository.save(order);
-
-        // Create order lines from cart items
-        List<OrderLines> orderLinesList = cartItems.stream()
-                .map(cartItem -> {
-                    OrderLines orderLine = new OrderLines();
-                    orderLine.setOrder(order);
-                    orderLine.setProductId(cartItem.getProductId());
-                    orderLine.setQuantity(cartItem.getQuantity());
-                    orderLine.setPrice(cartItem.getPrice());
-                    return orderLine;
-                })
-                .toList();
-
-
-        orderLineRepository.saveAll(orderLinesList);
-
-        // Archive the cart
-        cartRestTemplateClient.archiveCart(userId);
-
-        return convertToOrderDto(order, orderLinesList);
     }
 
     @Transactional
     public OrderDto placeOrder(UUID userId, Long productId, int quantity) {
+        try{
+            boolean isApproved = userRestTemplateClient.approveUser(getUsernameFromJwt(), userId.toString());
+            if (!isApproved) {
+                throw new UnauthorizedAccessException("Not authorized to place order");
+            }
         if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than 0");
+            throw new CustomException("Quantity must be greater than 0");
         }
         // Get product price from product service
         var price = productRestTemplateClient.getPricing(productId);
         if (price.equals(BigDecimal.ZERO)) {
-            throw new IllegalStateException("Product price not available");
+            throw new CustomException("Product price not available");
         }
 
         // Create new order
@@ -118,6 +153,9 @@ public class OrderService {
         orderLineRepository.save(orderLine);
 
         return convertToOrderDto(order, Collections.singletonList(orderLine));
+        }catch (Exception e) {
+            throw new CustomException("Product not found");
+        }
     }
 
     private OrderDto convertToOrderDto(Order order, List<OrderLines> orderLines) {
@@ -142,21 +180,40 @@ public class OrderService {
 
     @Transactional
     public void deleteOrder(UUID orderId, UUID userId) {
-        Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new IllegalStateException("Order not found"));
+        try {
+            boolean isApproved = userRestTemplateClient.approveUser(getUsernameFromJwt(), userId.toString());
+            if (!isApproved) {
+                throw new UnauthorizedAccessException("Not authorized to delete this order");
+            }
+            Order order = orderRepository.findById(orderId)
+                    .orElseThrow(() -> new CustomException("Order not found"));
 
-        // Verify that the order belongs to the user
-        if (!order.getUserId().equals(userId)) {
-            throw new IllegalStateException("Order does not belong to the user");
+            // Verify that the order belongs to the user
+            if (!order.getUserId().equals(userId)) {
+                throw new UnauthorizedAccessException("Order does not belong to the user");
+            }
+
+            // Delete all order lines first
+            List<OrderLines> orderLines = orderLineRepository.findByOrderId(orderId);
+            if (!orderLines.isEmpty()) {
+                orderLineRepository.deleteAll(orderLines);
+            }
+
+            // Delete the order
+            orderRepository.delete(order);
+        }catch (Exception e) {
+            throw new CustomException("Error deleting order");
         }
+    }
 
-        // Delete all order lines first
-        List<OrderLines> orderLines = orderLineRepository.findByOrderId(orderId);
-        if (!orderLines.isEmpty()) {
-            orderLineRepository.deleteAll(orderLines);
+    protected String getUsernameFromJwt() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication instanceof JwtAuthenticationToken jwtAuth) {
+            // Handle JWT Authentication
+            Jwt jwt = jwtAuth.getToken();
+            return jwt.getClaim("preferred_username");  // Extract preferred_username
         }
-
-        // Delete the order
-        orderRepository.delete(order);
+        return null;
     }
 }
