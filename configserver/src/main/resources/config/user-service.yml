@@ -31,8 +31,8 @@ spring:
       authorization-grant-type: authorization_code
       resourceserver:
         jwt:
-          issuer-uri: ${keycloak.server-url}realms/user-realm
-          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri:http://localhost:8080/realms/user-realm}/protocol/openid-connect/certs
+          issuer-uri:  ${keycloak.server-url}realms/${KEYCLOAK_REALM}
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
 #JWT Configuration
 jwt:
