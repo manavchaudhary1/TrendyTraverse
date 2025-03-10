@@ -72,8 +72,8 @@ public class OrderService {
     }
 
     public List<OrderLines> getOrderLines(UUID orderId) {
-            List<OrderLines> orderLines = orderLineRepository.findByOrderId(orderId);
-            return orderLines.isEmpty() ? Collections.emptyList() : orderLines;
+        List<OrderLines> orderLines = orderLineRepository.findByOrderId(orderId);
+        return orderLines.isEmpty() ? Collections.emptyList() : orderLines;
     }
 
     @Transactional
