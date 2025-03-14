@@ -2,6 +2,7 @@ package com.manav.productservice.service;
 
 
 import com.manav.productservice.dto.*;
+import com.manav.productservice.exception.CustomException;
 import com.manav.productservice.model.Product;
 import com.manav.productservice.model.ProductFeatures;
 import com.manav.productservice.model.ProductImage;
@@ -9,8 +10,10 @@ import com.manav.productservice.model.Review;
 import com.manav.productservice.repository.ProductFeaturesRepository;
 import com.manav.productservice.repository.ProductImageRepository;
 import com.manav.productservice.repository.ProductRepository;
+import com.manav.productservice.repository.ProductRedisRepository;
 import com.manav.productservice.service.client.ReviewRestTemplateClient;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,30 +23,41 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductService {
 
     private final ProductRepository productRepository;
     private final ProductImageRepository productImageRepository;
     private final ProductFeaturesRepository productFeaturesRepository;
     private final ReviewRestTemplateClient reviewRestTemplateClient;
+    private final ProductRedisRepository productRedisRepository;
 
-    public ProductService(ProductRepository productRepository, ProductImageRepository productImageRepository, ProductFeaturesRepository productFeaturesRepository, ReviewRestTemplateClient reviewRestTemplateClient) {
+    public ProductService(ProductRepository productRepository, ProductImageRepository productImageRepository, ProductFeaturesRepository productFeaturesRepository, ReviewRestTemplateClient reviewRestTemplateClient, ProductRedisRepository productRedisRepository) {
         this.productRepository = productRepository;
         this.productImageRepository = productImageRepository;
         this.productFeaturesRepository = productFeaturesRepository;
         this.reviewRestTemplateClient = reviewRestTemplateClient;
+        this.productRedisRepository = productRedisRepository;
     }
 
     public ProductResponseDTO getProductById(Long productId) {
         try {
-            Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new ResponseStatusException(
-                            HttpStatus.NOT_FOUND,
-                            String.format("Product with ID %d not found", productId)
-                    ));
-            return convertToDTO(product);
+            Product cachedproduct = checkRedisCache(productId);
+            if (cachedproduct != null) {
+                return convertToDTO(cachedproduct);
+            }else {
+                Product product = productRepository.findById(productId)
+                        .orElseThrow(() -> new CustomException(
+                                String.format("Product with ID %d not found", productId)
+                        ));
+                // Cache the retrieved product for future requests
+                cacheProductObject(product);
+                log.debug("Product {} cached in Redis", productId);
+
+                return convertToDTO(product);
+            }
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error retrieving product", e);
+            throw new CustomException("Error retrieving product: " + e.getMessage());
         }
     }
 
@@ -84,7 +98,7 @@ public class ProductService {
         }
 
         // Fetch reviews using ReviewRestTemplateClient and convert them into DTOs
-        List<Review> reviews = reviewRestTemplateClient.getAllReviews(product.getProductId());
+        List <Review> reviews = getReviews(product.getProductId());
         if (reviews != null && !reviews.isEmpty()) {
             List<ReviewDTO> reviewDTOs = reviews.stream()
                     .map(this::convertToReviewDTO)
@@ -93,6 +107,10 @@ public class ProductService {
         }
 
         return dto;
+    }
+
+    private List<Review> getReviews(Long productId) {
+        return reviewRestTemplateClient.getAllReviews(productId);
     }
 
     private ProductImageDTO convertToImageDTO(ProductImage image) {
@@ -171,7 +189,7 @@ public class ProductService {
     public ProductResponseDTO updateProduct(Long productId, ProductUpdateDTO updateDTO) {
         try {
             Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                    .orElseThrow(() -> new CustomException("Product not found"));
 
             if (updateDTO.getName() != null) product.setName(updateDTO.getName());
             if (updateDTO.getBrand() != null) product.setBrand(updateDTO.getBrand());
@@ -216,9 +234,11 @@ public class ProductService {
             }
 
             product = productRepository.save(product);
+            removeFromCache(productId);
+            cacheProductObject(product);
             return convertToDTO(product);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error updating product", e);
+            throw new CustomException("Error updating product");
         }
     }
 
@@ -226,7 +246,7 @@ public class ProductService {
     public ProductDeletionResponseDTO deleteProduct(Long productId) {
         try {
             Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                    .orElseThrow(() -> new CustomException("Product not found"));
 
             int imagesCount = productImageRepository.countByProduct(product);
             int featuresCount = productFeaturesRepository.countByProduct(product);
@@ -236,6 +256,7 @@ public class ProductService {
             productFeaturesRepository.deleteByProduct(product);
             reviewRestTemplateClient.deleteAllReviews(productId);
 
+            removeFromCache(productId);
             productRepository.delete(product);
 
             ProductDeletionResponseDTO response = new ProductDeletionResponseDTO();
@@ -249,8 +270,35 @@ public class ProductService {
 
             return response;
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting product", e);
+            throw new CustomException("Error deleting product");
         }
     }
+
+    private Product checkRedisCache(Long productId) {
+        try{
+            return productRedisRepository.findById(productId).orElse(null);
+        } catch (Exception exception) {
+            log.warn("Error retrieving product {} from Redis cache: {}",productId, exception.getMessage());
+            return null;
+        }
+    }
+
+    private void cacheProductObject(Product product){
+        try{
+            productRedisRepository.save(product);
+        }catch (Exception exception) {
+            log.warn("Error caching product {} in Redis: {}", product.getProductId(), exception.getMessage());
+        }
+    }
+
+    private void removeFromCache(Long productId) {
+        try {
+            productRedisRepository.deleteById(productId);
+            log.debug("Product {} removed from Redis cache", productId);
+        } catch (Exception exception) {
+            log.warn("Error removing product {} from Redis cache: {}", productId, exception.getMessage());
+        }
+    }
+
 }
 
