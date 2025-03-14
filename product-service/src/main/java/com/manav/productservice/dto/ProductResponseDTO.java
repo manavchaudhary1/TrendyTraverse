@@ -1,6 +1,6 @@
 package com.manav.productservice.dto;
 
-import com.manav.productservice.model.Review;
+
 import lombok.Getter;
 import lombok.Setter;
 
