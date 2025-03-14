@@ -1,10 +1,11 @@
 package com.manav.productservice.model;
 
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@RedisHash("reviews")
 public class Review {
 
     @Id
