@@ -2,6 +2,10 @@ package com.manav.reviewservice.service;
 
 import com.manav.reviewservice.model.Review;
 import com.manav.reviewservice.repository.ReviewRepository;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,14 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public Review findbyId(Long reviewId) {
+    public Review findById(Long reviewId) {
         return reviewRepository.findById(reviewId).orElse(null);
     }
 
+    @CircuitBreaker(name = "reviewService", fallbackMethod = "buildFallBackReview")
+    @RateLimiter(name = "reviewService", fallbackMethod = "buildFallBackReview")
+    @Retry(name = "retryReviewService", fallbackMethod = "buildFallBackReview")
+    @Bulkhead(name = "bulkheadReviewService",type = Bulkhead.Type.SEMAPHORE, fallbackMethod = "buildFallBackReview")
     public List<Review> findAll(Long productId) {
         return reviewRepository.findAllByProductId(productId);
     }
@@ -47,5 +55,22 @@ public class ReviewService {
     @Transactional
     public void deleteAllReviews(Long productId) {
         reviewRepository.deleteByProductId(productId);
+    }
+
+    @SuppressWarnings("unused")
+    private List<Review> buildFallBackReview(Long productId, Throwable throwable) {
+        Review review = new Review();
+        review.setReviewId(0L);
+        review.setProductId(0L);
+        review.setStars(0);
+        review.setReviewDate(null);
+        review.setVerifiedPurchase(false);
+        review.setManufacturerReplied(false);
+        review.setUserId(null);
+        review.setTitle("Fallback Review");
+        review.setReviewText("Fallback Review");
+        review.setTotalFoundHelpful(0);
+        review.setImages(List.of());
+        return List.of(review);
     }
 }
