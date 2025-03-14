@@ -56,6 +56,44 @@ eureka:
   instance:
     prefer-ip-address: true
 
+# Resilience4j Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 5
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 60
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+          - org.springframework.web.client.ResourceAccessException
+  bulkhead:
+    instances:
+      bulkheadProductService:
+        maxConcurrentCalls: 10
+        maxWaitDuration: 100ms
+  retry:
+    instances:
+      retryProductService:
+        maxAttempts: 3
+        waitDuration: 10000ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+          - java.lang.RuntimeException
+  ratelimiter:
+    instances:
+      productService:
+        timeoutDuration: 1000ms
+        limitRefreshPeriod: 5000ms
+        limitForPeriod: 5
+
 server:
   port: 8090
 

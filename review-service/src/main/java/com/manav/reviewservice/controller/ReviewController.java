@@ -20,7 +20,7 @@ public class ReviewController {
 
     @GetMapping("/{reviewId}")
     public Review getReviewById(@PathVariable Long productId, @PathVariable Long reviewId) {
-        return reviewService.findbyId(reviewId);
+        return reviewService.findById(reviewId);
     }
 
     @GetMapping

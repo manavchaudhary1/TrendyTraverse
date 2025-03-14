@@ -12,6 +12,10 @@ import com.manav.productservice.repository.ProductImageRepository;
 import com.manav.productservice.repository.ProductRepository;
 import com.manav.productservice.repository.ProductRedisRepository;
 import com.manav.productservice.service.client.ReviewRestTemplateClient;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -19,8 +23,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeoutException;
 
 @Service
 @Slf4j
@@ -40,12 +49,16 @@ public class ProductService {
         this.productRedisRepository = productRedisRepository;
     }
 
+    @CircuitBreaker(name = "productService", fallbackMethod = "buildFallBackProduct")
+    @RateLimiter(name = "productService", fallbackMethod = "buildFallBackProduct")
+    @Retry(name = "retryProductService", fallbackMethod = "buildFallBackProduct")
+    @Bulkhead(name = "bulkheadProductService",type = Bulkhead.Type.SEMAPHORE, fallbackMethod = "buildFallBackProduct")
     public ProductResponseDTO getProductById(Long productId) {
         try {
             Product cachedproduct = checkRedisCache(productId);
             if (cachedproduct != null) {
                 return convertToDTO(cachedproduct);
-            }else {
+            } else {
                 Product product = productRepository.findById(productId)
                         .orElseThrow(() -> new CustomException(
                                 String.format("Product with ID %d not found", productId)
@@ -56,7 +69,7 @@ public class ProductService {
 
                 return convertToDTO(product);
             }
-        } catch (Exception e) {
+        } catch (CustomException e) {
             throw new CustomException("Error retrieving product: " + e.getMessage());
         }
     }
@@ -300,5 +313,44 @@ public class ProductService {
         }
     }
 
+
+    @SuppressWarnings("unused")
+    private void randomlyRunLong() throws InterruptedException, TimeoutException {
+        Random random = new Random();
+        int randomNum = random.nextInt(3) + 1;
+        if (randomNum == 3) sleep();
+    }
+    private void sleep() throws InterruptedException, TimeoutException {
+        Thread.sleep(5000);
+        throw new TimeoutException();
+    }
+
+    @SuppressWarnings("unused")
+    private ProductResponseDTO buildFallBackProduct(Long productId, Throwable t) {
+        ProductResponseDTO fallback = new ProductResponseDTO();
+        fallback.setProductId(0L);
+        fallback.setName("N/A");
+        fallback.setBrand("N/A");
+        fallback.setProductImages(List.of());
+        fallback.setFullDescription("N/A");
+        fallback.setFeatureBullets(List.of());
+        fallback.setPricing(BigDecimal.valueOf(0.0));
+        fallback.setListPrice(BigDecimal.valueOf(0.0));
+        fallback.setAvailabilityStatus("N/A");
+        fallback.setProductCategory("N/A");
+        fallback.setProductDimensions("N/A");
+        fallback.setDateFirstAvailable(null);
+        fallback.setManufacturer("N/A");
+        fallback.setCountryOfOrigin("N/A");
+        fallback.setAverageRating(0.0);
+        fallback.setTotalReviews(0);
+        fallback.setFiveStarReviews(0);
+        fallback.setFourStarReviews(0);
+        fallback.setThreeStarReviews(0);
+        fallback.setTwoStarReviews(0);
+        fallback.setOneStarReviews(0);
+        fallback.setReviews(List.of());
+        return fallback;
+    }
 }
 
