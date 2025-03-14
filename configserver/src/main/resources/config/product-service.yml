@@ -58,3 +58,9 @@ eureka:
 
 server:
   port: 8090
+
+#Redis Configuration
+redis:
+  server:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
