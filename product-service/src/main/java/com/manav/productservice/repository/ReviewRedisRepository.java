@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface ReviewRedisRepository extends CrudRepository<Review, Long> {
     List<Review> findByProductId(Long productId);
-    void deleteReviewsForProduct(Long productId);
 }
