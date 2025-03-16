@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,11 +15,12 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@RedisHash("reviews")
+@RedisHash("Review")
 public class Review {
 
     @Id
     private Long reviewId;
+    @Indexed
     private Long productId;
     private Integer stars;
     private LocalDate reviewDate;

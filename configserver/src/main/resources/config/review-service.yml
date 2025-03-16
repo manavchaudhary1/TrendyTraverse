@@ -24,7 +24,7 @@ spring:
   sql:
     init:
       platform: postgres
-#  OAuth2 settings
+ # OAuth2 settings
   security:
     oauth2:
       client:
@@ -33,6 +33,24 @@ spring:
         jwt:
           issuer-uri:  ${keycloak.server-url}realms/${KEYCLOAK_REALM}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+  #Cloud Configuration
+  cloud:
+    function:
+      definition: supplyReviewChangeModel
+    stream:
+      poller:
+        fixed-delay: 5000
+        initial-delay: 1000
+        max-messages-per-poll: 1
+      bindings:
+        supplyReviewChangeModel-out-0:
+          destination: reviewChangeTopic
+          content-type: application/json
+    kafka:
+      binder:
+        brokers: localhost:9092
+  kafka:
+    bootstrap-servers: localhost:9092
 
 #JWT Configuration
 jwt:
