@@ -1,5 +1,6 @@
 package com.manav.reviewservice.service;
 
+import com.manav.reviewservice.events.source.ReviewSourceBean;
 import com.manav.reviewservice.model.Review;
 import com.manav.reviewservice.repository.ReviewRepository;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
@@ -16,9 +17,11 @@ import java.util.List;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final ReviewSourceBean reviewSourceBean;
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository, ReviewSourceBean reviewSourceBean) {
         this.reviewRepository = reviewRepository;
+        this.reviewSourceBean = reviewSourceBean;
     }
 
     public Review findById(Long reviewId) {
@@ -40,12 +43,19 @@ public class ReviewService {
         }
         review.setProductId(productId);
         review.setReviewDate(LocalDate.now());
-        return reviewRepository.save(review);
+        Review savedReview = reviewRepository.save(review);
+
+        reviewSourceBean.publishReviewChange("SAVE", savedReview.getProductId());
+        return savedReview;
     }
 
     @Transactional
     public void deleteReview(Long reviewId) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("Review not found"));
+        Long productId = review.getProductId();
         reviewRepository.deleteById(reviewId);
+        reviewSourceBean.publishReviewChange("DELETE", productId);
     }
 
     public Integer getReviewCount(Long productId) {
@@ -55,6 +65,7 @@ public class ReviewService {
     @Transactional
     public void deleteAllReviews(Long productId) {
         reviewRepository.deleteByProductId(productId);
+        reviewSourceBean.publishReviewChange("DELETE", productId);
     }
 
     @SuppressWarnings("unused")
