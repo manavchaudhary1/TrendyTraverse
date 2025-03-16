@@ -127,12 +127,15 @@ public class ReviewRestTemplateClient {
         }
     }
 
-    private void deleteCacheReviewsList(Long productId) {
+    public void deleteCacheReviewsList(Long productId) {
         try {
-            reviewRedisRepository.deleteReviewsForProduct(productId);
+            List<Review> reviews = reviewRedisRepository.findByProductId(productId);
+
+            if (!reviews.isEmpty()) {
+                reviewRedisRepository.deleteAll(reviews);
+            }
         } catch (Exception exception) {
-            log.warn("Error deleting reviews for product {} in Redis: {}",
-                    productId, exception.getMessage());
+            log.warn("Error deleting reviews for product {} in Redis: {}", productId, exception.getMessage());
         }
     }
 }
