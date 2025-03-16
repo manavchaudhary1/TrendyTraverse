@@ -25,9 +25,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/products/{productId}/reviews/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/products/**").hasAnyAuthority("new-user", "customer")
-                        .requestMatchers(HttpMethod.PUT, "/products/**").hasAuthority("admin")
                         .requestMatchers(HttpMethod.DELETE, "/products/**").hasAuthority("admin")
                         .anyRequest().authenticated()
                 )
