@@ -32,6 +32,21 @@ spring:
         jwt:
           issuer-uri:  ${keycloak.server-url}realms/${KEYCLOAK_REALM}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+# Cloud Configuration
+  cloud:
+    function:
+      definition: inboundReviewChange # Functional definition for the Consumer
+    stream:
+      bindings:
+        inboundReviewChange-in-0: # Functional input binding for the Consumer
+          destination: reviewChangeTopic # Kafka topic to consume from
+          group: reviewGroup # Consumer group for Kafka
+          content-type: application/json # Deserializes JSON payload
+    kafka:
+      binder:
+        brokers: localhost:9092 # Kafka broker address
+  kafka:
+    bootstrap-servers: localhost:9092
 
 #JWT Configuration
 jwt:
