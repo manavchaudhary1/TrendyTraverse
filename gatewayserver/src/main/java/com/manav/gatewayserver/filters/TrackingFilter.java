@@ -18,8 +18,12 @@ public class TrackingFilter implements GlobalFilter {
 
     public static final Logger logger = LoggerFactory.getLogger(TrackingFilter.class);
 
-    @Autowired
+    final
     FilterUtils filterUtils;
+
+    public TrackingFilter(FilterUtils filterUtils) {
+        this.filterUtils = filterUtils;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
