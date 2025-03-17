@@ -3,6 +3,8 @@ spring:
     name: gatewayserver
   main:
     web-application-type: reactive
+  zipkin:
+    base-url: ${ZIPKIN_HOST}:9411
   cloud:
     gateway:
       discovery:
@@ -66,14 +68,36 @@ eureka:
     prefer-ip-address: true
     hostname: ${HOSTNAME:gatewayserver}  # Uses hostname, which works in both local & Docker
 
+# Actuator Configuration
 management:
+  tracing:
+    sampling:
+      probability: 1.0
+    enabled: true
+  zipkin:
+    tracing:
+      endpoint: ${spring.zipkin.base-url}/api/v2/spans
   endpoints:
     web:
+      base-path: /
       exposure:
         include: "*"
+    enabled-by-default: true
   endpoint:
+    health:
+      enabled: true
+      show-details: always
+    tracing:
+      enabled: true
+    metrics:
+      enabled: true
     gateway:
       enabled: true
 
+#Logging Configuration
+logstash:
+  host: ${LOGSTASH_HOST}
+
+#Server Configuration
 server:
   port: 8072

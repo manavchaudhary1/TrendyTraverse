@@ -32,7 +32,9 @@ spring:
         jwt:
           issuer-uri:  ${keycloak.server-url}realms/${KEYCLOAK_REALM}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
-
+  #Zipkin Config
+  zipkin:
+    base-url: ${ZIPKIN_HOST}:9411
 #JWT Configuration
 jwt:
   auth:
@@ -57,5 +59,36 @@ eureka:
   instance:
     prefer-ip-address: true
 
+#Logging Configuration
+logstash:
+  host: ${LOGSTASH_HOST}
+
+# Server Configuration
 server:
   port: 8093
+
+# Actuator Configuration
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    enabled: true
+  zipkin:
+    tracing:
+      endpoint: ${spring.zipkin.base-url}/api/v2/spans
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    tracing:
+      enabled: true
+    metrics:
+      enabled: true
+    gateway:
+      enabled: true
