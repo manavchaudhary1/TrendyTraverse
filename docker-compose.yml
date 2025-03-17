@@ -64,6 +64,10 @@ services:
       KC_HOSTNAME_BACKCHANNEL_DYNAMIC: false
       KC_HTTP_ENABLED: "true"
       KC_PROXY: edge
+      KC_THEME: myTheme
+    volumes:
+      - ./scripts/keycloak_message_en.properties:/opt/keycloak/themes/myTheme/email/messages/messages_en.properties
+      - ./scripts/keycloak_theme.properties:/opt/keycloak/themes/myTheme/email/theme.properties
     ports:
       - "8080:8080"
     command:
@@ -109,10 +113,73 @@ services:
     networks:
       - docker-backend
 
+  elasticsearch:
+    image: bitnami/elasticsearch:8.17.1
+    container_name: elasticsearch
+    volumes:
+      - elasticsearch_data:/bitnami/elasticsearch
+    environment:
+      - discovery.type=single-node
+      - network.host=0.0.0.0
+    ports:
+      - "9300:9300"
+      - "9200:9200"
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -fsSL http://localhost:9200/_cluster/health || exit 1" ]
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 5s
+    networks:
+      - docker-backend
+
+  kibana:
+    image: bitnami/kibana:8.17.1
+    container_name: kibana
+    volumes:
+      - kibana_data:/bitnami/kibana
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - docker-backend
+
+  logstash:
+    image: bitnami/logstash:8.17.1
+    container_name: logstash
+    volumes:
+      - logstash_data:/bitnami/logstash
+      - ./logstash/pipeline/logstash.conf:/etc/logstash/conf.d/logstash.conf
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+    ports:
+      - "5000:5000"
+    networks:
+      - docker-backend
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=http://elasticsearch:9200
+    networks:
+      - docker-backend
+
 volumes:
   keycloak_data: {}
   e_commerce_data: {}
   redis_data: {}
+  elasticsearch_data: {}
+  kibana_data: {}
+  logstash_data: {}
 
 networks:
   docker-backend:
