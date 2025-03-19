@@ -44,9 +44,9 @@ spring:
           content-type: application/json # Deserializes JSON payload
     kafka:
       binder:
-        brokers: localhost:9092 # Kafka broker address
+        brokers: ${KAFKA_HOST}:9092 # Kafka broker address
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_HOST}:9092
   #Zipkin Config
   zipkin:
     base-url: ${ZIPKIN_HOST}:9411

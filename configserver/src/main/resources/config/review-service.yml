@@ -48,9 +48,9 @@ spring:
           content-type: application/json
     kafka:
       binder:
-        brokers: localhost:9092
+        brokers: ${KAFKA_HOST}:9092
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_HOST}:9092
   #Zipkin Config
   zipkin:
     base-url: ${ZIPKIN_HOST}:9411
