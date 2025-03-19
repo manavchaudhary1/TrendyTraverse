@@ -3,8 +3,6 @@ spring:
     name: gatewayserver
   main:
     web-application-type: reactive
-  zipkin:
-    base-url: ${ZIPKIN_HOST}:9411
   cloud:
     gateway:
       discovery:
@@ -52,6 +50,9 @@ spring:
             - RewritePath=/user-service/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie,SetCookie
             - PreserveHostHeader=true
+  #Zipkin Config
+  zipkin:
+    base-url: ${ZIPKIN_HOST:http://localhost}:9411
 
 #Eureka Configuration
 eureka:
@@ -96,7 +97,7 @@ management:
 
 #Logging Configuration
 logstash:
-  host: ${LOGSTASH_HOST}
+  host: ${LOGSTASH_HOST:localhost}
 
 #Server Configuration
 server:
