@@ -80,7 +80,7 @@ public class UserService {
         kcUser.setUsername(user.getUsername());
         kcUser.setEmail(user.getEmail());
         kcUser.setEnabled(true);
-        kcUser.setEmailVerified(true);
+        kcUser.setEmailVerified(false);
         kcUser.setCredentials(Collections.singletonList(credentialRepresentation));
 
         Response response = usersResource.create(kcUser);
@@ -88,6 +88,7 @@ public class UserService {
             String userId = extractUserId(response);
             if (userId != null) {
                 if (assignClientRole(userId, "customer") && assignUserToGroup(userId)) {
+                    emailVerification(userId);
                     log.info("User {} created, role assigned, and group {} joined successfully!", userId, groupId);
                 } else {
                     log.error("Failed to assign role or joining group deleting user {}...", userId);
@@ -99,7 +100,7 @@ public class UserService {
             throw new UserCreationException("Failed to create user: " + response.getStatus());
         }
         try {
-//            // Save user in the database
+            // Save user in the database
             UserDto userDto = new UserDto();
             userDto.setId(UUID.randomUUID());
             userDto.setUsername(user.getUsername());
@@ -234,7 +235,7 @@ public class UserService {
         } catch (WebClientResponseException e) {
             throw new KeycloakConnectionException("Error while fetching token: " + e.getStatusCode());
         } catch (Exception e) {
-            throw new RuntimeException("Unexpected error occurred while fetching token");
+            throw new CustomException("Unexpected error occurred while fetching token");
         }
     }
 
@@ -257,10 +258,9 @@ public class UserService {
         } catch (WebClientResponseException e) {
             throw new KeycloakConnectionException("Error while refreshing token: " + e.getStatusCode());
         } catch (Exception e) {
-            throw new RuntimeException("Unexpected error occurred while refreshing token");
+            throw new CustomException("Unexpected error occurred while refreshing token");
         }
     }
-
 
     private Map<String, Object> extractAccessToken(String response) {
         try {
@@ -282,5 +282,15 @@ public class UserService {
                 .map(User::getId)
                 .map(uuid::equals)  // Compare directly with UUID
                 .orElse(false);      // Return false if the user is not found
+    }
+
+    private void emailVerification(String userId) {
+        try {
+            usersResource.get(userId).sendVerifyEmail();
+            log.info("Verification email sent successfully to user {}", userId);
+        } catch (Exception e) {
+            log.error("Error occurred while sending email verification: {}", e.getMessage());
+            throw new CustomException("Unexpected error occurred while sending email verification");
+        }
     }
 }
