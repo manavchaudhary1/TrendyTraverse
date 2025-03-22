@@ -48,10 +48,12 @@ spring:
           content-type: application/json
     kafka:
       binder:
-        brokers: localhost:9092
+        brokers: ${KAFKA_HOST}:9092
   kafka:
-    bootstrap-servers: localhost:9092
-
+    bootstrap-servers: ${KAFKA_HOST}:9092
+  #Zipkin Config
+  zipkin:
+    base-url: ${ZIPKIN_HOST}:9411
 #JWT Configuration
 jwt:
   auth:
@@ -114,5 +116,36 @@ resilience4j:
         limitRefreshPeriod: 5000ms
         limitForPeriod: 5
 
+#Logging Configuration
+logstash:
+  host: ${LOGSTASH_HOST}
+
+# Server Configuration
 server:
   port: 8091
+
+# Actuator Configuration
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    enabled: true
+  zipkin:
+    tracing:
+      endpoint: ${spring.zipkin.base-url}/api/v2/spans
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    tracing:
+      enabled: true
+    metrics:
+      enabled: true
+    gateway:
+      enabled: true

@@ -24,9 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
@@ -40,6 +38,7 @@ public class ProductService {
     private final ProductFeaturesRepository productFeaturesRepository;
     private final ReviewRestTemplateClient reviewRestTemplateClient;
     private final ProductRedisRepository productRedisRepository;
+    private final Random random = new Random();
 
     public ProductService(ProductRepository productRepository, ProductImageRepository productImageRepository, ProductFeaturesRepository productFeaturesRepository, ReviewRestTemplateClient reviewRestTemplateClient, ProductRedisRepository productRedisRepository) {
         this.productRepository = productRepository;
@@ -59,13 +58,13 @@ public class ProductService {
             if (cachedproduct != null) {
                 return convertToDTO(cachedproduct);
             } else {
+                log.debug("Product {} not found in Redis cache", productId);
                 Product product = productRepository.findById(productId)
                         .orElseThrow(() -> new CustomException(
                                 String.format("Product with ID %d not found", productId)
                         ));
-                // Cache the retrieved product for future requests
-                cacheProductObject(product);
                 log.debug("Product {} cached in Redis", productId);
+                cacheProductObject(product);
 
                 return convertToDTO(product);
             }
@@ -316,7 +315,6 @@ public class ProductService {
 
     @SuppressWarnings("unused")
     private void randomlyRunLong() throws InterruptedException, TimeoutException {
-        Random random = new Random();
         int randomNum = random.nextInt(3) + 1;
         if (randomNum == 3) sleep();
     }
