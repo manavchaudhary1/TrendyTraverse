@@ -72,9 +72,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone:
-        - http://eureka-server:8761/eureka/
-        - http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
   instance:
     prefer-ip-address: true
 
@@ -115,10 +113,6 @@ resilience4j:
         timeoutDuration: 1000ms
         limitRefreshPeriod: 5000ms
         limitForPeriod: 5
-
-#Logging Configuration
-logstash:
-  host: ${LOGSTASH_HOST}
 
 # Server Configuration
 server:
