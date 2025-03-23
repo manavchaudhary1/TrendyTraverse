@@ -33,7 +33,7 @@ public class CartRestTemplateClient {
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
         ResponseEntity<CartResponseDto> responseEntity = restTemplate.exchange(
-                "http://localhost:8092/cart/{userId}",
+                "http://gateway-server:8072/cart-service/cart/{userId}",
                 HttpMethod.GET,
                 entity,
                 CartResponseDto.class,
@@ -53,7 +53,7 @@ public class CartRestTemplateClient {
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         restTemplate.exchange(
-                "http://localhost:8092/cart/{userId}/checkout",
+                "http://gateway-server:8072/cart-service/cart/{userId}/checkout",
                 HttpMethod.POST,
                 entity,
                 Void.class,

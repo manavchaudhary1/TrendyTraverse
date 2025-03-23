@@ -20,7 +20,7 @@ public class UserRestTemplateClient {
 
     public boolean approveUser(String userName, String uuid) {
         ResponseEntity<Boolean> response = restTemplate.exchange(
-                "http://localhost:8072/user-service/users/validate?userName=" + userName + "&uuid=" + uuid,
+                "http://gateway-server:8072/user-service/users/validate?userName=" + userName + "&uuid=" + uuid,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<>() {}

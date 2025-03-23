@@ -39,7 +39,7 @@ public class ReviewRestTemplateClient {
             } else {
                 // If not in cache, fetch from the review service
                 ResponseEntity<List<Review>> responseEntity = restTemplate.exchange(
-                        "http://localhost:8091/products/{productId}/reviews",
+                        "http://gateway-server:8072/review-service/products/{productId}/reviews",
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<>() {},
@@ -68,7 +68,7 @@ public class ReviewRestTemplateClient {
             headers.setBearerAuth(getAccessToken());
             HttpEntity<Void> entity = new HttpEntity<>(headers);
             restTemplate.exchange(
-                    "http://localhost:8091/products/{productId}/reviews",
+                    "http://gateway-server:8072/review-service/products/{productId}/reviews",
                     HttpMethod.DELETE,
                     entity,
                     Void.class,
@@ -84,7 +84,7 @@ public class ReviewRestTemplateClient {
     public Integer getReviewCount(Long productId) {
         log.info("Fetching review count of product with id: {}", productId);
         ResponseEntity<Integer> responseEntity = restTemplate.exchange(
-                "http://localhost:8091/products/{productId}/reviews/count",
+                "http://gateway-server:8072/review-service/{productId}/reviews/count",
                 HttpMethod.GET,
                 null,
                 Integer.class,

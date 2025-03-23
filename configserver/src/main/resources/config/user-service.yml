@@ -59,15 +59,9 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone:
-        - http://eureka-server:8761/eureka/
-        - http://localhost:8761/eureka/
+      defaultZone:  http://eureka-server:8761/eureka/
   instance:
     prefer-ip-address: true
-
-#Logging Configuration
-logstash:
-  host: ${LOGSTASH_HOST}
 
 # Server Configuration
 server:

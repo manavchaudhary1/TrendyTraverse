@@ -52,7 +52,7 @@ spring:
             - PreserveHostHeader=true
   #Zipkin Config
   zipkin:
-    base-url: ${ZIPKIN_HOST:http://localhost}:9411
+    base-url: ${ZIPKIN_HOST:http://zipkin}:9411
 
 #Eureka Configuration
 eureka:
@@ -60,9 +60,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone:
-        - http://eureka-server:8761/eureka/
-        - http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
     registryFetchIntervalSeconds: 10
     waitTimeInMsWhenSyncEmpty: 5000  # Helps avoid the "cache refresh failed" warning
   instance:
@@ -94,10 +92,6 @@ management:
       enabled: true
     gateway:
       enabled: true
-
-#Logging Configuration
-logstash:
-  host: ${LOGSTASH_HOST:localhost}
 
 #Server Configuration
 server:
