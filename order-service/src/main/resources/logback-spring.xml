@@ -2,11 +2,10 @@
 <configuration>
 <!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
-    <springProperty scope="context" name="logstashHost" source="logstash.host"/>
 
     <!-- Logstash Appender -->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>${logstashHost}:5000</destination>
+        <destination>logstash:5000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
@@ -25,5 +24,5 @@
 
     <!-- Custom Log Levels -->
     <logger name="org.springframework" level="INFO"/>
-    <logger name="com.manav.orderservice" level="DEBUG"/>
+    <logger name="com.manav.orderservice" level="TRACE"/>
 </configuration>
