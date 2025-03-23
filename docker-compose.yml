@@ -104,16 +104,17 @@ services:
       - KAFKA_ENABLE_KRAFT=yes
       - KAFKA_CFG_NODE_ID=1
       - KAFKA_CFG_PROCESS_ROLES=broker,controller
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT:///host.docker.internal:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
     networks:
       - docker-backend
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   elasticsearch:
     image: bitnami/elasticsearch:8.17.1
@@ -172,6 +173,207 @@ services:
     environment:
       - STORAGE_TYPE=elasticsearch
       - ES_HOSTS=http://elasticsearch:9200
+    networks:
+      - docker-backend
+
+  config-server:
+    build:
+      context: ./configserver
+      dockerfile: Dockerfile
+    image: application/config-server:latest
+    container_name: config-server
+    ports:
+      - "8085:8085"
+    volumes:
+      - .env:/app/.env
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "http://localhost:8085/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 2
+    networks:
+      - docker-backend
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    image: application/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "http://localhost:8761/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - docker-backend
+
+  gateway-server:
+    build:
+      context: ./gatewayserver
+      dockerfile: Dockerfile
+    image: application/gatewayserver:latest
+    container_name: gateway-server
+    ports:
+      - "8072:8072"
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - docker-backend
+
+  product-service:
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    image: application/product-service:latest
+    container_name: product-service
+    ports:
+      - "8090:8090"
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      postgres_ecommerce:
+        condition: service_started
+      redis:
+        condition: service_started
+      kafka:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      logstash:
+        condition: service_started
+      kibana:
+        condition: service_started
+    networks:
+      - docker-backend
+
+  review-service:
+    build:
+      context: ./review-service
+      dockerfile: Dockerfile
+    image: application/review-service:latest
+    container_name: review-service
+    ports:
+      - "8091:8091"
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      postgres_ecommerce:
+        condition: service_started
+      kafka:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      logstash:
+        condition: service_started
+      kibana:
+        condition: service_started
+    networks:
+      - docker-backend
+
+  cart-service:
+    build:
+      context: ./cart-service
+      dockerfile: Dockerfile
+    image: application/cart-service:latest
+    container_name: cart-service
+    ports:
+      - "8092:8092"
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      postgres_ecommerce:
+        condition: service_started
+      kafka:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      logstash:
+        condition: service_started
+      kibana:
+        condition: service_started
+    networks:
+      - docker-backend
+
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    image: application/order-service:latest
+    container_name: order-service
+    ports:
+      - "8093:8093"
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      postgres_ecommerce:
+        condition: service_started
+      kafka:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      logstash:
+        condition: service_started
+      kibana:
+        condition: service_started
+    networks:
+      - docker-backend
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    image: application/user-service:latest
+    container_name: user-service
+    ports:
+      - "8094:8094"
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      postgres_keycloak:
+        condition: service_started
+      keycloak:
+        condition: service_started
+      postgres_ecommerce:
+        condition: service_started
+      kafka:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      logstash:
+        condition: service_started
+      kibana:
+        condition: service_started
     networks:
       - docker-backend
 
