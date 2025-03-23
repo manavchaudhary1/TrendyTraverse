@@ -50,6 +50,10 @@ spring:
   #Zipkin Config
   zipkin:
     base-url: ${ZIPKIN_HOST}:9411
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
 
 #JWT Configuration
 jwt:
@@ -68,9 +72,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone:
-        - http://eureka-server:8761/eureka/
-        - http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
   instance:
     prefer-ip-address: true
 
@@ -112,19 +114,9 @@ resilience4j:
         limitRefreshPeriod: 5000ms
         limitForPeriod: 5
 
-#Logging Configuration
-logstash:
-  host: ${LOGSTASH_HOST}
-
 #Server Configuration
 server:
   port: 8090
-
-#Redis Configuration
-redis:
-  server:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
 
 # Actuator Configuration
 management:
