@@ -176,6 +176,17 @@ services:
     networks:
       - docker-backend
 
+  prometheus:
+    image: bitnami/prometheus:2.55.1
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./scripts/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+      - prometheus_data:/bitnami/prometheus
+    networks:
+      - docker-backend
+
   config-server:
     build:
       context: ./configserver
@@ -217,7 +228,7 @@ services:
     build:
       context: ./gatewayserver
       dockerfile: Dockerfile
-    image: application/gatewayserver:latest
+    image: application/gateway-server:latest
     container_name: gateway-server
     ports:
       - "8072:8072"
@@ -227,6 +238,16 @@ services:
       config-server:
         condition: service_healthy
       eureka-server:
+        condition: service_healthy
+      product-service:
+        condition: service_healthy
+      review-service:
+        condition: service_healthy
+      cart-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+      user-service:
         condition: service_healthy
     networks:
       - docker-backend
@@ -258,6 +279,11 @@ services:
         condition: service_started
       kibana:
         condition: service_started
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "/dev/null", "http://localhost:8090/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - docker-backend
 
@@ -286,6 +312,11 @@ services:
         condition: service_started
       kibana:
         condition: service_started
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "/dev/null", "http://localhost:8091/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - docker-backend
 
@@ -314,6 +345,11 @@ services:
         condition: service_started
       kibana:
         condition: service_started
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "/dev/null", "http://localhost:8092/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - docker-backend
 
@@ -342,6 +378,11 @@ services:
         condition: service_started
       kibana:
         condition: service_started
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "/dev/null", "http://localhost:8093/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - docker-backend
 
@@ -374,6 +415,11 @@ services:
         condition: service_started
       kibana:
         condition: service_started
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "/dev/null", "http://localhost:8094/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - docker-backend
 
@@ -384,6 +430,7 @@ volumes:
   elasticsearch_data: {}
   kibana_data: {}
   logstash_data: {}
+  prometheus_data: {}
 
 networks:
   docker-backend:

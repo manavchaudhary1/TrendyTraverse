@@ -78,18 +78,18 @@ management:
       endpoint: ${spring.zipkin.base-url}/api/v2/spans
   endpoints:
     web:
-      base-path: /
+      base-path: /actuator
       exposure:
         include: "*"
     enabled-by-default: true
   endpoint:
     health:
-      enabled: true
       show-details: always
+      access: read_only
     tracing:
       enabled: true
     metrics:
-      enabled: true
+      access: read_only
     gateway:
       enabled: true
 

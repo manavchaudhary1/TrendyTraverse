@@ -1,0 +1,48 @@
+global:
+  scrape_interval: 15s  # Scrape targets every 15 seconds
+  evaluation_interval: 15s  # Evaluate rules every 15 seconds
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "config-server"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["config-server:8085"]
+
+  - job_name: "eureka-server"
+    metrics_path: "actuator/prometheus"
+    static_configs:
+      - targets: ["eureka-server:8761"]
+
+  - job_name: "gateway-server"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["gateway-server:8072"]
+
+  - job_name: "product-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["product-service:8090"]
+
+  - job_name: "review-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["review-service:8091"]
+
+  - job_name: "cart-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["cart-service:8092"]
+
+  - job_name: "order-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["order-service:8093"]
+
+  - job_name: "user-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["user-service:8094"]
