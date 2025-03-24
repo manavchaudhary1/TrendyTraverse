@@ -17,3 +17,17 @@ spring:
 
 server:
   port: 8085
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      access: read_only
+    metrics:
+      access: read_only
