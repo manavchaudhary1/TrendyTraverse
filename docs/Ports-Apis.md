@@ -198,7 +198,7 @@
 - **URL:** `/products/{reviewId}/reviews`
 
 ### Create Review
-**Endpoint:** `POST gatewayserver:8072/review-service/products/{productId}/reviews`'
+**Endpoint:** `POST gatewayserver:8072/review-service/products/{productId}/reviews`
 <br/>**Description:** Creates a new review for a product.
 <br/>
 #### Request
