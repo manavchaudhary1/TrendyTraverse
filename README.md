@@ -9,7 +9,7 @@ It serves as a demonstration of building a scalable, secure, and efficient onlin
 
 - [Requirements](#requirements)
 - [Technologies Used](#technologies)
-- [Installation and setup](docs/setup.md)
+- [Installation and setup](docs/Setup.md)
 - [Architecture](#architecture)
 - [ER Diagram](#er-diagram)
 - [API Endpoints](docs/Ports-Apis.md)
