@@ -1,4 +1,4 @@
-<h1 style="text-align: center;">Trendy Traverse</h1>
+<h1 align="center">Trendy Traverse</h1>
 
 ## Overview
 TrendyTraverse is a modern e-commerce application developed to showcase my expertise in [SpringBoot](https://spring.io/projects/spring-boot) and containerized microservices using [Docker](https://www.docker.com/).
