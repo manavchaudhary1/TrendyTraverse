@@ -209,22 +209,22 @@
   ``` 
     Authorization: Bearer {accessToken}
   ```
-  - **Request Body**
-    ```json
-    {
-      "stars": 5,
-      "verifiedPurchase": false,
-      "manufacturerReplied": false,
-      "userId": "UUID",
-      "title": "New Review 3",
-      "reviewText": "Was Legit Tight",
-      "totalFoundHelpful": 0,
-      "images": [
-      "https://m.media-amazon.com/images/I/81NugOUkohL.jpg",
-      "https://m.media-amazon.com/images/I/81U+jBXDBeL.jpg"
-      ]
-    }
-    ```
+- **Request Body**
+  ```json
+  {
+    "stars": 5,
+    "verifiedPurchase": false,
+    "manufacturerReplied": false,
+    "userId": "UUID",
+    "title": "New Review 3",
+    "reviewText": "Was Legit Tight",
+    "totalFoundHelpful": 0,
+    "images": [
+    "https://m.media-amazon.com/images/I/81NugOUkohL.jpg",
+    "https://m.media-amazon.com/images/I/81U+jBXDBeL.jpg"
+    ]
+  }
+  ```
 
 <a name="cart-service-api"></a>
 ## Cart Service APIs
