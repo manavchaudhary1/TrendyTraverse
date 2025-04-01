@@ -6,6 +6,7 @@
   - [Review Service APIs](#review-service-api)
   - [Cart Service APIs](#cart-service-api)
   - [Order Service APIs](#order-service-api)
+- [Postman Collection](#postman-collection)
 
 <a name="ports"></a>
 # Ports
@@ -359,3 +360,7 @@
   ``` 
     Authorization: Bearer {accessToken}
   ```
+  
+<a name="postman-collection"></a>
+# Postman Collection
+The Postman collection for the APIs can be found [here](TrendyTraverse-API.postman_collection.json), just import them in Postman and setup local env to start running services.
