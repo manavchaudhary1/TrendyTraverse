@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE (:keyword IS NULL OR " +
             "to_tsvector('english', p.name) @@ plainto_tsquery('english', :keyword) OR " +
             "to_tsvector('english', p.brand) @@ plainto_tsquery('english', :keyword) OR " +
-            "p.product_category ILIKE CONCAT('%', :keyword, '%')",
+            "p.product_category ILIKE CONCAT('%', :keyword, '%'))",
             nativeQuery = true)
     List<Object[]> searchProductsByKeyword(@Param("keyword") String keyword);
  }
