@@ -286,6 +286,21 @@ public class ProductService {
         }
     }
 
+    public List<ProductSearchResultDTO> searchProductsByKeyword(String keyword) {
+        List<Object[]> results = productRepository.searchProductsByKeyword(keyword);
+
+        return results.stream()
+                .map(result -> {
+                    ProductSearchResultDTO dto = new ProductSearchResultDTO();
+                    dto.setProductId(((Number) result[0]).longValue());
+                    dto.setName((String) result[1]);
+                    dto.setPricing((Long) result[2]);
+                    dto.setFirstImage((String) result[3]);
+                    return dto;
+                })
+                .toList();
+    }
+
     private Product checkRedisCache(Long productId) {
         try{
             return productRedisRepository.findById(productId).orElse(null);

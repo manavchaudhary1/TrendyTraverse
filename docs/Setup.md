@@ -45,6 +45,11 @@ After setting up keycloak,stop the running services and run the following comman
   docker-compose up -d
 ```
 
+- If you have a good amount of ram and powerful processor, you can run the following command to start all the services with **COMPOSE_BAKE** flag which build service simultaneously instead by iterating them.
+```bash
+  COMPOSE_BAKE=true docker-compose up --build -d
+```
+
 <a name="setting-up-the-keycloak"></a>
 ## Setting up the keycloak
 After Keycloak service is successfully started, follow on page.

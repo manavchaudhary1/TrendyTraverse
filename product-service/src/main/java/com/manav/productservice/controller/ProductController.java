@@ -1,14 +1,13 @@
 package com.manav.productservice.controller;
 
 
-import com.manav.productservice.dto.ProductCreateDTO;
-import com.manav.productservice.dto.ProductDeletionResponseDTO;
-import com.manav.productservice.dto.ProductResponseDTO;
-import com.manav.productservice.dto.ProductUpdateDTO;
+import com.manav.productservice.dto.*;
 import com.manav.productservice.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -42,5 +41,13 @@ public class ProductController {
     public ResponseEntity<ProductDeletionResponseDTO> deleteProduct(@PathVariable Long productId) {
         ProductDeletionResponseDTO deletionResponse = productService.deleteProduct(productId);
         return ResponseEntity.ok(deletionResponse);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductSearchResultDTO>> searchProducts(
+            @RequestParam(required = false) String keyword) {
+
+        List<ProductSearchResultDTO> searchResults = productService.searchProductsByKeyword(keyword);
+        return ResponseEntity.ok(searchResults);
     }
 }
