@@ -5,6 +5,17 @@ spring:
     web-application-type: reactive
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+#            allowedOrigins: "*"
+##            "http://0.0.0.0:3000"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            exposedHeaders: "Authorization,Content-Type"
+            maxAge: 3600
+            allowCredentials: true
       discovery:
         locator:
           lower-case-service-id: true
