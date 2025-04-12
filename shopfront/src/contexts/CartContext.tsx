@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { cartApi } from '@/lib/api';
+import {cartApi, orderApi} from '@/lib/api';
 import { useAuth } from './AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { CartItem } from '@/lib/entities/Cart';
@@ -270,7 +270,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const userId = user.id;
       
       try {
-        await cartApi.checkout(userId);
+        await orderApi.placeCartAsOrder(userId);
       } catch (apiErr) {
         console.error('API error during checkout:', apiErr);
         // Proceed with local checkout on API failure
