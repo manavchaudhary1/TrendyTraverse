@@ -25,6 +25,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
@@ -246,11 +248,17 @@ public class ProductService {
             }
 
             product = productRepository.save(product);
+
+            // Fetch a fresh copy of the entity after saving
+            Product freshProduct = productRepository.findById(productId)
+                    .orElseThrow(() -> new CustomException("Product not found after update"));
+
             removeFromCache(productId);
-            cacheProductObject(product);
-            return convertToDTO(product);
+            cacheProductObject(freshProduct); // Use the fresh entity
+            return convertToDTO(freshProduct);
         } catch (Exception e) {
-            throw new CustomException("Error updating product");
+            log.error("Error updating product " + productId + ": " + e.getMessage(), e);
+            throw new CustomException("Error updating product: " + e.getMessage());
         }
     }
 
@@ -260,17 +268,47 @@ public class ProductService {
             Product product = productRepository.findById(productId)
                     .orElseThrow(() -> new CustomException("Product not found"));
 
+            // Count related entities
             int imagesCount = productImageRepository.countByProduct(product);
             int featuresCount = productFeaturesRepository.countByProduct(product);
-            int reviewsCount = reviewRestTemplateClient.getReviewCount(productId);
+            int reviewsCount;
 
-            productImageRepository.deleteByProduct(product);
-            productFeaturesRepository.deleteByProduct(product);
-            reviewRestTemplateClient.deleteAllReviews(productId);
+            try {
+                reviewsCount = reviewRestTemplateClient.getReviewCount(productId);
+            } catch (Exception e) {
+                log.error("Error getting review count: " + e.getMessage(), e);
+                reviewsCount = 0; // Default if can't get count
+            }
 
-            removeFromCache(productId);
+            // Delete related entities
+            try {
+                productImageRepository.deleteByProduct(product);
+            } catch (Exception e) {
+                log.error("Error deleting product images: " + e.getMessage(), e);
+                throw e;
+            }
+
+            try {
+                productFeaturesRepository.deleteByProduct(product);
+            } catch (Exception e) {
+                log.error("Error deleting product features: " + e.getMessage(), e);
+                throw e;
+            }
+
+            try {
+                reviewRestTemplateClient.deleteAllReviews(productId);
+            } catch (Exception e) {
+                log.error("Error deleting reviews: " + e.getMessage(), e);
+                // Decide if you want to continue or throw the exception
+            }
+
+            // Delete from DB first
             productRepository.delete(product);
 
+            // Then remove from cache after successful DB deletion
+            removeFromCache(productId);
+
+            // Create response
             ProductDeletionResponseDTO response = new ProductDeletionResponseDTO();
             response.setProductId(productId);
             response.setProductName(product.getName());
@@ -282,23 +320,33 @@ public class ProductService {
 
             return response;
         } catch (Exception e) {
-            throw new CustomException("Error deleting product");
+            log.error("Error deleting product " + productId + ": " + e.getMessage(), e);
+            throw new CustomException("Error deleting product: " + e.getMessage());
         }
     }
 
     public List<ProductSearchResultDTO> searchProductsByKeyword(String keyword) {
-        List<Object[]> results = productRepository.searchProductsByKeyword(keyword);
+        try {
+            List<Object[]> results = productRepository.searchProductsByKeyword(keyword);
 
-        return results.stream()
-                .map(result -> {
+            List<ProductSearchResultDTO> dtos = new ArrayList<>();
+            for (Object[] result : results)
+                try {
                     ProductSearchResultDTO dto = new ProductSearchResultDTO();
                     dto.setProductId(((Number) result[0]).longValue());
                     dto.setName((String) result[1]);
-                    dto.setPricing((Long) result[2]);
+                    dto.setPricing((BigDecimal) result[2]);  // Check this cast particularly
                     dto.setFirstImage((String) result[3]);
-                    return dto;
-                })
-                .toList();
+                    dtos.add(dto);
+                } catch (Exception e) {
+                    log.error("Error mapping result: {}", Arrays.toString(result), e);
+                    // Either skip this item or throw to abort the whole operation
+                }
+            return dtos;
+        } catch (Exception e) {
+            log.error("Error in searchProductsByKeyword: {}", keyword, e);
+            throw e; // Re-throw to see the original error in logs
+        }
     }
 
     private Product checkRedisCache(Long productId) {
@@ -366,4 +414,3 @@ public class ProductService {
         return fallback;
     }
 }
-
