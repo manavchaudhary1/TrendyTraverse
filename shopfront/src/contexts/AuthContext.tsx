@@ -53,16 +53,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       const response = await userApi.login({ username, password });
 
-      const { access_token, refresh_token } = response.data;
+      const { access_token, refresh_token ,userId } = response.data;
 
       // Parse the JWT token to get user information
       const tokenPayload = JSON.parse(atob(access_token.split('.')[1]));
-      
-      // Generate a UUID for userId if not provided
-      const generatedUserId = uuidv4();
 
       const user = {
-        id: generatedUserId,
+        id: userId,
         username: tokenPayload.preferred_username || username,
         email: tokenPayload.email || '',
         isAdmin: tokenPayload.resource_access?.manav?.roles?.includes('admin') || false
@@ -70,12 +67,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       setAccessToken(access_token);
       setRefreshToken(refresh_token);
-      setUserId(generatedUserId);
+      setUserId(userId);
       setUser(user);
 
       localStorage.setItem('accessToken', access_token);
       localStorage.setItem('refreshToken', refresh_token);
-      localStorage.setItem('userId', generatedUserId);
+      localStorage.setItem('userId', userId);
       localStorage.setItem('user', JSON.stringify(user));
       
       toast({
