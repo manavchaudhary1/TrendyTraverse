@@ -223,12 +223,16 @@ public class UserService {
                     .mapNotNull(this::extractAccessToken)
                     .block();
 
-            // Update last_login
-            userRepository.findByUsername(username).ifPresent(user -> {
+            Optional<User> userOptional = userRepository.findByUsername(username);
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
+                tokens.put("userId", user.getId().toString());
                 user.setLastLogin(LocalDateTime.now());
                 userRepository.save(user);
-            });
-
+            }
+            else {
+                throw new UserCreationException("User not found.");
+            }
             return tokens;
         } catch (WebClientResponseException.Unauthorized e) {
             throw new InvalidCredentialsException("Invalid username or password.");
