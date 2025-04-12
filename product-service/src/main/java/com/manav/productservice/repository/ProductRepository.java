@@ -8,17 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findByProductId(Long productId);
 
-    @Query(value = "SELECT p.product_id, p.name, p.price, " +
+    @Query(value = "SELECT p.product_id, p.name, p.pricing, " +
             "(SELECT pi.image_url FROM product_images pi WHERE pi.product_id = p.product_id LIMIT 1) as first_image " +
             "FROM products p " +
             "WHERE (:keyword IS NULL OR " +
-            "to_tsvector('english', p.name) @@ plainto_tsquery('english', :keyword) OR " +
-            "to_tsvector('english', p.brand) @@ plainto_tsquery('english', :keyword) OR " +
-            "p.product_category ILIKE CONCAT('%', :keyword, '%')",
+            "to_tsvector('english', COALESCE(p.name, '')) @@ plainto_tsquery('english', :keyword) OR " +
+            "to_tsvector('english', COALESCE(p.brand, '')) @@ plainto_tsquery('english', :keyword) OR " +
+            "LOWER(p.product_category) LIKE LOWER(CONCAT('%', :keyword, '%')))",
             nativeQuery = true)
     List<Object[]> searchProductsByKeyword(@Param("keyword") String keyword);
  }
