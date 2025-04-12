@@ -20,7 +20,7 @@ public class ProductRestTemplateClient {
 
     public BigDecimal getPricing(Long productId) {
         ResponseEntity<Map<String, Object>> responseEntity = restTemplate.exchange(
-                "http://gateway-server/product-service/products/{productId}",
+                "http://gateway-server:8072/product-service/products/{productId}",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<>() {},

@@ -46,12 +46,12 @@ public class UserController {
         }
     }
 
-    @GetMapping("/token")
+    @PostMapping("/token")
     public Map<String, Object> getToken(@RequestBody UserKeycloakDTO user) {
         return userService.getToken(user.getUsername(), user.getPassword());
     }
 
-    @GetMapping("/refresh-token")
+    @PostMapping("/refresh-token")
     public Map<String, Object> refreshAccessToken(@RequestBody RefreshTokenRequestDto refreshTokenRequest) {
         return userService.refreshToken(refreshTokenRequest.getRefreshToken());
     }

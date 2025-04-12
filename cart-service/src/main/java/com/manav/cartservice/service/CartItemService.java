@@ -8,13 +8,17 @@ import com.manav.cartservice.model.Carts;
 import com.manav.cartservice.repository.CartItemRepository;
 import com.manav.cartservice.service.client.ProductRestTemplateClient;
 import com.manav.cartservice.service.client.UserRestTemplateClient;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class CartItemService {
     private final CartItemRepository cartItemRepository;
     private final CartService cartService;
@@ -66,8 +70,15 @@ public class CartItemService {
             // Get updated items and convert to DTO
             List<CartItems> items = cartItemRepository.findByCart(cart);
             return cartService.convertToDto(cart, cartService.convertToCartItemDtoList(items));
-        }catch (Exception e) {
-            throw new CustomException("Error adding item to cart");
+        } catch (HttpClientErrorException e) {
+            log.error("Error from product service: {}", e.getMessage());
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new CustomException("Product not found: " + productId);
+            }
+            throw new CustomException("Error from product service: " + e.getMessage());
+        } catch (Exception e) {
+            log.error("Unexpected error adding item to cart", e);
+            throw new CustomException("Error adding item to cart: " + e.getMessage());
         }
     }
 

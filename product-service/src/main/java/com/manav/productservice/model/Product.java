@@ -84,5 +84,3 @@ public class Product {
     @JsonIgnore
     private List<ProductFeatures> featureBullets;
 }
-
-
