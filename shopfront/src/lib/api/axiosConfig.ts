@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { userApi } from './userApi';
 
@@ -85,11 +84,13 @@ privateApi.interceptors.response.use(
                 { headers: { 'Content-Type': 'application/json' } }
             );
 
-            const { access_token: newAccessToken } = response.data;
+            const { access_token: newAccessToken,refresh_token: newRefreshToken  } = response.data;
 
             // Update tokens in localStorage
             localStorage.setItem('accessToken', newAccessToken);
-
+            if (newRefreshToken) {
+                localStorage.setItem('refreshToken', newRefreshToken);
+            }
             // Notify subscribers that token has been refreshed
             onTokenRefreshed(newAccessToken);
 
@@ -131,12 +132,15 @@ export const setupTokenRefreshTimer = () => {
                     { headers: { 'Content-Type': 'application/json' } }
                 );
 
-                const { access_token: newAccessToken } = response.data;
+                const { access_token: newAccessToken, refresh_token: newRefreshToken } = response.data;
                 localStorage.setItem('accessToken', newAccessToken);
+                if (newRefreshToken) {
+                    localStorage.setItem('refreshToken', newRefreshToken);
+                }
                 console.log('Access token refreshed automatically');
             } catch (error) {
-                console.error('Failed to refresh token:', error);
                 // If refresh fails, we'll let the interceptor handle it when a request fails
+                console.error('Failed to refresh token:', error);
             }
         }
     }, 5 * 60 * 1000); // 5 minutes
