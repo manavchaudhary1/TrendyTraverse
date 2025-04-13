@@ -2,13 +2,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
 import { 
   ShoppingCart, 
   User, 
-  Search, 
+  // Search,
   Menu, 
   X, 
   LogOut, 
@@ -29,19 +28,8 @@ const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
   const { items } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
 
   const cartItemsCount = items.reduce((total, item) => total + item.quantity, 0);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      // Navigate to products page with search query
-      navigate(`/products?keyword=${encodeURIComponent(searchTerm.trim())}`);
-      setSearchTerm('');
-    }
-  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -57,29 +45,6 @@ const Navbar: React.FC = () => {
               <ShoppingBag className="h-8 w-8 text-purple-600" />
               <span className="ml-2 text-xl font-bold text-gray-900">TrendyTraverse</span>
             </Link>
-          </div>
-
-          {/* Search - hide on mobile */}
-          <div className="hidden md:flex max-w-md w-full mx-4">
-            <form onSubmit={handleSearch} className="w-full">
-              <div className="relative w-full">
-                <Input 
-                  type="search"
-                  placeholder="Search products..."
-                  className="pr-10"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <Button 
-                  type="submit" 
-                  variant="ghost" 
-                  size="icon"
-                  className="absolute right-0 top-0"
-                >
-                  <Search className="h-4 w-4" />
-                </Button>
-              </div>
-            </form>
           </div>
 
           {/* Desktop Navigation */}
@@ -177,27 +142,7 @@ const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
           <div className="px-4 pt-2 pb-3 space-y-1">
-            {/* Mobile search */}
-            <form onSubmit={handleSearch} className="mb-4">
-              <div className="relative w-full">
-                <Input 
-                  type="search"
-                  placeholder="Search products..."
-                  className="pr-10"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <Button 
-                  type="submit" 
-                  variant="ghost" 
-                  size="icon"
-                  className="absolute right-0 top-0"
-                >
-                  <Search className="h-4 w-4" />
-                </Button>
-              </div>
-            </form>
-            
+
             {/* Mobile nav links */}
             <Link 
               to="/products" 

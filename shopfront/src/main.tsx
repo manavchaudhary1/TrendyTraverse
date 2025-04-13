@@ -4,6 +4,13 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
+// Declare global window interface to add the tokenRefreshTimer property
+declare global {
+    interface Window {
+        tokenRefreshTimer: NodeJS.Timeout | undefined;
+    }
+}
+
 // Global error handler
 window.addEventListener('error', (event) => {
   console.error('Global error caught:', event.error);

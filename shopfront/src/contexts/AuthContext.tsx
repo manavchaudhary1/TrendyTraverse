@@ -2,9 +2,10 @@
 import { useToast } from '@/hooks/use-toast';
 import { userApi } from '@/lib/api';
 import { User } from '@/lib/entities/User';
+import { setupTokenRefreshTimer } from '@/lib/api/axiosConfig';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
+import { useMemo } from "react";
 
 interface AuthContextType {
   user: User | null;
@@ -41,6 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setRefreshToken(savedRefreshToken);
       setUserId(savedUserId);
       setUser(JSON.parse(savedUser));
+      setupTokenRefreshTimer();
     }
     
     setIsLoading(false);
@@ -53,16 +55,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       const response = await userApi.login({ username, password });
 
-      const { access_token, refresh_token } = response.data;
+      const { access_token, refresh_token ,userId } = response.data;
 
       // Parse the JWT token to get user information
       const tokenPayload = JSON.parse(atob(access_token.split('.')[1]));
-      
-      // Generate a UUID for userId if not provided
-      const generatedUserId = uuidv4();
 
       const user = {
-        id: generatedUserId,
+        id: userId,
         username: tokenPayload.preferred_username || username,
         email: tokenPayload.email || '',
         isAdmin: tokenPayload.resource_access?.manav?.roles?.includes('admin') || false
@@ -70,14 +69,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       setAccessToken(access_token);
       setRefreshToken(refresh_token);
-      setUserId(generatedUserId);
+      setUserId(userId);
       setUser(user);
 
       localStorage.setItem('accessToken', access_token);
       localStorage.setItem('refreshToken', refresh_token);
-      localStorage.setItem('userId', generatedUserId);
+      localStorage.setItem('userId', userId);
       localStorage.setItem('user', JSON.stringify(user));
-      
+      setupTokenRefreshTimer();
+
       toast({
         title: "Login successful",
         description: `Welcome back, ${user.username}!`,
@@ -125,6 +125,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logout = () => {
+    if (window.tokenRefreshTimer) {
+      clearInterval(window.tokenRefreshTimer);
+    }
     setUser(null);
     setAccessToken(null);
     setRefreshToken(null);
@@ -161,20 +164,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
+  const contextValue = useMemo(
+      () => ({
         accessToken,
-        refreshToken,
-        isLoading,
         error,
+        isLoading,
         login,
-        signUp,
         logout,
         refreshAccessToken,
-      }}
-    >
+        refreshToken,
+        signUp,
+        user,
+      }),
+      [
+        accessToken,
+        error,
+        isLoading,
+        login,
+        logout,
+        refreshAccessToken,
+        refreshToken,
+        signUp,
+        user,
+      ]
+  );
+
+  return (
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );
