@@ -2,9 +2,10 @@
 import { useToast } from '@/hooks/use-toast';
 import { userApi } from '@/lib/api';
 import { User } from '@/lib/entities/User';
+import { setupTokenRefreshTimer } from '@/lib/api/axiosConfig';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
+import { useMemo } from "react";
 
 interface AuthContextType {
   user: User | null;
@@ -41,6 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setRefreshToken(savedRefreshToken);
       setUserId(savedUserId);
       setUser(JSON.parse(savedUser));
+      setupTokenRefreshTimer();
     }
     
     setIsLoading(false);
@@ -74,7 +76,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem('refreshToken', refresh_token);
       localStorage.setItem('userId', userId);
       localStorage.setItem('user', JSON.stringify(user));
-      
+      setupTokenRefreshTimer();
+
       toast({
         title: "Login successful",
         description: `Welcome back, ${user.username}!`,
@@ -122,6 +125,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logout = () => {
+    if (window.tokenRefreshTimer) {
+      clearInterval(window.tokenRefreshTimer);
+    }
     setUser(null);
     setAccessToken(null);
     setRefreshToken(null);
@@ -158,20 +164,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
+  const contextValue = useMemo(
+      () => ({
         accessToken,
-        refreshToken,
-        isLoading,
         error,
+        isLoading,
         login,
-        signUp,
         logout,
         refreshAccessToken,
-      }}
-    >
+        refreshToken,
+        signUp,
+        user,
+      }),
+      [
+        accessToken,
+        error,
+        isLoading,
+        login,
+        logout,
+        refreshAccessToken,
+        refreshToken,
+        signUp,
+        user,
+      ]
+  );
+
+  return (
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );
