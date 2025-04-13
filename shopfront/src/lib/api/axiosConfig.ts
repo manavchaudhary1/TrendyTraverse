@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { userApi } from './userApi';
 
 // Base URL for API requests
 const BASE_URL = 'http://localhost:8072';
