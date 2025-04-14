@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for API requests
-const BASE_URL = 'http://localhost:8072';
+const BASE_URL = 'http://gateway-server:8072';
 
 // Create axios instance for non-authenticated requests
 export const publicApi = axios.create({

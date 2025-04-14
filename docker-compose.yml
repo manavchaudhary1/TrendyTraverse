@@ -423,6 +423,20 @@ services:
     networks:
       - docker-backend
 
+  shopfront:
+    build:
+      context: ./shopfront
+      dockerfile: Dockerfile
+    image: application/shopfront:latest
+    container_name: shopfront
+    ports:
+      - "5000:5000"
+    depends_on:
+      gateway-server:
+        condition: service_started
+    networks:
+      - docker-backend
+
 volumes:
   keycloak_data: {}
   e_commerce_data: {}
