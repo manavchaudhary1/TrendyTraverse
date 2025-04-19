@@ -5,7 +5,8 @@ TrendyTraverse is a modern e-commerce application developed to showcase my exper
 <br/>
 It serves as a demonstration of building a scalable, secure, and efficient online shopping platform, integrating various technologies to replicate a real-world e-commerce experience.
 
-## Content
+<details>
+<summary><strong>Table&nbsp;of&nbsp;Contents</strong></summary>
 
 - [Requirements](#requirements)
 - [Technologies Used](#technologies)
@@ -13,6 +14,7 @@ It serves as a demonstration of building a scalable, secure, and efficient onlin
 - [Architecture](#architecture)
 - [ER Diagram](#er-diagram)
 - [API Endpoints](docs/Ports-Apis.md)
+</details>
 
 <a name="requirements"></a>
 ## Requirements

@@ -220,11 +220,10 @@ public class ProductService {
             if (updateDTO.getImageUrls() != null) {
                 productImageRepository.deleteByProduct(product);
 
-                Product finalProduct1 = product;
                 List<ProductImage> newImages = updateDTO.getImageUrls().stream()
                         .map(url -> {
                             ProductImage image = new ProductImage();
-                            image.setProduct(finalProduct1);
+                            image.setProduct(product);
                             image.setImageUrl(url);
                             return image;
                         })
@@ -235,11 +234,10 @@ public class ProductService {
             if (updateDTO.getFeatureBullets() != null) {
                 productFeaturesRepository.deleteByProduct(product);
 
-                Product finalProduct = product;
                 List<ProductFeatures> newFeatures = updateDTO.getFeatureBullets().stream()
                         .map(bullet -> {
                             ProductFeatures feature = new ProductFeatures();
-                            feature.setProduct(finalProduct);
+                            feature.setProduct(product);
                             feature.setBullet(bullet);
                             return feature;
                         })
@@ -247,7 +245,7 @@ public class ProductService {
                 productFeaturesRepository.saveAll(newFeatures);
             }
 
-            product = productRepository.save(product);
+            productRepository.save(product);
 
             // Fetch a fresh copy of the entity after saving
             Product freshProduct = productRepository.findById(productId)
@@ -257,7 +255,7 @@ public class ProductService {
             cacheProductObject(freshProduct); // Use the fresh entity
             return convertToDTO(freshProduct);
         } catch (Exception e) {
-            log.error("Error updating product " + productId + ": " + e.getMessage(), e);
+            log.error("Error updating product {}: {}", productId, e.getMessage(), e);
             throw new CustomException("Error updating product: " + e.getMessage());
         }
     }
@@ -276,30 +274,29 @@ public class ProductService {
             try {
                 reviewsCount = reviewRestTemplateClient.getReviewCount(productId);
             } catch (Exception e) {
-                log.error("Error getting review count: " + e.getMessage(), e);
-                reviewsCount = 0; // Default if can't get count
+                log.error("Error getting review count: {}", e.getMessage(), e);
+                reviewsCount = 0; // Default if it can't get count
             }
 
             // Delete related entities
             try {
                 productImageRepository.deleteByProduct(product);
             } catch (Exception e) {
-                log.error("Error deleting product images: " + e.getMessage(), e);
+                log.error("Error deleting product images: {}", e.getMessage(), e);
                 throw e;
             }
 
             try {
                 productFeaturesRepository.deleteByProduct(product);
             } catch (Exception e) {
-                log.error("Error deleting product features: " + e.getMessage(), e);
+                log.error("Error deleting product features: {}", e.getMessage(), e);
                 throw e;
             }
 
             try {
                 reviewRestTemplateClient.deleteAllReviews(productId);
             } catch (Exception e) {
-                log.error("Error deleting reviews: " + e.getMessage(), e);
-                // Decide if you want to continue or throw the exception
+                log.error("Error deleting reviews: {}", e.getMessage(), e);
             }
 
             // Delete from DB first
@@ -320,7 +317,7 @@ public class ProductService {
 
             return response;
         } catch (Exception e) {
-            log.error("Error deleting product " + productId + ": " + e.getMessage(), e);
+            log.error("Error deleting product {}: {}", productId, e.getMessage(), e);
             throw new CustomException("Error deleting product: " + e.getMessage());
         }
     }
@@ -340,7 +337,6 @@ public class ProductService {
                     dtos.add(dto);
                 } catch (Exception e) {
                     log.error("Error mapping result: {}", Arrays.toString(result), e);
-                    // Either skip this item or throw to abort the whole operation
                 }
             return dtos;
         } catch (Exception e) {

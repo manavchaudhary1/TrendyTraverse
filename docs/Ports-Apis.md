@@ -1,12 +1,17 @@
-# Content
+<h1 align="center">Ports and Apis</h1>
+
+<details>
+<summary><strong>Table&nbsp;of&nbsp;Contents</strong></summary>
+
 - [Ports](#ports)
 - [API Documentation](#api-documentation)
-  - [User Service APIs](#user-service-api)
-  - [Product Service APIs](#product-service-api)
-  - [Review Service APIs](#review-service-api)
-  - [Cart Service APIs](#cart-service-api)
-  - [Order Service APIs](#order-service-api)
+- [User Service APIs](#user-service-api)
+- [Product Service APIs](#product-service-api)
+- [Review Service APIs](#review-service-api)
+- [Cart Service APIs](#cart-service-api)
+- [Order Service APIs](#order-service-api)
 - [Postman Collection](#postman-collection)
+</details>
 
 <a name="ports"></a>
 # Ports
