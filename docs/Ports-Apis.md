@@ -5,11 +5,11 @@
 
 - [Ports](#ports)
 - [API Documentation](#api-documentation)
-- [User Service APIs](#user-service-api)
-- [Product Service APIs](#product-service-api)
-- [Review Service APIs](#review-service-api)
-- [Cart Service APIs](#cart-service-api)
-- [Order Service APIs](#order-service-api)
+  - [User Service APIs](#user-service-api)
+  - [Product Service APIs](#product-service-api)
+  - [Review Service APIs](#review-service-api)
+  - [Cart Service APIs](#cart-service-api)
+  - [Order Service APIs](#order-service-api)
 - [Postman Collection](#postman-collection)
 </details>
 

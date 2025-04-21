@@ -430,7 +430,7 @@ services:
     image: application/shopfront:latest
     container_name: shopfront
     ports:
-      - "5000:5000"
+      - "5100:5000"
     depends_on:
       gateway-server:
         condition: service_started

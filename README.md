@@ -14,6 +14,7 @@ It serves as a demonstration of building a scalable, secure, and efficient onlin
 - [Architecture](#architecture)
 - [ER Diagram](#er-diagram)
 - [API Endpoints](docs/Ports-Apis.md)
+- [Frontend](docs/Frontend.md)
 </details>
 
 <a name="requirements"></a>
