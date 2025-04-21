@@ -22,5 +22,8 @@
 - ### CART PAGE
 ![Cart Page](images/Cart.png)
 
-- ### Orders PAGE
+- ### ORDERS PAGE
 ![Orders Page](images/Orders.png)
+
+- ### WALHTHROUGH
+https://github.com/user-attachments/assets/5d522d3f-8d7e-406f-a820-df08f71b2a7a
