@@ -170,6 +170,11 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>1.14.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.6.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -202,7 +207,33 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>1.6.3</version>
+                    </path>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>1.18.36</version>
+                    </path>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-mapstruct-binding</artifactId>
+                        <version>0.2.0</version>
+                    </path>
+                </annotationProcessorPaths>
+                <compilerArgs>
+                    <arg>-Amapstruct.defaultComponentModel=spring</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
-
 </project>
