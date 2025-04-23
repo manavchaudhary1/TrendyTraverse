@@ -44,11 +44,11 @@ public class OrderController {
             @PathVariable UUID userId,
             @RequestBody OrderRequestDto orderRequestDto) {
         try {
-            if (orderRequestDto.getQuantity() <= 0) {
+            if (orderRequestDto.quantity() <= 0) {
                 return ResponseEntity.badRequest().build();
             }
 
-            OrderDto order = orderService.placeOrder(userId, orderRequestDto.getProductId(), orderRequestDto.getQuantity());
+            OrderDto order = orderService.placeOrder(userId, orderRequestDto.productId(), orderRequestDto.quantity());
             return ResponseEntity.status(HttpStatus.CREATED).body(order);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().build();
