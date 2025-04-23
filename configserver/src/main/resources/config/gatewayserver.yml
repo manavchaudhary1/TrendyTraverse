@@ -8,11 +8,23 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOriginPatterns: "*"
-            allowedOrigins: "*"
-          #  "http://0.0.0.0:8000"
-            allowedMethods: "*"
-            allowedHeaders: "*"
+            allowedOrigins:
+              - "http://localhost:8000"
+              - "http://localhost"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: 
+              - Authorization
+              - Content-Type
+              - X-Requested-With
+              - Accept
+              - Origin
+              - Access-Control-Request-Method
+              - Access-Control-Request-Headers
             exposedHeaders: "Authorization,Content-Type"
             maxAge: 3600
             allowCredentials: true
