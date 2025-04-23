@@ -7,10 +7,7 @@ public record UserKeycloakDTO(
 ) {
     public UserKeycloakDTO{
         if (username == null){
-            throw new IllegalArgumentException("Username cannot be null");
-        }
-        if (email == null){
-            throw new IllegalArgumentException("Email cannot be null");
+            throw new IllegalArgumentException("Entry cannot be null");
         }
         if (password == null){
             throw new IllegalArgumentException("Password cannot be null");
