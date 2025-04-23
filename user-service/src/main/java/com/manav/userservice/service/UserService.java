@@ -2,9 +2,9 @@ package com.manav.userservice.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.manav.userservice.dto.UserDto;
 import com.manav.userservice.dto.UserKeycloakDTO;
 import com.manav.userservice.exception.*;
+import com.manav.userservice.mapper.UserMapper;
 import com.manav.userservice.model.User;
 import com.manav.userservice.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -35,14 +35,18 @@ public class UserService {
     private final RealmResource realmResource;
     private final ClientResource clientResource;
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public UserService(UsersResource usersResource, RealmResource realmResource, ClientResource clientResource, UserRepository userRepository) {
+    public UserService(UsersResource usersResource, RealmResource realmResource,
+                       ClientResource clientResource, UserRepository userRepository,
+                       UserMapper userMapper) {
         this.usersResource = usersResource;
         this.realmResource = realmResource;
         this.clientResource = clientResource;
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${keycloak.server-url}")
     public String serverUrl;
@@ -65,20 +69,20 @@ public class UserService {
     @Transactional
     public void addUser(UserKeycloakDTO user) {
         // Throw specific exceptions based on existence
-        if (isUsernameExists(user.getUsername())) {
+        if (isUsernameExists(user.username())) {
             throw new UserAlreadyExistsException("User with the same username already exists.");
         }
 
-        if (isEmailExists(user.getEmail())) {
+        if (isEmailExists(user.email())) {
             throw new UserAlreadyExistsException("User with the same email already exists.");
         }
 
         // Proceed with user creation
-        CredentialRepresentation credentialRepresentation = createPasswordCredentials(user.getPassword());
+        CredentialRepresentation credentialRepresentation = createPasswordCredentials(user.password());
 
         UserRepresentation kcUser = new UserRepresentation();
-        kcUser.setUsername(user.getUsername());
-        kcUser.setEmail(user.getEmail());
+        kcUser.setUsername(user.username());
+        kcUser.setEmail(user.email());
         kcUser.setEnabled(true);
         kcUser.setEmailVerified(false);
         kcUser.setCredentials(Collections.singletonList(credentialRepresentation));
@@ -100,21 +104,16 @@ public class UserService {
             throw new UserCreationException("Failed to create user: " + response.getStatus());
         }
         try {
-            // Save user in the database
-            UserDto userDto = new UserDto();
-            userDto.setId(UUID.randomUUID());
-            userDto.setUsername(user.getUsername());
-            userDto.setEmail(user.getEmail());
-
-            userRepository.save(mapToUser(userDto));
-        }catch (Exception e) {
+            // Save user in the database using the mapper
+            User userEntity = userMapper.toUser(user);
+            userRepository.save(userEntity);
+        } catch (Exception e) {
             log.error("Error occurred, rolling back user creation: {}", e.getMessage());
             String userId = extractUserId(response);
             if (userId != null) usersResource.get(userId).remove(); // Rollback user from Keycloak
             throw new UserCreationException("Failed to create user: " + e.getMessage());
         }
     }
-
 
     private boolean assignClientRole(String userId, String roleName) {
         try {// Use actual client ID
@@ -168,16 +167,6 @@ public class UserService {
             log.error("Failed to assign user {} to admin group {}", userName, adminGroupId);
             return false;
         }
-    }
-
-    private User mapToUser(UserDto dto) {
-        User user = new User();
-        user.setId(dto.getId());
-        user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
-        user.setCreatedAt(LocalDateTime.now());
-        user.setLastLogin(LocalDateTime.now());
-        return user;
     }
 
     private static CredentialRepresentation createPasswordCredentials(String password) {
