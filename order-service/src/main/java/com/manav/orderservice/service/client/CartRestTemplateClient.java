@@ -44,7 +44,7 @@ public class CartRestTemplateClient {
         if (cartResponseDto == null) {
             return Collections.emptyList();
         }
-        return cartResponseDto.getItems();
+        return cartResponseDto.items();
     }
 
     public void archiveCart(UUID userId) {
@@ -61,7 +61,7 @@ public class CartRestTemplateClient {
         );
     }
 
-    private String getAccessToken() {
+    private String getAccessToken() throws RuntimeException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             Object principal = authentication.getPrincipal();
