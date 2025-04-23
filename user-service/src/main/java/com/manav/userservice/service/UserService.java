@@ -9,6 +9,7 @@ import com.manav.userservice.model.User;
 import com.manav.userservice.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.resource.ClientResource;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -28,6 +29,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class UserService {
 
@@ -38,15 +40,6 @@ public class UserService {
     private final UserMapper userMapper;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public UserService(UsersResource usersResource, RealmResource realmResource,
-                       ClientResource clientResource, UserRepository userRepository,
-                       UserMapper userMapper) {
-        this.usersResource = usersResource;
-        this.realmResource = realmResource;
-        this.clientResource = clientResource;
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
 
     @Value("${keycloak.server-url}")
     public String serverUrl;

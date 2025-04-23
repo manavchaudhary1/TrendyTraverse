@@ -6,6 +6,7 @@ import com.manav.userservice.exception.RoleAssignmentException;
 import com.manav.userservice.exception.UserAlreadyExistsException;
 import com.manav.userservice.exception.UserCreationException;
 import com.manav.userservice.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +16,11 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
 
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody UserKeycloakDTO user) {
