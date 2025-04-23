@@ -11,6 +11,7 @@ import com.manav.cartservice.repository.CartRepository;
 import com.manav.cartservice.service.client.UserRestTemplateClient;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -30,20 +31,13 @@ import java.util.UUID;
 @Validated
 @Transactional
 @Slf4j
+@RequiredArgsConstructor
 public class CartService {
 
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final UserRestTemplateClient userRestTemplateClient;
     private final CartMapper cartMapper;
-
-    public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository,
-                       UserRestTemplateClient userRestTemplateClient, CartMapper cartMapper) {
-        this.cartRepository = cartRepository;
-        this.cartItemRepository = cartItemRepository;
-        this.userRestTemplateClient = userRestTemplateClient;
-        this.cartMapper = cartMapper;
-    }
 
     // Retrieves the active cart for the user (creates one if not found)
     public CartDto getCartByUser(UUID userId) {

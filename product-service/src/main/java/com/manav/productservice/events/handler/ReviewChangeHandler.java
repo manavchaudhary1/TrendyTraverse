@@ -3,6 +3,7 @@ package com.manav.productservice.events.handler;
 import com.manav.productservice.events.model.ReviewChangeModel;
 import com.manav.productservice.service.client.ReviewRestTemplateClient;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,13 +13,11 @@ import java.util.function.Consumer;
 
 @Configuration
 @Slf4j
+@RequiredArgsConstructor
 public class ReviewChangeHandler {
 
     final ReviewRestTemplateClient reviewRestTemplateClient;
 
-    public ReviewChangeHandler(ReviewRestTemplateClient reviewRestTemplateClient) {
-        this.reviewRestTemplateClient = reviewRestTemplateClient;
-    }
 
     @PostConstruct
     public void init() {

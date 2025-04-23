@@ -10,6 +10,7 @@ import com.manav.cartservice.model.Carts;
 import com.manav.cartservice.repository.CartItemRepository;
 import com.manav.cartservice.service.client.ProductRestTemplateClient;
 import com.manav.cartservice.service.client.UserRestTemplateClient;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,23 +22,13 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CartItemService {
     private final CartItemRepository cartItemRepository;
     private final CartService cartService;
     private final ProductRestTemplateClient productRestTemplateClient;
     private final UserRestTemplateClient userRestTemplateClient;
     private final CartMapper cartMapper;
-
-    public CartItemService(CartItemRepository cartItemRepository, CartService cartService,
-                           ProductRestTemplateClient productRestTemplateClient,
-                           UserRestTemplateClient userRestTemplateClient,
-                           CartMapper cartMapper) {
-        this.cartItemRepository = cartItemRepository;
-        this.cartService = cartService;
-        this.productRestTemplateClient = productRestTemplateClient;
-        this.userRestTemplateClient = userRestTemplateClient;
-        this.cartMapper = cartMapper;
-    }
 
     public CartDto addItem(UUID userId, Long productId, int quantity) {
         String username = cartService.getUsernameFromJwt();

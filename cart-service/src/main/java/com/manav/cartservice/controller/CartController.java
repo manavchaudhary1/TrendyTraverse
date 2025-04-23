@@ -5,6 +5,7 @@ import com.manav.cartservice.dto.CartDto;
 import com.manav.cartservice.dto.UpdateCartItemRequest;
 import com.manav.cartservice.service.CartItemService;
 import com.manav.cartservice.service.CartService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,16 +13,12 @@ import javax.smartcardio.CardNotPresentException;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/cart")
 public class CartController {
 
     private final CartService cartService;
     private final CartItemService cartItemService;
-
-    public CartController(CartService cartService, CartItemService cartItemService) {
-        this.cartService = cartService;
-        this.cartItemService = cartItemService;
-    }
 
     // Retrieve the active cart for a user
     @GetMapping("/{userId}")
