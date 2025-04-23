@@ -48,19 +48,19 @@ public class UserController {
 
     @PostMapping("/token")
     public Map<String, Object> getToken(@RequestBody UserKeycloakDTO user) {
-        return userService.getToken(user.getUsername(), user.getPassword());
+        return userService.getToken(user.username(), user.password());
     }
 
     @PostMapping("/refresh-token")
     public Map<String, Object> refreshAccessToken(@RequestBody RefreshTokenRequestDto refreshTokenRequest) {
-        return userService.refreshToken(refreshTokenRequest.getRefreshToken());
+        return userService.refreshToken(refreshTokenRequest.refreshToken());
     }
 
 
     @PostMapping("/promote/{userName}")
     public String promoteUser(@PathVariable String userName){
-        Boolean response = userService.assignUserToAdmin(userName);
-        if (Boolean.TRUE.equals(response)){
+        boolean response = userService.assignUserToAdmin(userName);
+        if (response){
             return ("User "+ userName +" promoted to admin");
         }else {
             return ("User "+ userName +" not promoted to admin");
