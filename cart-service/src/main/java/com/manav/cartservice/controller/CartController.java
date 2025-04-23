@@ -7,6 +7,7 @@ import com.manav.cartservice.service.CartItemService;
 import com.manav.cartservice.service.CartService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.smartcardio.CardNotPresentException;
 import java.util.UUID;
 
@@ -29,15 +30,14 @@ public class CartController {
         return ResponseEntity.ok(cart);
     }
 
-
     // Add an item to the cart
     @PostMapping("/{userId}/items")
     public ResponseEntity<CartDto> addItem(@PathVariable UUID userId,
                                            @RequestBody AddCartItemRequest request) {
         return ResponseEntity.ok(cartItemService.addItem(
                 userId,
-                request.getProductId(),
-                request.getQuantity()
+                request.productId(),
+                request.quantity()
         ));
     }
 
@@ -47,8 +47,8 @@ public class CartController {
                                               @RequestBody UpdateCartItemRequest request) {
         return ResponseEntity.ok(cartItemService.updateItem(
                 userId,
-                request.getProductId(),
-                request.getQuantity()
+                request.productId(),
+                request.quantity()
         ));
     }
 
