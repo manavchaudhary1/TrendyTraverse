@@ -1,15 +1,13 @@
 package com.manav.userservice.dto;
 
-import lombok.Data;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-public class UserDto {
-    private UUID id;
-    private String username;
-    private String email;
-    private LocalDateTime createdAt;
-    private LocalDateTime lastLogin;
+public record UserDto(
+        UUID id,
+        String username,
+        String email,
+        LocalDateTime createdAt,
+        LocalDateTime lastLogin
+) {
 }

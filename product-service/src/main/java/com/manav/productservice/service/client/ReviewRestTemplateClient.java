@@ -4,6 +4,8 @@ import com.manav.productservice.exception.CustomException;
 import com.manav.productservice.model.Review;
 import com.manav.productservice.repository.ReviewRedisRepository;
 import java.util.Collections;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -20,15 +22,11 @@ import java.util.List;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class ReviewRestTemplateClient {
 
     private final RestTemplate restTemplate;
     private final ReviewRedisRepository reviewRedisRepository;
-
-    public ReviewRestTemplateClient(RestTemplate restTemplate, ReviewRedisRepository reviewRedisRepository) {
-        this.restTemplate = restTemplate;
-        this.reviewRedisRepository = reviewRedisRepository;
-    }
 
     public List<Review> getAllReviews(Long productId) {
         try {

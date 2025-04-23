@@ -5,6 +5,8 @@ TrendyTraverse is a modern e-commerce application developed to showcase my exper
 <br/>
 It serves as a demonstration of building a scalable, secure, and efficient online shopping platform, integrating various technologies to replicate a real-world e-commerce experience.
 
+:bangbang: Tests are failing right now cause of [PR](https://github.com/manavchaudhary1/TrendyTraverse/pull/22).
+
 <details>
 <summary><strong>Table&nbsp;of&nbsp;Contents</strong></summary>
 

@@ -3,6 +3,7 @@ package com.manav.orderservice.controller;
 import com.manav.orderservice.dto.OrderDto;
 import com.manav.orderservice.dto.OrderRequestDto;
 import com.manav.orderservice.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/orders/{userId}")
 public class OrderController {
 
     private final OrderService orderService;
-
-    public OrderController(OrderService orderService){
-        this.orderService = orderService;
-    }
 
     @GetMapping
     public ResponseEntity<List<OrderDto>> getUserOrders(@PathVariable UUID userId) {
@@ -44,11 +42,11 @@ public class OrderController {
             @PathVariable UUID userId,
             @RequestBody OrderRequestDto orderRequestDto) {
         try {
-            if (orderRequestDto.getQuantity() <= 0) {
+            if (orderRequestDto.quantity() <= 0) {
                 return ResponseEntity.badRequest().build();
             }
 
-            OrderDto order = orderService.placeOrder(userId, orderRequestDto.getProductId(), orderRequestDto.getQuantity());
+            OrderDto order = orderService.placeOrder(userId, orderRequestDto.productId(), orderRequestDto.quantity());
             return ResponseEntity.status(HttpStatus.CREATED).body(order);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().build();

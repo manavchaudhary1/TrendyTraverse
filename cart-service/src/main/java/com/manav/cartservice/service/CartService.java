@@ -3,6 +3,7 @@ package com.manav.cartservice.service;
 import com.manav.cartservice.dto.CartDto;
 import com.manav.cartservice.dto.CartItemDto;
 import com.manav.cartservice.exception.UnauthorizedAccessException;
+import com.manav.cartservice.mapper.CartMapper;
 import com.manav.cartservice.model.CartItems;
 import com.manav.cartservice.model.Carts;
 import com.manav.cartservice.repository.CartItemRepository;
@@ -10,6 +11,7 @@ import com.manav.cartservice.repository.CartRepository;
 import com.manav.cartservice.service.client.UserRestTemplateClient;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -22,7 +24,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.smartcardio.CardNotPresentException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,17 +31,13 @@ import java.util.UUID;
 @Validated
 @Transactional
 @Slf4j
+@RequiredArgsConstructor
 public class CartService {
 
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final UserRestTemplateClient userRestTemplateClient;
-
-    public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository, UserRestTemplateClient userRestTemplateClient) {
-        this.cartRepository = cartRepository;
-        this.cartItemRepository = cartItemRepository;
-        this.userRestTemplateClient = userRestTemplateClient;
-    }
+    private final CartMapper cartMapper;
 
     // Retrieves the active cart for the user (creates one if not found)
     public CartDto getCartByUser(UUID userId) {
@@ -53,14 +50,13 @@ public class CartService {
 
             Carts cart = getCartEntityByUser(userId);
             List<CartItems> items = cartItemRepository.findByCart(cart);
-            List<CartItemDto> itemDto = convertToCartItemDtoList(items);
-            return convertToDto(cart, itemDto);
+            List<CartItemDto> itemDtos = cartMapper.toCartItemDtoList(items);
+            return cartMapper.toCartDto(cart, itemDtos);
 
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found for user.");
         }
     }
-
 
     // Returns the cart entity for a user
     protected Carts getCartEntityByUser(UUID userId) {
@@ -89,7 +85,7 @@ public class CartService {
             throw new CardNotPresentException("Active cart not found for user");
         }
         String username = getUsernameFromJwt();
-        try{
+        try {
             boolean isApproved = userRestTemplateClient.approveUser(username, userId.toString());
             if (!isApproved) {
                 throw new UnauthorizedAccessException("Not authorized to access this cart.");
@@ -98,8 +94,8 @@ public class CartService {
             cart.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
             cartRepository.save(cart);
             List<CartItems> items = cartItemRepository.findByCart(cart);
-            List<CartItemDto> itemDto = convertToCartItemDtoList(items);
-            return convertToDto(cart, itemDto);
+            List<CartItemDto> itemDtos = cartMapper.toCartItemDtoList(items);
+            return cartMapper.toCartDto(cart, itemDtos);
         } catch (EntityNotFoundException e) {
             throw new UnauthorizedAccessException("Not authorized to access this cart.");
         }
@@ -111,31 +107,6 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    // Converts the cart entity and its items into a DTO
-    protected CartDto convertToDto(Carts cart, List<CartItemDto> items) {
-        CartDto dto = new CartDto();
-        dto.setCartId(cart.getId());
-        dto.setUserId(cart.getUserId());
-        dto.setCreatedAt(cart.getCreatedAt());
-        dto.setUpdatedAt(cart.getUpdatedAt());
-        dto.setArchived(cart.isArchived());
-        dto.setItems(items);
-        return dto;
-    }
-    // Converts CartItems list into CartItemDto list
-    protected List<CartItemDto> convertToCartItemDtoList(List<CartItems> cartItems) {
-        List<CartItemDto> itemDto = new ArrayList<>();
-        for (CartItems item : cartItems) {
-            CartItemDto dto = new CartItemDto();
-            dto.setProductId(item.getProductId());
-            dto.setQuantity(item.getQuantity());
-            dto.setPrice(item.getPrice());
-            itemDto.add(dto);
-        }
-        return itemDto;
-    }
-
-
     protected String getUsernameFromJwt() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -145,6 +116,4 @@ public class CartService {
         }
         return null;
     }
-
 }
-

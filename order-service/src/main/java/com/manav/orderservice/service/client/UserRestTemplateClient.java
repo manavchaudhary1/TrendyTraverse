@@ -1,6 +1,7 @@
 package com.manav.orderservice.service.client;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -10,13 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class UserRestTemplateClient {
 
     private final RestTemplate restTemplate;
-
-    public UserRestTemplateClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public boolean approveUser(String userName, String uuid) {
         ResponseEntity<Boolean> response = restTemplate.exchange(

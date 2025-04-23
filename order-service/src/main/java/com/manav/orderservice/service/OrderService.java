@@ -1,9 +1,9 @@
 package com.manav.orderservice.service;
 
 import com.manav.orderservice.dto.OrderDto;
-import com.manav.orderservice.dto.OrderLineDto;
 import com.manav.orderservice.exception.CustomException;
 import com.manav.orderservice.exception.UnauthorizedAccessException;
+import com.manav.orderservice.mapper.OrderMapper;
 import com.manav.orderservice.model.CartItem;
 import com.manav.orderservice.model.Order;
 import com.manav.orderservice.model.OrderLines;
@@ -12,6 +12,7 @@ import com.manav.orderservice.repository.OrderRepository;
 import com.manav.orderservice.service.client.CartRestTemplateClient;
 import com.manav.orderservice.service.client.ProductRestTemplateClient;
 import com.manav.orderservice.service.client.UserRestTemplateClient;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +30,7 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -36,17 +38,7 @@ public class OrderService {
     private final CartRestTemplateClient cartRestTemplateClient;
     private final ProductRestTemplateClient productRestTemplateClient;
     private final UserRestTemplateClient userRestTemplateClient;
-
-    public OrderService(OrderRepository orderRepository,
-                        OrderLineRepository orderLineRepository,
-                        CartRestTemplateClient cartRestTemplateClient,
-                        ProductRestTemplateClient productRestTemplateClient, UserRestTemplateClient userRestTemplateClient) {
-        this.orderRepository = orderRepository;
-        this.orderLineRepository = orderLineRepository;
-        this.cartRestTemplateClient = cartRestTemplateClient;
-        this.productRestTemplateClient = productRestTemplateClient;
-        this.userRestTemplateClient = userRestTemplateClient;
-    }
+    private final OrderMapper orderMapper;
 
     public List<OrderDto> getAllOrders(UUID userId) {
         try {
@@ -60,7 +52,7 @@ public class OrderService {
             return orders.stream()
                     .map(order -> {
                         List<OrderLines> orderLines = getOrderLines(order.getId());
-                        return convertToOrderDto(order, orderLines);
+                        return orderMapper.toOrderDto(order, orderLines);
                     })
                     .toList();
         } catch (UnauthorizedAccessException e) {
@@ -107,13 +99,12 @@ public class OrderService {
                     })
                     .toList();
 
-
             orderLineRepository.saveAll(orderLinesList);
 
             // Archive the cart
             cartRestTemplateClient.archiveCart(userId);
 
-            return convertToOrderDto(order, orderLinesList);
+            return orderMapper.toOrderDto(order, orderLinesList);
         } catch (UnauthorizedAccessException e) {
             log.error("Unauthorized access: {}", e.getMessage());
             throw e;
@@ -129,53 +120,34 @@ public class OrderService {
             if (!isApproved) {
                 throw new UnauthorizedAccessException("Not authorized to place order");
             }
-        if (quantity <= 0) {
-            throw new CustomException("Quantity must be greater than 0");
-        }
-        // Get product price from product service
-        var price = productRestTemplateClient.getPricing(productId);
-        if (price.equals(BigDecimal.ZERO)) {
-            throw new CustomException("Product price not available");
-        }
 
-        // Create new order
-        Order order = new Order();
-        order.setUserId(userId);
-        order.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
-        orderRepository.save(order);
+            if (quantity <= 0) {
+                throw new CustomException("Quantity must be greater than 0");
+            }
+            // Get product price from product service
+            var price = productRestTemplateClient.getPricing(productId);
+            if (price.equals(BigDecimal.ZERO)) {
+                throw new CustomException("Product price not available");
+            }
 
-        // Create order line
-        OrderLines orderLine = new OrderLines();
-        orderLine.setOrder(order);
-        orderLine.setProductId(productId);
-        orderLine.setQuantity(quantity);
-        orderLine.setPrice(price);
-        orderLineRepository.save(orderLine);
+            // Create new order
+            Order order = new Order();
+            order.setUserId(userId);
+            order.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
+            orderRepository.save(order);
 
-        return convertToOrderDto(order, Collections.singletonList(orderLine));
-        }catch (Exception e) {
+            // Create order line
+            OrderLines orderLine = new OrderLines();
+            orderLine.setOrder(order);
+            orderLine.setProductId(productId);
+            orderLine.setQuantity(quantity);
+            orderLine.setPrice(price);
+            orderLineRepository.save(orderLine);
+
+            return orderMapper.toOrderDto(order, Collections.singletonList(orderLine));
+        } catch (Exception e) {
             throw new CustomException("Product not found");
         }
-    }
-
-    private OrderDto convertToOrderDto(Order order, List<OrderLines> orderLines) {
-        OrderDto orderDto = new OrderDto();
-        orderDto.setId(order.getId());
-        orderDto.setUserId(order.getUserId());
-        orderDto.setCreatedAt(order.getCreatedAt());
-
-        List<OrderLineDto> orderLineDtos = orderLines.stream()
-                .map(line -> {
-                    OrderLineDto dto = new OrderLineDto();
-                    dto.setProductId(line.getProductId());
-                    dto.setQuantity(line.getQuantity());
-                    dto.setPrice(line.getPrice());
-                    return dto;
-                })
-                .toList();
-
-        orderDto.setOrderLines(orderLineDtos);
-        return orderDto;
     }
 
     @Transactional
@@ -201,7 +173,7 @@ public class OrderService {
 
             // Delete the order
             orderRepository.delete(order);
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new CustomException("Error deleting order");
         }
     }

@@ -1,7 +1,17 @@
 import axios from 'axios';
 
+// Determine the base URL based on environment
+const determineBaseUrl = () => {
+    // When running locally on the host machine
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+        return 'http://localhost:8072';
+    }
+    // When running inside Docker
+    return 'http://gateway-server:8072';
+};
+
 // Base URL for API requests
-const BASE_URL = 'http://gateway-server:8072';
+const BASE_URL = determineBaseUrl();
 
 // Create axios instance for non-authenticated requests
 export const publicApi = axios.create({
@@ -9,6 +19,7 @@ export const publicApi = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true, // Enable sending credentials (cookies, etc.)
 });
 
 // Create axios instance for authenticated requests
@@ -17,6 +28,7 @@ export const privateApi = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true, // Enable sending credentials (cookies, etc.)
 });
 
 // Track if a token refresh is in progress

@@ -1,12 +1,12 @@
 package com.manav.cartservice.dto;
 
-import lombok.Data;
-import lombok.NonNull;
-
-@Data
-public class UpdateCartItemRequest {
-    @NonNull
-    private Long productId;
-    private int quantity;
+public record UpdateCartItemRequest(
+        Long productId,
+        int quantity
+) {
+    public UpdateCartItemRequest {
+        if (productId == null) {
+            throw new IllegalArgumentException("productId cannot be null");
+        }
+    }
 }
-

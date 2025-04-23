@@ -1,5 +1,6 @@
 package com.manav.cartservice.service.client;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +11,10 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 @Component
+@RequiredArgsConstructor
 public class ProductRestTemplateClient {
 
     private final RestTemplate restTemplate;
-
-    public ProductRestTemplateClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public BigDecimal getPricing(Long productId) {
         ResponseEntity<Map<String, Object>> responseEntity = restTemplate.exchange(
