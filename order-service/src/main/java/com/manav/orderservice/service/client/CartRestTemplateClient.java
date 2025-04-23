@@ -2,6 +2,7 @@ package com.manav.orderservice.service.client;
 
 import com.manav.orderservice.dto.CartResponseDto;
 import com.manav.orderservice.model.CartItem;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,13 +20,10 @@ import java.util.UUID;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class CartRestTemplateClient {
 
     private final RestTemplate restTemplate;
-
-    public CartRestTemplateClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public List<CartItem> getCartItems(UUID userId) {
         HttpHeaders headers = new HttpHeaders();

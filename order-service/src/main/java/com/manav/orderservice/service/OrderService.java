@@ -12,6 +12,7 @@ import com.manav.orderservice.repository.OrderRepository;
 import com.manav.orderservice.service.client.CartRestTemplateClient;
 import com.manav.orderservice.service.client.ProductRestTemplateClient;
 import com.manav.orderservice.service.client.UserRestTemplateClient;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +30,7 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -37,20 +39,6 @@ public class OrderService {
     private final ProductRestTemplateClient productRestTemplateClient;
     private final UserRestTemplateClient userRestTemplateClient;
     private final OrderMapper orderMapper;
-
-    public OrderService(OrderRepository orderRepository,
-                        OrderLineRepository orderLineRepository,
-                        CartRestTemplateClient cartRestTemplateClient,
-                        ProductRestTemplateClient productRestTemplateClient,
-                        UserRestTemplateClient userRestTemplateClient,
-                        OrderMapper orderMapper) {
-        this.orderRepository = orderRepository;
-        this.orderLineRepository = orderLineRepository;
-        this.cartRestTemplateClient = cartRestTemplateClient;
-        this.productRestTemplateClient = productRestTemplateClient;
-        this.userRestTemplateClient = userRestTemplateClient;
-        this.orderMapper = orderMapper;
-    }
 
     public List<OrderDto> getAllOrders(UUID userId) {
         try {
