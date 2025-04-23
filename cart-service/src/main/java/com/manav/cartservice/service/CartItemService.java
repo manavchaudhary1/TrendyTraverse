@@ -1,8 +1,10 @@
 package com.manav.cartservice.service;
 
 import com.manav.cartservice.dto.CartDto;
+import com.manav.cartservice.dto.CartItemDto;
 import com.manav.cartservice.exception.CustomException;
 import com.manav.cartservice.exception.UnauthorizedAccessException;
+import com.manav.cartservice.mapper.CartMapper;
 import com.manav.cartservice.model.CartItems;
 import com.manav.cartservice.model.Carts;
 import com.manav.cartservice.repository.CartItemRepository;
@@ -24,12 +26,17 @@ public class CartItemService {
     private final CartService cartService;
     private final ProductRestTemplateClient productRestTemplateClient;
     private final UserRestTemplateClient userRestTemplateClient;
+    private final CartMapper cartMapper;
 
-    public CartItemService(CartItemRepository cartItemRepository, CartService cartService, ProductRestTemplateClient productRestTemplateClient,UserRestTemplateClient userRestTemplateClient) {
+    public CartItemService(CartItemRepository cartItemRepository, CartService cartService,
+                           ProductRestTemplateClient productRestTemplateClient,
+                           UserRestTemplateClient userRestTemplateClient,
+                           CartMapper cartMapper) {
         this.cartItemRepository = cartItemRepository;
         this.cartService = cartService;
         this.productRestTemplateClient = productRestTemplateClient;
         this.userRestTemplateClient = userRestTemplateClient;
+        this.cartMapper = cartMapper;
     }
 
     public CartDto addItem(UUID userId, Long productId, int quantity) {
@@ -69,7 +76,8 @@ public class CartItemService {
 
             // Get updated items and convert to DTO
             List<CartItems> items = cartItemRepository.findByCart(cart);
-            return cartService.convertToDto(cart, cartService.convertToCartItemDtoList(items));
+            List<CartItemDto> itemDtos = cartMapper.toCartItemDtoList(items);
+            return cartMapper.toCartDto(cart, itemDtos);
         } catch (HttpClientErrorException e) {
             log.error("Error from product service: {}", e.getMessage());
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
@@ -101,7 +109,8 @@ public class CartItemService {
         cartService.updateCartTimestamp(cart);
 
         List<CartItems> items = cartItemRepository.findByCart(cart);
-        return cartService.convertToDto(cart, cartService.convertToCartItemDtoList(items));
+        List<CartItemDto> itemDtos = cartMapper.toCartItemDtoList(items);
+        return cartMapper.toCartDto(cart, itemDtos);
     }
 
     // Removes an item from the cart
@@ -121,7 +130,7 @@ public class CartItemService {
         cartService.updateCartTimestamp(cart);
 
         List<CartItems> items = cartItemRepository.findByCart(cart);
-        return cartService.convertToDto(cart, cartService.convertToCartItemDtoList(items));
+        List<CartItemDto> itemDtos = cartMapper.toCartItemDtoList(items);
+        return cartMapper.toCartDto(cart, itemDtos);
     }
-
 }
