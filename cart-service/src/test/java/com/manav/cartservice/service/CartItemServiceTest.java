@@ -1,8 +1,10 @@
 package com.manav.cartservice.service;
 
 import com.manav.cartservice.dto.CartDto;
+import com.manav.cartservice.dto.CartItemDto;
 import com.manav.cartservice.exception.CustomException;
 import com.manav.cartservice.exception.UnauthorizedAccessException;
+import com.manav.cartservice.mapper.CartMapper;
 import com.manav.cartservice.model.CartItems;
 import com.manav.cartservice.model.Carts;
 import com.manav.cartservice.repository.CartItemRepository;
@@ -16,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +26,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,6 +44,9 @@ class CartItemServiceTest {
     @Mock
     private UserRestTemplateClient userRestTemplateClient;
 
+    @Mock
+    private CartMapper cartMapper;
+
     @InjectMocks
     private CartItemService cartItemService;
 
@@ -50,6 +57,7 @@ class CartItemServiceTest {
     private CartItems mockCartItem;
     private List<CartItems> mockCartItems;
     private CartDto mockCartDto;
+    private List<CartItemDto> mockCartItemDtos;
 
     @BeforeEach
     void setUp() {
@@ -73,10 +81,19 @@ class CartItemServiceTest {
         mockCartItems = new ArrayList<>();
         mockCartItems.add(mockCartItem);
 
+        // Setup cart item DTOs
+        mockCartItemDtos = new ArrayList<>();
+        mockCartItemDtos.add(new CartItemDto(productId, 2, BigDecimal.valueOf(19.99)));
+
         // Setup cart DTO
-        mockCartDto = new CartDto();
-        mockCartDto.setCartId(mockCart.getId());
-        mockCartDto.setUserId(userId);
+        mockCartDto = new CartDto(
+                mockCart.getId(),
+                userId,
+                new Timestamp(System.currentTimeMillis()),
+                new Timestamp(System.currentTimeMillis()),
+                false,
+                mockCartItemDtos
+        );
     }
 
     @Test
@@ -89,15 +106,15 @@ class CartItemServiceTest {
         when(productRestTemplateClient.getPricing(productId)).thenReturn(BigDecimal.valueOf(9.99));
         when(cartItemRepository.save(any(CartItems.class))).thenReturn(mockCartItem);
         when(cartItemRepository.findByCart(mockCart)).thenReturn(mockCartItems);
-        when(cartService.convertToCartItemDtoList(mockCartItems)).thenReturn(new ArrayList<>());
-        when(cartService.convertToDto(eq(mockCart), any())).thenReturn(mockCartDto);
+        when(cartMapper.toCartItemDtoList(mockCartItems)).thenReturn(mockCartItemDtos);
+        when(cartMapper.toCartDto(eq(mockCart), eq(mockCartItemDtos))).thenReturn(mockCartDto);
 
         // Act
         CartDto result = cartItemService.addItem(userId, productId, 2);
 
         // Assert
         assertNotNull(result);
-        assertEquals(mockCart.getId(), result.getCartId());
+        assertEquals(mockCart.getId(), result.cartId());
 
         verify(cartService).getUsernameFromJwt();
         verify(userRestTemplateClient).approveUser(username, userId.toString());
@@ -107,8 +124,8 @@ class CartItemServiceTest {
         verify(cartItemRepository).save(any(CartItems.class));
         verify(cartService).updateCartTimestamp(mockCart);
         verify(cartItemRepository).findByCart(mockCart);
-        verify(cartService).convertToCartItemDtoList(mockCartItems);
-        verify(cartService).convertToDto(eq(mockCart), any());
+        verify(cartMapper).toCartItemDtoList(mockCartItems);
+        verify(cartMapper).toCartDto(eq(mockCart), eq(mockCartItemDtos));
     }
 
     @Test
@@ -121,15 +138,15 @@ class CartItemServiceTest {
         when(productRestTemplateClient.getPricing(productId)).thenReturn(BigDecimal.valueOf(9.99));
         when(cartItemRepository.save(mockCartItem)).thenReturn(mockCartItem);
         when(cartItemRepository.findByCart(mockCart)).thenReturn(mockCartItems);
-        when(cartService.convertToCartItemDtoList(mockCartItems)).thenReturn(new ArrayList<>());
-        when(cartService.convertToDto(eq(mockCart), any())).thenReturn(mockCartDto);
+        when(cartMapper.toCartItemDtoList(mockCartItems)).thenReturn(mockCartItemDtos);
+        when(cartMapper.toCartDto(eq(mockCart), eq(mockCartItemDtos))).thenReturn(mockCartDto);
 
         // Act
         CartDto result = cartItemService.addItem(userId, productId, 1);
 
         // Assert
         assertNotNull(result);
-        assertEquals(mockCart.getId(), result.getCartId());
+        assertEquals(mockCart.getId(), result.cartId());
         assertEquals(3, mockCartItem.getQuantity()); // Original 2 + 1 new
 
         verify(cartService).getUsernameFromJwt();
@@ -152,8 +169,8 @@ class CartItemServiceTest {
         when(productRestTemplateClient.getPricing(productId)).thenReturn(BigDecimal.valueOf(9.99));
         when(cartItemRepository.save(mockCartItem)).thenReturn(mockCartItem);
         when(cartItemRepository.findByCart(mockCart)).thenReturn(mockCartItems);
-        when(cartService.convertToCartItemDtoList(mockCartItems)).thenReturn(new ArrayList<>());
-        when(cartService.convertToDto(eq(mockCart), any())).thenReturn(mockCartDto);
+        when(cartMapper.toCartItemDtoList(mockCartItems)).thenReturn(mockCartItemDtos);
+        when(cartMapper.toCartDto(eq(mockCart), eq(mockCartItemDtos))).thenReturn(mockCartDto);
 
         // Act
         CartDto result = cartItemService.updateItem(userId, productId, 5);
@@ -215,8 +232,8 @@ class CartItemServiceTest {
         when(cartService.getCartEntityByUser(userId)).thenReturn(mockCart);
         when(cartItemRepository.findByCartAndProductId(mockCart, productId)).thenReturn(Optional.of(mockCartItem));
         when(cartItemRepository.findByCart(mockCart)).thenReturn(new ArrayList<>());
-        when(cartService.convertToCartItemDtoList(any())).thenReturn(new ArrayList<>());
-        when(cartService.convertToDto(eq(mockCart), any())).thenReturn(mockCartDto);
+        when(cartMapper.toCartItemDtoList(any())).thenReturn(new ArrayList<>());
+        when(cartMapper.toCartDto(eq(mockCart), any())).thenReturn(mockCartDto);
 
         // Act
         CartDto result = cartItemService.removeItem(userId, productId);
