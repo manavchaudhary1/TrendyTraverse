@@ -2,8 +2,9 @@
 <p align="center">
   Frontend for <b>Trendy Traverse</b>, is created using ReactJS with Typescript.
   <br/>
-  Dir can be found [here](https://github.com/manavchaudhary1/TrendyTraverse/tree/main/shopfront).
+  Dir can be found <a href="https://github.com/manavchaudhary1/TrendyTraverse/tree/main/shopfront" target="_blank">here</a>.
 </p>
+
 
 ## DEMO
 

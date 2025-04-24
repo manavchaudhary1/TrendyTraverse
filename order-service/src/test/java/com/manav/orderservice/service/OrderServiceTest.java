@@ -3,6 +3,7 @@ package com.manav.orderservice.service;
 import com.manav.orderservice.dto.OrderDto;
 import com.manav.orderservice.exception.CustomException;
 import com.manav.orderservice.exception.UnauthorizedAccessException;
+import com.manav.orderservice.mapper.OrderMapper;
 import com.manav.orderservice.model.CartItem;
 import com.manav.orderservice.model.Order;
 import com.manav.orderservice.model.OrderLines;
@@ -46,6 +47,9 @@ class OrderServiceTest {
 
     @Mock
     private UserRestTemplateClient userRestTemplateClient;
+
+    @Mock
+    private OrderMapper orderMapper;
 
     @Mock
     private SecurityContext securityContext;
@@ -99,6 +103,10 @@ class OrderServiceTest {
 
         // Set up default behavior for approveUser
         when(userRestTemplateClient.approveUser(anyString(), anyString())).thenReturn(true);
+
+        // Set up mock OrderDto for mapper
+        OrderDto mockOrderDto = mock(OrderDto.class);
+        when(orderMapper.toOrderDto(any(Order.class), anyList())).thenReturn(mockOrderDto);
     }
 
     @Test
@@ -114,11 +122,10 @@ class OrderServiceTest {
         // Assert
         assertFalse(result.isEmpty());
         assertEquals(1, result.size());
-        assertEquals(orderId, result.get(0).getId());
-        assertEquals(userId, result.get(0).getUserId());
         verify(userRestTemplateClient).approveUser(anyString(), eq(userId.toString()));
         verify(orderRepository).findByUserId(userId);
         verify(orderLineRepository).findByOrderId(orderId);
+        verify(orderMapper).toOrderDto(eq(mockOrder), anyList());
     }
 
     @Test
@@ -156,24 +163,18 @@ class OrderServiceTest {
             return order;
         });
         when(orderLineRepository.saveAll(anyList())).thenReturn(Collections.singletonList(mockOrderLine));
-        doNothing().when(cartRestTemplateClient).archiveCart(userId);
 
         // Act
         OrderDto result = orderService.placeOrderFromCart(userId);
 
         // Assert
         assertNotNull(result);
-        assertEquals(userId, result.getUserId());
-        assertEquals(1, result.getOrderLines().size());
-        assertEquals(1L, result.getOrderLines().get(0).getProductId());
-        assertEquals(2, result.getOrderLines().get(0).getQuantity());
-        assertEquals(new BigDecimal("19.99"), result.getOrderLines().get(0).getPrice());
-
         verify(userRestTemplateClient).approveUser(anyString(), eq(userId.toString()));
         verify(cartRestTemplateClient).getCartItems(userId);
         verify(orderRepository).save(any(Order.class));
         verify(orderLineRepository).saveAll(anyList());
         verify(cartRestTemplateClient).archiveCart(userId);
+        verify(orderMapper).toOrderDto(any(Order.class), anyList());
     }
 
     @Test
@@ -219,16 +220,11 @@ class OrderServiceTest {
 
         // Assert
         assertNotNull(result);
-        assertEquals(userId, result.getUserId());
-        assertEquals(1, result.getOrderLines().size());
-        assertEquals(productId, result.getOrderLines().get(0).getProductId());
-        assertEquals(quantity, result.getOrderLines().get(0).getQuantity());
-        assertEquals(price, result.getOrderLines().get(0).getPrice());
-
         verify(userRestTemplateClient).approveUser(anyString(), eq(userId.toString()));
         verify(productRestTemplateClient).getPricing(productId);
         verify(orderRepository).save(any(Order.class));
         verify(orderLineRepository).save(any(OrderLines.class));
+        verify(orderMapper).toOrderDto(any(Order.class), anyList());
     }
 
     @Test

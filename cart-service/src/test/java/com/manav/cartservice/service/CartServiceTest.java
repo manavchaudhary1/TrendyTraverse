@@ -2,7 +2,7 @@ package com.manav.cartservice.service;
 
 import com.manav.cartservice.dto.CartDto;
 import com.manav.cartservice.dto.CartItemDto;
-import com.manav.cartservice.exception.UnauthorizedAccessException;
+import com.manav.cartservice.mapper.CartMapper;
 import com.manav.cartservice.model.CartItems;
 import com.manav.cartservice.model.Carts;
 import com.manav.cartservice.repository.CartItemRepository;
@@ -14,10 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.Jwt;
 
 import javax.smartcardio.CardNotPresentException;
 import java.math.BigDecimal;
@@ -37,21 +33,33 @@ class CartServiceTest {
     @Mock
     private CartRepository cartRepository;
 
+    @Mock
+    private CartItemRepository cartItemRepository;
+
+    @Mock
+    private UserRestTemplateClient userRestTemplateClient;
+
+    @Mock
+    private CartMapper cartMapper;
 
     @InjectMocks
     private CartService cartService;
 
     private UUID userId;
+    private UUID cartId;
     private Carts mockCart;
     private List<CartItems> mockCartItems;
+    private List<CartItemDto> mockCartItemDtos;
+    private CartDto mockCartDto;
 
     @BeforeEach
     void setUp() {
         userId = UUID.randomUUID();
+        cartId = UUID.randomUUID();
 
         // Setup cart
         mockCart = new Carts();
-        mockCart.setId(UUID.randomUUID());
+        mockCart.setId(cartId);
         mockCart.setUserId(userId);
         mockCart.setCreatedAt(Timestamp.from(Instant.now()));
         mockCart.setUpdatedAt(Timestamp.from(Instant.now()));
@@ -65,6 +73,47 @@ class CartServiceTest {
         item.setQuantity(2);
         item.setPrice(BigDecimal.valueOf(19.99));
         mockCartItems.add(item);
+
+        // Setup cart item DTOs
+        mockCartItemDtos = new ArrayList<>();
+        mockCartItemDtos.add(new CartItemDto(1L, 2, BigDecimal.valueOf(19.99)));
+
+        // Setup cart DTO
+        mockCartDto = new CartDto(
+                cartId,
+                userId,
+                mockCart.getCreatedAt(),
+                mockCart.getUpdatedAt(),
+                false,
+                mockCartItemDtos
+        );
+
+        cartService = spy(new CartService(cartRepository, cartItemRepository, userRestTemplateClient, cartMapper));
+    }
+
+    @Test
+    void getCartByUser_Success() {
+        // Arrange
+        doReturn("testUser").when(cartService).getUsernameFromJwt();
+        when(userRestTemplateClient.approveUser("testUser", userId.toString())).thenReturn(true);
+        when(cartRepository.findByUserIdAndArchivedFalse(userId)).thenReturn(mockCart);
+        when(cartItemRepository.findByCart(mockCart)).thenReturn(mockCartItems);
+        when(cartMapper.toCartItemDtoList(mockCartItems)).thenReturn(mockCartItemDtos);
+        when(cartMapper.toCartDto(mockCart, mockCartItemDtos)).thenReturn(mockCartDto);
+
+        // Act
+        CartDto result = cartService.getCartByUser(userId);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(cartId, result.cartId());
+        assertEquals(userId, result.userId());
+        assertEquals(1, result.items().size());
+
+        verify(cartRepository).findByUserIdAndArchivedFalse(userId);
+        verify(cartItemRepository).findByCart(mockCart);
+        verify(cartMapper).toCartItemDtoList(mockCartItems);
+        verify(cartMapper).toCartDto(mockCart, mockCartItemDtos);
     }
 
     @Test
@@ -114,6 +163,25 @@ class CartServiceTest {
     }
 
     @Test
+    void checkoutCart_Success() throws CardNotPresentException {
+        // Arrange
+        when(cartRepository.findByUserIdAndArchivedFalse(userId)).thenReturn(mockCart);
+        doReturn("testUser").when(cartService).getUsernameFromJwt();
+        when(userRestTemplateClient.approveUser("testUser", userId.toString())).thenReturn(true);
+        when(cartItemRepository.findByCart(mockCart)).thenReturn(mockCartItems);
+        when(cartMapper.toCartItemDtoList(mockCartItems)).thenReturn(mockCartItemDtos);
+        when(cartMapper.toCartDto(mockCart, mockCartItemDtos)).thenReturn(mockCartDto);
+
+        // Act
+        CartDto result = cartService.checkoutCart(userId);
+
+        // Assert
+        assertTrue(mockCart.isArchived());
+        assertNotNull(result);
+        verify(cartRepository).save(mockCart);
+    }
+
+    @Test
     void checkoutCart_CartNotFound() {
         // Arrange
         when(cartRepository.findByUserIdAndArchivedFalse(userId)).thenReturn(null);
@@ -128,43 +196,14 @@ class CartServiceTest {
     void updateCartTimestamp_Success() {
         // Arrange
         when(cartRepository.save(mockCart)).thenReturn(mockCart);
+        Timestamp before = mockCart.getUpdatedAt();
 
         // Act
         cartService.updateCartTimestamp(mockCart);
 
         // Assert
         assertNotNull(mockCart.getUpdatedAt());
+        assertNotEquals(before, mockCart.getUpdatedAt());
         verify(cartRepository).save(mockCart);
-    }
-
-    @Test
-    void convertToDto_Success() {
-        // Arrange
-        List<CartItemDto> itemDtos = cartService.convertToCartItemDtoList(mockCartItems);
-
-        // Act
-        CartDto result = cartService.convertToDto(mockCart, itemDtos);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(mockCart.getId(), result.getCartId());
-        assertEquals(mockCart.getUserId(), result.getUserId());
-        assertEquals(mockCart.getCreatedAt(), result.getCreatedAt());
-        assertEquals(mockCart.getUpdatedAt(), result.getUpdatedAt());
-        assertEquals(mockCart.isArchived(), result.isArchived());
-        assertEquals(1, result.getItems().size());
-    }
-
-    @Test
-    void convertToCartItemDtoList_Success() {
-        // Act
-        List<CartItemDto> result = cartService.convertToCartItemDtoList(mockCartItems);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(1L, result.getFirst().getProductId());
-        assertEquals(2, result.getFirst().getQuantity());
-        assertEquals(BigDecimal.valueOf(19.99), result.getFirst().getPrice());
     }
 }

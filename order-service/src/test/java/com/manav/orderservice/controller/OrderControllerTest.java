@@ -43,20 +43,14 @@ class OrderControllerTest {
         userId = UUID.randomUUID();
         orderId = UUID.randomUUID();
 
-        // Create mock OrderDto
-        mockOrderDto = new OrderDto();
-        mockOrderDto.setId(orderId);
-        mockOrderDto.setUserId(userId);
-        mockOrderDto.setCreatedAt(Timestamp.from(Instant.now()));
-
+        // Create mock OrderLineDto
+        OrderLineDto lineDto = new OrderLineDto(1L, 2, new BigDecimal("19.99"));
         List<OrderLineDto> orderLines = new ArrayList<>();
-        OrderLineDto lineDto = new OrderLineDto();
-        lineDto.setProductId(1L);
-        lineDto.setQuantity(2);
-        lineDto.setPrice(new BigDecimal("19.99"));
         orderLines.add(lineDto);
 
-        mockOrderDto.setOrderLines(orderLines);
+        // Create mock OrderDto
+        Timestamp createdAt = Timestamp.from(Instant.now());
+        mockOrderDto = new OrderDto(orderId, userId, createdAt, orderLines);
 
         // Create mock OrderDto list
         mockOrderDtoList = new ArrayList<>();
@@ -122,11 +116,9 @@ class OrderControllerTest {
     @Test
     void placeOrder_ReturnsCreatedOrder_WhenSuccessful() {
         // Arrange
-        OrderRequestDto requestDto = new OrderRequestDto();
-        requestDto.setProductId(1L);
-        requestDto.setQuantity(2);
+        OrderRequestDto requestDto = new OrderRequestDto(1L, 2);
 
-        when(orderService.placeOrder(userId, requestDto.getProductId(), requestDto.getQuantity()))
+        when(orderService.placeOrder(userId, requestDto.productId(), requestDto.quantity()))
                 .thenReturn(mockOrderDto);
 
         // Act
@@ -136,15 +128,13 @@ class OrderControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(mockOrderDto, response.getBody());
         verify(orderService, times(1))
-                .placeOrder(userId, requestDto.getProductId(), requestDto.getQuantity());
+                .placeOrder(userId, requestDto.productId(), requestDto.quantity());
     }
 
     @Test
     void placeOrder_ReturnsBadRequest_WhenQuantityIsZero() {
         // Arrange
-        OrderRequestDto requestDto = new OrderRequestDto();
-        requestDto.setProductId(1L);
-        requestDto.setQuantity(0);
+        OrderRequestDto requestDto = new OrderRequestDto(1L, 0);
 
         // Act
         ResponseEntity<OrderDto> response = orderController.placeOrder(userId, requestDto);
@@ -158,11 +148,9 @@ class OrderControllerTest {
     @Test
     void placeOrder_ReturnsBadRequest_WhenExceptionThrown() {
         // Arrange
-        OrderRequestDto requestDto = new OrderRequestDto();
-        requestDto.setProductId(1L);
-        requestDto.setQuantity(2);
+        OrderRequestDto requestDto = new OrderRequestDto(1L, 2);
 
-        when(orderService.placeOrder(userId, requestDto.getProductId(), requestDto.getQuantity()))
+        when(orderService.placeOrder(userId, requestDto.productId(), requestDto.quantity()))
                 .thenThrow(new IllegalStateException("Product not found"));
 
         // Act
@@ -171,7 +159,7 @@ class OrderControllerTest {
         // Assert
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         verify(orderService, times(1))
-                .placeOrder(userId, requestDto.getProductId(), requestDto.getQuantity());
+                .placeOrder(userId, requestDto.productId(), requestDto.quantity());
     }
 
     @Test

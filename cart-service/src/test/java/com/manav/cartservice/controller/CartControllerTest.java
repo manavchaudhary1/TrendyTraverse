@@ -2,6 +2,7 @@ package com.manav.cartservice.controller;
 
 import com.manav.cartservice.dto.AddCartItemRequest;
 import com.manav.cartservice.dto.CartDto;
+import com.manav.cartservice.dto.CartItemDto;
 import com.manav.cartservice.dto.UpdateCartItemRequest;
 import com.manav.cartservice.service.CartItemService;
 import com.manav.cartservice.service.CartService;
@@ -15,7 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import javax.smartcardio.CardNotPresentException;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,19 +48,25 @@ class CartControllerTest {
         userId = UUID.randomUUID();
         productId = 1L;
 
-        // Setup mock cart DTO
-        mockCartDto = new CartDto();
-        mockCartDto.setCartId(UUID.randomUUID());
-        mockCartDto.setUserId(userId);
-        mockCartDto.setItems(new ArrayList<>());
+        // Setup mock cart items
+        List<CartItemDto> items = new ArrayList<>();
+        items.add(new CartItemDto(productId, 2, BigDecimal.valueOf(19.99)));
 
-        // Setup add request
-        addRequest = new AddCartItemRequest(productId);
-        addRequest.setQuantity(2);
+        // Setup mock cart DTO using the record constructor
+        mockCartDto = new CartDto(
+                UUID.randomUUID(),
+                userId,
+                new Timestamp(System.currentTimeMillis()),
+                new Timestamp(System.currentTimeMillis()),
+                false,
+                items
+        );
 
-        // Setup update request
-        updateRequest = new UpdateCartItemRequest(productId);
-        updateRequest.setQuantity(5);
+        // Setup add request using the record constructor
+        addRequest = new AddCartItemRequest(productId, 2);
+
+        // Setup update request using the record constructor
+        updateRequest = new UpdateCartItemRequest(productId, 5);
     }
 
     @Test
