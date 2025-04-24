@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,50 +37,88 @@ class ProductControllerTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize test DTOs
-        productResponseDTO = new ProductResponseDTO();
-        productResponseDTO.setProductId(1L);
-        productResponseDTO.setName("Test Product");
-        productResponseDTO.setBrand("Test Brand");
-        productResponseDTO.setPricing(BigDecimal.valueOf(99.99));
-        productResponseDTO.setProductImages(new ArrayList<>());
-        productResponseDTO.setFeatureBullets(new ArrayList<>());
+        // Initialize test DTOs using record constructors
+        productResponseDTO = new ProductResponseDTO(
+                1L,
+                "Test Product",
+                "Test Brand",
+                new ArrayList<>(),  // productImages
+                "Test Description",
+                new ArrayList<>(),  // featureBullets
+                BigDecimal.valueOf(99.99),
+                BigDecimal.valueOf(129.99),
+                "In Stock",
+                "Electronics",
+                "5x5x5",
+                LocalDate.now(),
+                "Test Manufacturer",
+                "Test Country",
+                4.5,
+                10,
+                5,
+                3,
+                1,
+                1,
+                0,
+                new ArrayList<>()  // reviews
+        );
 
-        productCreateDTO = new ProductCreateDTO();
-        productCreateDTO.setName("New Product");
-        productCreateDTO.setBrand("New Brand");
-        productCreateDTO.setPricing(BigDecimal.valueOf(199.99));
-        productCreateDTO.setAvailabilityStatus("In Stock");
+        productCreateDTO = new ProductCreateDTO(
+                "New Product",
+                "New Brand",
+                "New Description",
+                BigDecimal.valueOf(199.99),
+                BigDecimal.valueOf(249.99),
+                "In Stock",
+                "Electronics",
+                "10x10x10",
+                LocalDate.now(),
+                "New Manufacturer",
+                "New Country",
+                List.of("https://example.com/image1.jpg"),
+                List.of("Feature 1", "Feature 2")
+        );
 
-        productUpdateDTO = new ProductUpdateDTO();
-        productUpdateDTO.setName("Updated Product");
-        productUpdateDTO.setBrand("Updated Brand");
-        productUpdateDTO.setPricing(BigDecimal.valueOf(149.99));
+        productUpdateDTO = new ProductUpdateDTO(
+                "Updated Product",
+                "Updated Brand",
+                "Updated Description",
+                BigDecimal.valueOf(149.99),
+                BigDecimal.valueOf(199.99),
+                "Low Stock",
+                "Updated Electronics",
+                "8x8x8",
+                LocalDate.now().minusDays(30),
+                "Updated Manufacturer",
+                "Updated Country",
+                List.of("https://example.com/updated1.jpg"),
+                List.of("Updated Feature 1", "Updated Feature 2")
+        );
 
-        productDeletionResponseDTO = new ProductDeletionResponseDTO();
-        productDeletionResponseDTO.setProductId(1L);
-        productDeletionResponseDTO.setProductName("Test Product");
-        productDeletionResponseDTO.setImagesDeleted(2);
-        productDeletionResponseDTO.setFeaturesDeleted(3);
-        productDeletionResponseDTO.setReviewsDeleted(5);
-        productDeletionResponseDTO.setDeletionTimestamp(LocalDateTime.now());
-        productDeletionResponseDTO.setMessage("Product successfully deleted");
+        productDeletionResponseDTO = new ProductDeletionResponseDTO(
+                1L,
+                "Test Product",
+                2,
+                3,
+                5,
+                LocalDateTime.now(),
+                "Product successfully deleted"
+        );
 
         searchResults = new ArrayList<>();
-        ProductSearchResultDTO searchResult1 = new ProductSearchResultDTO();
-        searchResult1.setProductId(1L);
-        searchResult1.setName("Test Product");
-        searchResult1.setPricing(BigDecimal.valueOf(99.99));
-        searchResult1.setFirstImage("https://example.com/image1.jpg");
+        searchResults.add(new ProductSearchResultDTO(
+                1L,
+                "Test Product",
+                BigDecimal.valueOf(99.99),
+                "https://example.com/image1.jpg"
+        ));
 
-        ProductSearchResultDTO searchResult2 = new ProductSearchResultDTO();
-        searchResult2.setProductId(2L);
-        searchResult2.setName("Another Test");
-        searchResult2.setPricing(BigDecimal.valueOf(149.99));
-        searchResult2.setFirstImage("https://example.com/image2.jpg");
-
-        searchResults.add(searchResult1);
-        searchResults.add(searchResult2);
+        searchResults.add(new ProductSearchResultDTO(
+                2L,
+                "Another Test",
+                BigDecimal.valueOf(149.99),
+                "https://example.com/image2.jpg"
+        ));
     }
 
     @Test
@@ -138,8 +177,8 @@ class ProductControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(productDeletionResponseDTO, response.getBody());
         assertNotNull(response.getBody());
-        assertEquals(productId, response.getBody().getProductId());
-        assertEquals("Product successfully deleted", response.getBody().getMessage());
+        assertEquals(productId, response.getBody().productId());
+        assertEquals("Product successfully deleted", response.getBody().message());
         verify(productService).deleteProduct(productId);
     }
 
