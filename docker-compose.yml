@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: ${POSTGRES_KEYCLOAK_USER}
       POSTGRES_PASSWORD: ${POSTGRES_KEYCLOAK_PASSWORD}
     volumes:
-      - keycloak_data:/var/lib/postgresql/data
+      - keycloak_data:/var/lib/postgresql
       - ./keycloak-data/keycloak_backup.dump:/sql/keycloak_backup.dump
       - ./scripts/import_keycloak_data.sh:/docker-entrypoint-initdb.d/import_keycloak_data.sh
     ports:
@@ -42,7 +42,7 @@ services:
       - ./sql/order_lines.sql:/sql/order_lines.sql
       - ./sql/final_setup.sql:/sql/final_setup.sql
       - ./scripts/import_sql.sh:/docker-entrypoint-initdb.d/import_sql.sh
-      - e_commerce_data:/var/lib/postgresql/data
+      - e_commerce_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -94,69 +94,67 @@ services:
       - docker-backend
 
   kafka:
-    image: bitnami/kafka:latest
+    image: apache/kafka:3.8.0
     container_name: kafka
     ports:
       - "9092:9092"
-      - "9093:9093"
     environment:
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_ENABLE_KRAFT=yes
-      - KAFKA_CFG_NODE_ID=1
-      - KAFKA_CFG_PROCESS_ROLES=broker,controller
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
-      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
-      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
-      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
     networks:
       - docker-backend
 
   elasticsearch:
-    image: bitnami/elasticsearch:8.17.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
     container_name: elasticsearch
     volumes:
-      - elasticsearch_data:/bitnami/elasticsearch
+      - elasticsearch_data:/usr/share/elasticsearch/data
     environment:
       - discovery.type=single-node
-      - network.host=0.0.0.0
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
       - "9300:9300"
       - "9200:9200"
     healthcheck:
-      test: [ "CMD-SHELL", "curl -fsSL http://localhost:9200/_cluster/health || exit 1" ]
+      test: ["CMD-SHELL", "curl -fsSL http://localhost:9200/_cluster/health || exit 1"]
       interval: 10s
       retries: 5
       start_period: 20s
       timeout: 5s
     networks:
       - docker-backend
-
   kibana:
-    image: bitnami/kibana:8.17.1
+    image: docker.elastic.co/kibana/kibana:8.15.3
     container_name: kibana
     volumes:
-      - kibana_data:/bitnami/kibana
+      - kibana_data:/usr/share/kibana/data
     ports:
       - "5601:5601"
     environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     depends_on:
       - elasticsearch
     networks:
       - docker-backend
 
   logstash:
-    image: bitnami/logstash:8.17.1
+    image: docker.elastic.co/logstash/logstash:8.15.3
     container_name: logstash
     volumes:
-      - logstash_data:/bitnami/logstash
-      - ./logstash/pipeline/logstash.conf:/etc/logstash/conf.d/logstash.conf
-    command: logstash -f /etc/logstash/conf.d/logstash.conf
+      - logstash_data:/usr/share/logstash/data
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
     ports:
       - "5000:5000"
     networks:
@@ -177,13 +175,16 @@ services:
       - docker-backend
 
   prometheus:
-    image: bitnami/prometheus:2.55.1
+    image: prom/prometheus:v2.55.1
     container_name: prometheus
     ports:
       - "9090:9090"
     volumes:
-      - ./scripts/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
-      - prometheus_data:/bitnami/prometheus
+      - ./scripts/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
     networks:
       - docker-backend
 
