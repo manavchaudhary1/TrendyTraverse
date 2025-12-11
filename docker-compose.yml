@@ -93,29 +93,6 @@ services:
     networks:
       - docker-backend
 
-#  kafka:
-#    image: confluentinc/cp-kafka:7.6.1
-#    container_name: kafka
-#    ports:
-#      - "9092:9092"
-#      - "9093:9093"
-#    environment:
-#      - ALLOW_PLAINTEXT_LISTENER=yes
-#      - KAFKA_ENABLE_KRAFT=yes
-#      - KAFKA_CFG_NODE_ID=1
-#      - KAFKA_CFG_PROCESS_ROLES=broker,controller
-#      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093
-#      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
-#      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
-#      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-#      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
-#      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
-#      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-#      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
-#      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
-#    networks:
-#      - docker-backend
-
   kafka:
     image: confluentinc/cp-kafka:7.6.1
     container_name: kafka
